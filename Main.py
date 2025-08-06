@@ -1,22 +1,21 @@
-from typing import Any, Tuple
-import tkinter
-import Mesher
+
 import threading
 import time
 import copy
 import sys
 import json
-import subprocess
+import os
+import customtkinter as ctk
+from PIL import Image
 from tkinter import ttk
 from tkinter import filedialog
-import customtkinter as ctk
-import MeshObjects 
-import Solver
-import Postproces
-import ansys.fluent.core as pyfluent
-import os
-from PIL import Image
-import pyperclip
+from typing import  Tuple
+
+import Support_scripts.MeshObjects as MeshObjects
+import Fluent_scripts.Solver as Solver
+import Fluent_scripts.Postproces as Postproces
+import Fluent_scripts.Mesher as Mesher
+
 
 '''
 A code for custom app used to set a fluent simulation settings without the need

@@ -1,4 +1,4 @@
-import MeshObjects
+import Support_scripts.MeshObjects as MeshObjects
 import customtkinter as ctk
 from tkinter import filedialog
 from tkinter import ttk
