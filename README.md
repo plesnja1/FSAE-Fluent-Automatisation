@@ -16,5 +16,15 @@ The import skript is able to save complete tree path for every part of an assemb
 <img src="/doc/source/CAD_tree.png" width="350">
 
 
-<img src="/doc/source/Scope_sizing.png" width="420">
+<img src="/doc/source/Scope_sizing.png" width="415">
+</h1><br>
+
+Meshing
+----------------------
+
+Meshing of the domain is handled through Fluents fault tolerant workflow. It automatically creates external computational domain, recognises Bodies Of Influence and Radiator volumes, assigns scoped sizings and prism settings to proper parts and finally creates a wrap and volumetric mesh suitable for calculation.
+
+
+<h1 align="left">
+<img src="/doc/source/Meshing.png" width="600">
 </h1><br>
