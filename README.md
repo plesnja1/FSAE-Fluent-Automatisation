@@ -37,3 +37,11 @@ Through graphical interface user can decide on turbulent model, pressure-velocit
 <h1 align="left">
 <img src="/doc/source/Solver.png" width="600">
 </h1><br>
+
+Postprocessing
+----------------------
+Posprocessing handles data export into an excell table including drag and lift values for all subassemblies and pressure distribution. Several .AVZ files can be exported and cut planes for velocity and pressure values can be automaticaly generated. 
+
+<h1 align="left">
+<img src="/doc/source/Postpro.png" width="450">
+</h1><br>
