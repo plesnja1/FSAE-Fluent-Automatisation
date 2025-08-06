@@ -28,3 +28,12 @@ Meshing of the domain is handled through Fluents fault tolerant workflow. It aut
 <h1 align="left">
 <img src="/doc/source/Meshing.png" width="600">
 </h1><br>
+
+
+Solver
+----------------------
+Through graphical interface user can decide on turbulent model, pressure-velocity coupling, number of iterations or time step sizing for transient simulation. Skrip also supports GPU calulations, which are much faster and encuraged if possible, as the script can than run parralel meshing and postprocessing on CPU  and solver on GPU basically running 3 sumulations at one time without much decrease in performamce per simulation (around 30GB of GPU RAM reccomended). Solver skript also automatically sets boundary conditions, porous media settings for radiator and 2d fan settings. From all named selections defined through scope sizings report definitions are created allowing for lift and drag monitorring of all individual subassemblies.
+
+<h1 align="left">
+<img src="/doc/source/Solver.png" width="600">
+</h1><br>
