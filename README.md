@@ -15,6 +15,6 @@ The import skript is able to save complete tree path for every part of an assemb
 <h1 align="left">
 <img src="/doc/source/CAD_tree.png" width="350">
 
-<h1 align="right">
+
 <img src="/doc/source/Scope_sizing.png" width="350">
 </h1><br>
