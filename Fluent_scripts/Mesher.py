@@ -1,5 +1,5 @@
 import ansys.fluent.core as pyfluent
-import MeshObjects
+import Support_scripts.MeshObjects as MeshObjects
 import os
 import math
 '''
