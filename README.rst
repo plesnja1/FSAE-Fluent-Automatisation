@@ -1,8 +1,8 @@
-# FSAE-Fluent-Automatisation
+FSAE-Fluent-Automatisation
 An automatization for Fluent CFD external aerodynamics optimised for FSAE styled vehicles. Meshing, Solver, Postprocessing included.
 This automatisation utilises an aoutomatic name selection based on CAD tree of imported model and automatic mesh sizing based on theese name selections and included scope sizing .json file. Main part of the script is a GUI, which takes care of starting individual scripts, mannaging important solver settings, loading files, rewriting and saving scope siying files and queue management. If set properly. the entire workflow can generate data, images and .AVZ files.
 
-.. image:: https://raw.githubusercontent.com/plesnja1/FSEA-Fluent_Automatisation/main/doc/source/Main_menu.png
+.. image:: https://github.com/plesnja1/FSAE-Fluent-Automatisation/blob/487d39d352cf7b701a1df1978bccc59fdedf10dd/doc/source/Main_menu.png
   
   :width: 300
   :height: 110
