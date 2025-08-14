@@ -7,9 +7,10 @@ FSAE CFD Automatisation documentation
 =====================================
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    
-   GettingStarted
+   getting_started/getting_started
 
 
 This prooject aims to incorporate pyFluent (a python Fluent wrapper) into a user friendly and easy to use graphical interface. 
