@@ -14,7 +14,7 @@ Getting Started with AutoFluent
 
 Downloading AutoFluent
 ----------------------
-User can either download entire branch from gitHub web or pull the branch from git.
+User can either download entire branch from `gitHub web <https://github.com/plesnja1/FSAE-Fluent-Automatisation>`_ or pull the branch from git.
 
 .. code-block:: console
 
@@ -45,3 +45,7 @@ Starting AutoFluent
 ----------------------
 To use AutoFluent a Python 3.8 or higher needs to be installed. Inside a downloaded folder a Main.py script is located. 
 If started throug Python a graphical user interface will appear.
+
+.. image:: ../Main_menu.png
+  :width: 400
+  :alt: AutoFluent menu
