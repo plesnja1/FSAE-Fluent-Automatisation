@@ -50,7 +50,7 @@ ctk.set_default_color_theme("green")
 
 
 
-Debug_Console = True         
+Debug_Console = False        
 
 class SimulationClass:
     

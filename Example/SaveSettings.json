@@ -1,0 +1,79 @@
+{
+  "GeneralSett": [
+    {
+      "DoublePrecision": "double",
+      "CoreCount": "5",
+      "IntCoreCount": 4,
+      "GPU": true,
+      "Mode": "Meshing",
+      "PyConsole": true,
+      "CAD_Path": "D:/plesnik/PyFluent/Versions/Beta20v1_06_05_25/Formula24.stp",
+      "Data_Path": "",
+      "GUI": "no_gui_or_graphics",
+      "workingDirectory": "D:/work"
+    }
+  ],
+  "TunnelSett": [
+    {
+      "y_max": 3,
+      "y_min": 4,
+      "z_max": 5,
+      "z_min": 6,
+      "x_max": 1,
+      "x_min": 2,
+      "Cell_size": 7,
+      "Wrap_ratio": 8.0
+    }
+  ],
+  "SimulationSett": [
+    {
+      "Turbulence_model": "k-epsilon",
+      "Wall_function": "standard-wall-fn",
+      "Coupling": "SIMPLE",
+      "Transient": "unsteady-2nd-order",
+      "iter_count": 11,
+      "TimeStep": 12,
+      "Time": 13,
+      "Temperature": 14,
+      "Height": 15
+    }
+  ],
+  "Boundary_conditions_sett": [
+    {
+      "velocity": 101.0,
+      "WheelDiameter": 102.0,
+      "f_w_axis_x": 103.0,
+      "f_w_axis_y": 105.0,
+      "f_w_axis_z": 107.0,
+      "r_w_axis_x": 104.0,
+      "r_w_axis_y": 106.0,
+      "r_w_axis_z": 108.0,
+      "Radiator_check": true,
+      "power_law_c_0": 109.0,
+      "power_law_c_1": 110.0
+    }
+  ],
+  "PostprocessSett": [
+    {
+      "Excell": false,
+      "Excell_path": "",
+      "Iteration_averaging": 200,
+      "Create_report_file": true,
+      "Save_AVZ": false,
+      "Start_coord_XY": 1111.0,
+      "Number_of_cuts_XY": 453,
+      "End_coord_XY": 545.0,
+      "Start_coord_XZ": 1112.0,
+      "Number_of_cuts_XZ": 2053453,
+      "End_coord_XZ": 4563.0,
+      "Start_coord_YZ": 7520.0,
+      "Number_of_cuts_YZ": 67453,
+      "End_coord_YZ": 42.0,
+      "Vel_Mag_cuts": false,
+      "Vel_LIC_cuts": true,
+      "Mean_Press_cuts": true,
+      "Total_Press_cuts": false,
+      "Vorticity_cuts": true
+    }
+  ]
+}
