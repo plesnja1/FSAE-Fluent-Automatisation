@@ -1,7 +1,3 @@
-.. _getting_started:
-
-
-
 .. raw:: html
 
    <style> .red {color:#e3182d; font-weight:bold; font-size:16px} </style>
@@ -32,7 +28,7 @@
 
 .. role:: purple
 
-
+.. _getting_started:
 
 Getting Started with AutoFluent
 ===============================
@@ -100,3 +96,4 @@ On bottom (:green:`Green`) is a transcript from a console.
 
    
    first_project
+   

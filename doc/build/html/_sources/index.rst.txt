@@ -2,6 +2,7 @@
    sphinx-quickstart on Thu Aug 14 09:05:24 2025.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
+.. _index:
 
 FSAE CFD Automatisation documentation
 =====================================
@@ -11,9 +12,11 @@ FSAE CFD Automatisation documentation
    :maxdepth: 2
    
    getting_started/getting_started
+   user_guide/user_guide_contents
+   GUI_guide/GUI_guide
+   
 
-
-This prooject aims to incorporate pyFluent (a python Fluent wrapper) into a user friendly and easy to use graphical interface. 
+This project aims to incorporate pyFluent (a python Fluent wrapper) into a user friendly and easy to use graphical interface. 
 As a result aerodynamicists with little experience in making CFD calculations can create quality external car simulations. 
 At first the project aimed to create complete automatic workflow from importing a CAD file to getting complete results with
 drag/lift data and pictures but over time it incorporated feeatures as automatic simulations queue, radiators and fans and turn simulations.

@@ -1,7 +1,5 @@
 .. _first_project:
 
-
-
 First AutoFluent project
 ========================
 First project can be an included template formula with sizing. Through this we can show entire process of starting a simulation.
@@ -78,7 +76,7 @@ types of cuts.
 
 Start calculation
 ^^^^^^^^^^^^^^^^^
-After finishing setting up of simulation we can push theese settings to simulation queue by pressing **Start simulation** buttn. If there is place for it 
+After finishing setting up of simulation we can push theese settings to simulation queue by pressing **Start simulation** button. If there is place for it 
 (as it should with our first project) the case will quicly change from *waiting* status to *meshing* status and Fluent instance will be created.
 If all dependencies are installed and all settings set properly, entire simulation should run from start to end and in working directory results folder will be created.
 
