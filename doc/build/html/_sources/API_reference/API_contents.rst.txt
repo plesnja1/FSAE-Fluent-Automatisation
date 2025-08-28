@@ -4,15 +4,12 @@ API_reference
 =============
 An API reference for custom functions and classes used in automatisation script for easier own development.
 
-Main.py script
---------------
-This 
-
 
 .. toctree::
    :maxdepth: 1
 
-   Main2
+   Main
+   GUI_SubClasses_API/GUI_modules_API_content
 
    
 

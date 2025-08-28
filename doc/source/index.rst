@@ -4,8 +4,8 @@
    contain the root `toctree` directive.
 .. _index:
 
-FSAE CFD Automatisation documentation
-=====================================
+AutoFluent
+==========
 
 .. toctree::
    :hidden:
