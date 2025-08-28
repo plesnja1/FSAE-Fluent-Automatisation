@@ -90,6 +90,7 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
                                      cwd= SettGen.workingDirectory,
                                      additional_arguments='-mpi=intel',
                                      gpu= SettGen.GPU,
+                                     env={"FLUENT_WEBSERVER_TOKEN":'12345', "STARTED_BY_SIMBA":True},
                                      )
 
     if MeshPath == None:
@@ -98,6 +99,11 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         
         solve.settings.file.read_mesh(file_name = MeshPath)
     
+    '''
+    Web Server
+    '''
+    if SettGen.WebServer:
+        solve.tui.server.start_web_server()
     '''
     Setup a material properties
     '''
@@ -186,7 +192,21 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
 
 
 
-
+    '''
+    3D fan zone ///in construction...
+    '''
+    #if BoundarySett.Fan_check:
+        
+        #fan_1 = solve.settings.setup.cell_zone_conditions.fluid['fan-1']
+        #fan_1.fan_zone.fan_zone = True
+        #fan_1.fan_zone.fan_hub_rad = 1
+        #fan_1.fan_zone.fan_tip_rad = 2
+        #fan_1.fan_zone.fan_thickness = 3
+        #fan_1.fan_zone.fan_origin = [1, 2, 3]
+        #fan_1.fan_zone.fan_rot_dir = 'positive'
+        #fan_1.fan_zone.fan_opert_angvel = 300
+        #fan_1.fan_zone.axial_source_term = True
+        #fan_1.fan_zone.fan_axial_source_method = 'fan curve'
 
 
         
@@ -394,7 +414,11 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
     ''' 
     Relaxation factors
     '''
-    solve.settings.solution.controls.p_v_controls.explicit_momentum_under_relaxation = 0.5
+    if SolvSett.Transient == 'steady': 
+        if SolvSett.Coupling == 'Coupled':
+            solve.settings.solution.controls.p_v_controls.explicit_momentum_under_relaxation = 0.5
+        else:
+            solve.settings.solution.controls.under_relaxation["mom"] = 0.5
 
     #solve.tui.file.write_case(SettGen.workingDirectory+r'\Pred_compute.cas.h5')
     

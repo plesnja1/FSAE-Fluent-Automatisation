@@ -54,6 +54,7 @@ class GeneralSett(Setting):
         self.RemovePart = ''  
         self.DefaultMeshPath = ''
         self.FullAssembly = False
+        self.WebServer = True
             
 class General(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -94,7 +95,15 @@ class General(ctk.CTkFrame):
         self.PyConsoleVarCheck = ctk.BooleanVar()
         self.PyConsoleCheck = ctk.CTkCheckBox(self, text="",variable=self.PyConsoleVarCheck,onvalue=True, offvalue=False, command=self.PyConsoleChange)
         self.PyConsoleCheck.grid(row=3, column=1, padx=10, pady=(10, 10), sticky="nw")
-        
+
+        self.WebServerText = ctk.CTkLabel(self, text='Start Web Server?')
+        self.WebServerText.grid(row=3, column=2, padx=10, pady=(10, 10), sticky="nw")
+
+        self.WebServerVarCheck = ctk.BooleanVar()
+        self.WebServerCheck = ctk.CTkCheckBox(self, text="",variable=self.WebServerVarCheck,onvalue=True, offvalue=False, command=self.WebServerChange)
+        self.WebServerCheck.select()
+        self.WebServerCheck.grid(row=3, column=3, padx=10, pady=(10, 0), sticky="nw")
+
         self.PyConsoleText = ctk.CTkLabel(self, text='Start with GUI?')
         self.PyConsoleText.grid(row=4, column=0, padx=10, pady=(10, 10), sticky="nw")
 
@@ -210,6 +219,17 @@ class General(ctk.CTkFrame):
             self.controller.GeneralObject.PyConsole = False 
             print('Py Console Check State:')   
             print(self.controller.GeneralObject.PyConsole)    
+
+    def WebServerChange(self):
+        if self.WebServerVarCheck.get():
+
+            self.controller.GeneralObject.WebServer = True 
+            print('WebServer Check State:')    
+            print(self.controller.GeneralObject.WebServer) 
+        else:
+            self.controller.GeneralObject.WebServer = False 
+            print('WebServer Check State:')   
+            print(self.controller.GeneralObject.WebServer) 
             
     def GUIChange(self):
         print('GUI Check State:') 

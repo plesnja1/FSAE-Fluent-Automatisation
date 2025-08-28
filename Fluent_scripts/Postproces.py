@@ -430,14 +430,27 @@ def StartPostprocessing(solverPath ,
         '''
         Create an iso-surface of q-criterion and show a velocity contour on this iso-survace.
         '''
-        root.tui.surface.iso_surface('q-criterion', 'q-crit-iso-surf', '()', '()', 10) #tui command for iso-surface cration
-        vel_mag_on_q_crit = create_contour(root, 'vel-on-q-crit_cont', 'velocity-magnitude', 'q-crit-iso-surf', [0,35])
-        vel_mag_on_q_crit.color_map.color = 'field-velocity'
+        #root.tui.surface.iso_surface('q-criterion', 'q-crit-iso-surf', '()', '()', 10) #tui command for iso-surface cration
+        #vel_mag_on_q_crit = create_contour(root, 'vel-on-q-crit_cont', 'velocity-magnitude', 'q-crit-iso-surf', [0,35])
+        #vel_mag_on_q_crit.color_map.color = 'field-velocity'
+        #car_mesh = create_mesh(root, 'vehicle_mesh', wall_list, 'light gray')
+        #root.results.scene['q_crit_scene'] = {} #creating a new scene for combining a contour and car mesh
+        #root.results.scene['q_crit_scene'].graphics_objects['vel-on-q-crit_cont'] = {} #adding graphic objects to the scene
+        #root.results.scene['q_crit_scene'].graphics_objects['vehicle_mesh'] = {}
+        #root.results.scene['q_crit_scene'].display()
+        #save_avz(root, 'q_crit_AVZ', work_Directory) 
+
+        root.tui.surface.iso_surface('q-criterion', 'q-crit-iso-surf', '()', '()', 100)
+        root.settings.results.graphics.contour.create(name="vel-on-q-crit_cont")
+        root.settings.results.graphics.contour["vel-on-q-crit_cont"].field = "velocity-magnitude"
+        root.settings.results.graphics.contour["vel-on-q-crit_cont"].surfaces_list = ["q-crit-iso-surf"]
+        root.settings.results.graphics.contour["vel-on-q-crit_cont"].range_option.option = "auto-range-off"
+        root.settings.results.graphics.contour["vel-on-q-crit_cont"].range_option.auto_range_off.minimum = 0
+        root.settings.results.graphics.contour["vel-on-q-crit_cont"].range_option.auto_range_off.maximum = 35
         car_mesh = create_mesh(root, 'vehicle_mesh', wall_list, 'light gray')
-        root.results.scene['q_crit_scene'] = {} #creating a new scene for combining a contour and car mesh
-        root.results.scene['q_crit_scene'].graphics_objects['vel-on-q-crit_cont'] = {} #adding graphic objects to the scene
-        root.results.scene['q_crit_scene'].graphics_objects['vehicle_mesh'] = {}
-        root.results.scene['q_crit_scene'].display()
+        root.settings.results.graphics['vel-on-q-crit_cont'].display()
+        root.settings.results.graphics.mesh.add_to_graphics(object_name="vehicle_mesh")
+        root.results.graphics.picture.driver_options.hardcopy_format = "avz"
         save_avz(root, 'q_crit_AVZ', work_Directory) 
 
         '''
