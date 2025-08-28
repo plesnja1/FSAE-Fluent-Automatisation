@@ -6,6 +6,12 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path('..', '..').resolve()))
+
+
 project = 'FSAE CFD Automatisation'
 copyright = '2025, plesnja1'
 author = 'plesnja1'
@@ -120,9 +126,18 @@ sphinx_gallery_conf = {
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'furo'
+html_theme = "ansys_sphinx_theme"
 
+html_theme_options = {
+    "logo": "ansys",
+}
 
-
+autodoc_default_options = {
+    'member-order': 'bysource',
+    'special-members': '__init__',
+    'undoc-members': True,
+    'show-inheritance': True
+    
+}
 
 html_static_path = ['_static']

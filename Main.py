@@ -53,9 +53,14 @@ ctk.set_default_color_theme("green")
 Debug_Console = False        
 
 class SimulationClass:
+    '''
+    Class containing all of simulation settings and responsible for starting individual simulation 
+    steps as individual threads.
+    '''
     
     _registry = []
     states = {
+      
         'wait': 'Waiting', 
         'msh':  'Meshing',
         'msh_dn': 'Meshing done!',
@@ -66,7 +71,13 @@ class SimulationClass:
         'err': 'Error!!!'
         
     }
+    '''
+    Shotcuts fow various possible simulation states.
+    '''
     def __init__(self, simGeneralObject, simMeshObjectList,simTunnelObject,simSolverSett, simBoundarySett, simPostproSett, simParametersSett, simName, simStat = 'wait'):
+        '''
+        Constructs a simulation class with simulation settings as its atributes.
+        '''
         self.simGeneralObject = simGeneralObject
         self.simMeshObjectList = simMeshObjectList
         self.simTunnelObject = simTunnelObject
@@ -85,6 +96,11 @@ class SimulationClass:
         self.solverPath = ''#"D:\plesnik\PyFluent\Versions\Beta18v1_14_01_25\TestSim1\Results.cas.h5"
 
     def findSimID(self):
+        '''
+        This function will automatically find a closest aviable ID number for simulation.
+        
+        :returns: (Int) ID number of simulation
+        '''
         simID = 0
         if self._registry == []:
             return 1
@@ -95,6 +111,14 @@ class SimulationClass:
         return simID+1
     
     def startMeshing(self):
+        '''
+        Changes the simulation status to 'Meshing' and pushes the simulation settings to 
+        Mesher.StartFluentMeshing function which takes care of entire meshing workflow.
+        
+        After meshing changes the simulation status to 'Meshing Done'.
+        
+        :returns: (String) path to saved volumetric mesh
+        '''
         self.SimStat = 'msh'
         MeshingPath = Mesher.StartFluentMeshing(self.simMeshObjectList,
                                   General_Settings= self.simGeneralObject,
@@ -109,11 +133,24 @@ class SimulationClass:
         return str(MeshingPath)
     
     def startMeshingThread(self):
+        '''
+        Starts SimulationClass.startMeshing() method in new thread.
+        
+        :returns: (Thread)
+        '''
         tMesh = threading.Thread(target=self.startMeshing, args=())
         tMesh.start()
         return tMesh
 
     def startSolver(self):
+        '''
+        Changes the simulation status to 'Solving' and pushes the simulation settings to 
+        Solver.StartFluentSolver function which takes care of entire solver workflow.
+        
+        After solving changes the simulation status to 'Solver Done'.
+        
+        :returns: (String) path to saved case file
+        '''
         self.SimStat = 'slv'
         SolverPath = Solver.StartFluentSolver(self.simBoundarySett, 
                                                self.simSolverSett, 
@@ -128,11 +165,24 @@ class SimulationClass:
         
     
     def startSolverThread(self):
+        '''
+        Starts SimulationClass.startSolver() method in new thread.
+        
+        :returns: (Thread)
+        '''
         tSolv = threading.Thread(target=self.startSolver, args=())
         tSolv.start()
         return tSolv
 
     def startPostpro(self):
+        '''
+        Changes the simulation status to 'Postprocessing' and pushes the simulation settings to 
+        Postproces.StartPostprocessing() function which takes care of entire postprocessing workflow.
+        
+        After postprocessing changes the simulation status to 'Done'.
+        
+        :returns: True
+        '''
         self.SimStat = 'post'
         if self.solverPath == '':
             self.solverPath = self.simGeneralObject.CAD_Path
@@ -146,6 +196,11 @@ class SimulationClass:
         return True
     
     def startPostproThread(self):
+        '''
+        Starts SimulationClass.startPostpro() method in new thread.
+        
+        :returns: (Thread)
+        '''
         tPost = threading.Thread(target=self.startPostpro, args=())
         tPost.start()
         return tPost
@@ -154,7 +209,7 @@ class SimulationClass:
 class MainMenuButtons(ctk.CTkScrollableFrame):
     '''
     class that initialises the main menu buttons which redirect the user to given 
-    subcategories
+    subcategories.
     '''
     def __init__(self, master):
         super().__init__(master ,width= 720, height=60, orientation='horizontal')
@@ -184,6 +239,9 @@ class MainMenuButtons(ctk.CTkScrollableFrame):
         
 
 class Queue(ctk.CTkFrame):
+    '''
+    Queue class manages the order of simulations in queue as well as a visualisation of queue in GUI.
+    '''
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         
@@ -201,24 +259,34 @@ class Queue(ctk.CTkFrame):
         self.treeview.grid(row=1, column=0, padx=10, pady=(20, 20), sticky="w", rowspan= 10)
 
     def updateSims(self, simList:list[SimulationClass]):
-        treeChildren = self.treeview.get_children()
+        '''
+        This method checks all simulations in queue and and assigns a propper status and colour based 
+        on simulation status.
+        '''
+        treeChildren = self.treeview.get_children() #gets all the entries from queue tree
         for treeChild in treeChildren:
-            matchSimID = self.treeview.item(treeChild)['values'][1]
+            matchSimID = self.treeview.item(treeChild)['values'][1] #gets ID in tree entry
             for sim in simList:
-                if matchSimID == sim.SimID:
+                if matchSimID == sim.SimID: #matches the tree entry ID with SimulationClass SimID
                     matchSim = sim
     
-            self.treeview.item(treeChild, values = [matchSim.states[matchSim.SimStat], matchSim.SimID])
+            self.treeview.item(treeChild, values = [matchSim.states[matchSim.SimStat], matchSim.SimID]) #assigns propper simulation status to queue tree
             self.treeview.item(treeChild,  tags = [matchSim.SimID])
         self.updateColour(simList)
-            #print(matchSim.states[matchSim.SimStat])
+           
 
     def insertSim(self, sim:SimulationClass):
+        '''
+        Inserts a new simulation (SimulationClass) to queue.
+        '''
         self.treeview.insert(parent='', index=sim.SimID,iid=str(sim.SimID) , text= sim.simName, values=[sim.states[sim.SimStat], sim.SimID], tags = sim.SimID)
         #self.treeview.tag_configure(sef)
         self.updateSims(self.master.queue_list)
 
     def updateColour(self, simList:list[SimulationClass]):
+        '''
+        Assigns a proper colour in queue based on simulation status.
+        '''
         treeChildren = self.treeview.get_children()
         colour = 'none'
         for treeChild in treeChildren:
@@ -247,11 +315,16 @@ class Queue(ctk.CTkFrame):
 
 
 class PrintLogger(object):  # create file like object
-
-    def __init__(self, textbox):  # pass reference to text widget
+    '''
+    File like objects for redirected terminal view.
+    '''
+    def __init__(self, textbox):  #: pass reference to text widget
         self.textbox = textbox  # keep ref
 
     def write(self, text):
+        '''
+        Writes into a Logger.
+        '''
         self.textbox.configure(state="normal")  # make field editable
         self.textbox.insert("end", text)  # write text to textbox
         self.textbox.see("end")  # scroll to end
@@ -263,7 +336,7 @@ class PrintLogger(object):  # create file like object
 
 class MainApp(ctk.CTk):
     '''
-    A main CTKinter class that services all other TKinter classes.
+    A main CTKinter class that services all other TKinter classes and pushes simulation settings into queue.
     '''
     def __init__(self, fg_color: str | Tuple[str, str] | None = None,*args,  **kwargs):
         
@@ -331,7 +404,7 @@ class MainApp(ctk.CTk):
         self.WorkDirBox.grid(row=5, column=0, padx=10, pady=(10, 10) ,sticky="we",columnspan = 4)
         self.WorkDirBox.insert("0.0", r'D:\work\directory')
         
-        self.WorkDirButt = ctk.CTkButton(self,height=30,width= 100, text= 'Open...', command=self.browseFiles)
+        self.WorkDirButt = ctk.CTkButton(self,height=30,width= 100, text= 'Open...', command=self.browseFolders)
         self.WorkDirButt.grid(row=4, column=1 , padx=10, pady=(10, 0), sticky="we", columnspan = 1)
         
         self.console_text = ctk.CTkTextbox(self, width=650, height=120)
@@ -341,6 +414,11 @@ class MainApp(ctk.CTk):
             self.redirect_logging()
         
     def windows_init(self):
+        '''
+        Initialises the Options Menus top scrolls buttons and inserts a ctk.CTkFrame class of options menu to each button.
+        
+        If new options menu is desired, its ctk.CTkFrame class needs to be inserted into container bellow.
+        '''
         container = ctk.CTkFrame(self)  
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
@@ -370,20 +448,25 @@ class MainApp(ctk.CTk):
         self.show_frame(General)
             
     def reset_logging(self):
+        '''
+        Resets the terminal redirecting back to python terminal.
+        '''
         sys.stdout = sys.__stdout__
         sys.stderr = sys.__stderr__
 
-    def test_print(self):
-        print("Am i working?")
-
     def redirect_logging(self):
+        '''
+        Redirects the python terminal into a GUI terminal (read only).
+        '''
         logger = PrintLogger(self.console_text)
         sys.stdout = logger
         sys.stderr = logger
     
      
-    def browseFiles(self):
-        
+    def browseFolders(self):
+        '''
+        Opens the explorer window and puts the selected folder into a GeneralObject.workingDirectory attribute.
+        '''
         self.GeneralObject.workingDirectory = filedialog.askdirectory(initialdir = self.WorkDirBox.get('1.0'),
                                             title = "Select a Folder",
                                             )  
@@ -391,10 +474,14 @@ class MainApp(ctk.CTk):
         self.WorkDirBox.insert("0.0", self.GeneralObject.workingDirectory)   
         
     def changeSegment(self, a):
-        self.segmentState = self.segment_level.get()
+        '''
+        Changes the simulation starting point and activates the GUI_Subclasses/GUI_General.General.activateDataInput() method.
+        '''
+        self.segmentState = self.segment_level.get() #gets the segment state from segment button
         self.frames[General].activateDataInput()
         print(self.segmentState)
-            
+     
+    '''       
     def copyObject(self, oldObject):
         match type(oldObject):
             case MeshObjects.GeneralSett:
@@ -408,8 +495,11 @@ class MainApp(ctk.CTk):
             vars(newObject)[x] = vars(oldObject)[x]
         
         return newObject         
-        
+    '''
     def Start(self):
+        '''
+        Creates the SimulationsClass from current settings and pushes the simulation into a simulation queue.
+        '''
 
     # Nebuď dement Trigger
         if self.GeneralObject.Version == 'STAR CCM+':
@@ -513,16 +603,23 @@ class MainApp(ctk.CTk):
         Postproces.StartPostprocessing(SolverObj,SolvSett= self.SolverSett, MSH_Objects= self.MeshObjList)
         
     '''
+    '''
     def StartThread(self):
         t1 = threading.Thread(target= self.Start, args= () )
         #t2 = threading.Thread(target= self.Start, args=())
         
         t1.start()
         #t2.start()
-
+    '''
     def QueueLoop(self):
+        '''
+        Loop responsible for pushing simulations in the queue.
+        '''
 
         def SimListStatCheck(simList, state):
+            '''
+            Checks if a simulation with given simulation state exists within provided list (Queue).
+            '''
             for sim in simList:
                 if state == sim.SimStat:
                     return True
@@ -586,7 +683,7 @@ class MainApp(ctk.CTk):
                         case 'err':
                             True        
         
-        
+    '''
     def TransformTunnelToFloat(self):
         for x in vars(self.TunnelObject).keys():
             if type(vars(self.TunnelObject)[x]) != float:
@@ -606,11 +703,13 @@ class MainApp(ctk.CTk):
                     for i in range(len(vars(self.SolverSett)[x])):                
                         vars(self.SolverSett)[x][i] = float(vars(self.SolverSett)[x][i].get())
                         print(vars(self.SolverSett)[x][i])
-
+    '''
     
         
     def show_frame(self, cont):
-        
+        '''
+        Shows a frame of given ctk.CTkFrame class options menu.
+        '''
         frame = self.frames[cont]
         frame.tkraise()
         if cont == Prisms:
@@ -618,6 +717,10 @@ class MainApp(ctk.CTk):
             Prisms.LoadTree(frame)
          
     def getJsonSavePath(self):
+        '''
+        Gets a .json file path from opened explorer window and writes current simulation settings 
+        into newly created .json file.
+        '''
         self.writeFilename = filedialog.asksaveasfilename(initialdir = self.WorkDirText.get('1.0'),
                                           title = "Select a File",
                                           filetypes=[('JSON Files', '*.json'),('Text Files', '*.txt'), ('All Files', '*.*')],
@@ -634,6 +737,9 @@ class MainApp(ctk.CTk):
             #print(self.writeFilename)
            
     def WriteSettToJson(self,Obj_list, file_path):
+        '''
+        Writes all the provided Settings objects into a provided .json file.
+        '''
         with open(file_path, mode = 'w', encoding= 'utf-8') as write_file:
             Obj_dict = {'GeneralSett':[], 'TunnelSett':[], 'SimulationSett':[], 'Boundary_conditions_sett':[],  'PostprocessSett':[],  'ParametrizationSett':[]}
             for Obj in Obj_list:
@@ -645,7 +751,9 @@ class MainApp(ctk.CTk):
             json.dump(Obj_dict, write_file , indent=2)  
 
     def browseJsonFiles(self):
-        
+        '''
+        Opens the explorer window and reads the selected .json settings file.
+        '''
         self.filename = filedialog.askopenfilename(initialdir = self.WorkDirBox.get('1.0'),
                                           title = "Select a File",
                                           filetypes = (("JSON files",
@@ -659,6 +767,9 @@ class MainApp(ctk.CTk):
         self.ReadSettJson(self.filename)
     
     def ReadSettJson(self, File_path):
+        '''
+        Reads a provided .json file and loads the values into settings objects.        
+        '''
         with open(File_path, mode = 'r', encoding= 'utf-8') as read_file:
             scope_data = json.load(read_file)
         print(scope_data)
@@ -672,6 +783,6 @@ class MainApp(ctk.CTk):
        
             
 
-      
-app = MainApp()
-app.mainloop()
+if __name__ == '__main__':  
+    app = MainApp()
+    app.mainloop()
