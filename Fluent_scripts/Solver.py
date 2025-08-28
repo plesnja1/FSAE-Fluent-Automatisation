@@ -186,21 +186,7 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
 
 
 
-    '''
-    3D fan zone ///in construction...
-    '''
-    #if BoundarySett.Fan_check:
-        
-        #fan_1 = solve.settings.setup.cell_zone_conditions.fluid['fan-1']
-        #fan_1.fan_zone.fan_zone = True
-        #fan_1.fan_zone.fan_hub_rad = 1
-        #fan_1.fan_zone.fan_tip_rad = 2
-        #fan_1.fan_zone.fan_thickness = 3
-        #fan_1.fan_zone.fan_origin = [1, 2, 3]
-        #fan_1.fan_zone.fan_rot_dir = 'positive'
-        #fan_1.fan_zone.fan_opert_angvel = 300
-        #fan_1.fan_zone.axial_source_term = True
-        #fan_1.fan_zone.fan_axial_source_method = 'fan curve'
+
 
 
         
