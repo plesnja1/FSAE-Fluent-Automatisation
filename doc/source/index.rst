@@ -14,6 +14,7 @@ FSAE CFD Automatisation documentation
    getting_started/getting_started
    user_guide/user_guide_contents
    GUI_guide/GUI_guide
+   API_reference/API_contents
    
 
 This project aims to incorporate pyFluent (a python Fluent wrapper) into a user friendly and easy to use graphical interface. 
