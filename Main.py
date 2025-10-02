@@ -31,7 +31,7 @@ contact: plesnik.honza@seznam.cz
 '''
 from GUI_SubClasses.GUI_General import General, GeneralSett
        
-from GUI_SubClasses.GUI_SopeSizing import ScopeSizing
+from GUI_SubClasses.GUI_ScopeSizing import ScopeSizing
 
 from GUI_SubClasses.GUI_Tunnel import Tunnel, TunnelSett
 

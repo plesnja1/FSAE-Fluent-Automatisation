@@ -6,7 +6,13 @@ from PIL import Image
 import os
 
 class ParametrizationSett(Setting):
+    '''
+    Class containing parametrization settings of yaw, roll and ride height.
+    '''
     def __init__(self):
+        '''
+        Assigns default values.
+        '''
         self.FrontRHCount = 35   
         self.RearRHCount = 35
         self.RollAngleCount = 0
@@ -20,6 +26,9 @@ class ParametrizationSett(Setting):
         
         
 class Parameters(ctk.CTkFrame):
+    '''
+    ctk.CTkFrame class servicing the Parametrization settings menu.
+    '''
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
 
@@ -124,6 +133,9 @@ class Parameters(ctk.CTkFrame):
 
 
     def Pitch_var_change(self):
+            '''
+            Enable or disable pitch parametrization.
+            '''
             print('Pitch Check State:') 
             print(self.Pitch_Var_Check.get())
             if self.Pitch_Var_Check.get() == 1:
@@ -144,7 +156,10 @@ class Parameters(ctk.CTkFrame):
                 self.RearRHEntry.configure(state = 'disabled')
                 self.RearRHEntry.configure(fg_color = 'grey')
 
-    def Roll_var_change(self):
+    def Roll_var_change(self):  
+            '''
+            Enable or disable roll parametrization.
+            '''
             print('Roll Check State:') 
             print(self.Roll_Var_Check.get())
             if self.Roll_Var_Check.get() == 1:
@@ -166,6 +181,9 @@ class Parameters(ctk.CTkFrame):
                 self.RollPivotEntry.configure(fg_color = 'grey')
 
     def Yaw_var_change(self):
+            '''
+            Enable or disable Yaw parametrization.
+            '''
             print('Yaw Check State:') 
             print(self.Yaw_Var_Check.get())
             if self.Yaw_Var_Check.get() == 1:

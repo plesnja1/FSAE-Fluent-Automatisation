@@ -5,6 +5,9 @@ from tkinter import ttk
 
 
 class Prisms(ctk.CTkFrame):
+    '''
+    ctk.CTkFrame class servicing the Prisms settings menu.
+    '''
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         self.controller = controller
@@ -18,6 +21,7 @@ class Prisms(ctk.CTkFrame):
         self.writeButt = ctk.CTkButton(self, height=30,width= 100, text= 'Write...', command=self.writeScopeSizeFile )
         self.writeButt.grid(row=8, column=1, padx=10, pady=(10, 10), sticky="nw")
     
+    '''
     def LoadTree(self):
         self.treeview.delete(*self.treeview.get_children())
         for obj in self.controller.MeshObjList['vehicle']:
@@ -25,8 +29,12 @@ class Prisms(ctk.CTkFrame):
                 self.treeview.insert(parent=obj.Parent, index=obj.MSH_ID,iid=str(obj.Name) , text= obj.Name, values=[obj.MSH_ID])
             else:
                 self.treeview.insert(parent=obj.Parent, index=obj.MSH_ID,iid= (obj.Parent+ '-' + str(obj.Name)) , text= obj.Name, values=[obj.MSH_ID])
+    '''    
         
     def OnClickTree(self, event):
+        '''
+        Switches the prism sizing settings based on object that is clicked in the scoped sizing tree.
+        '''
         print(event)
         
         self.item = self.treeview.identify('item',event.x,event.y)
@@ -91,6 +99,9 @@ class Prisms(ctk.CTkFrame):
 
             
     def writeScopeSizeFile(self):
+            '''
+            Opens an explorer window and creates a .JSON file.
+            '''
             self.writeFilename = filedialog.asksaveasfilename(initialdir = self.controller.WorkDirText.get('1.0'),
                                           title = "Select a File",
                                           filetypes=[('Text Files', '*.txt'), ('All Files', '*.*')],
@@ -101,6 +112,9 @@ class Prisms(ctk.CTkFrame):
             print(self.writeFilename)
             
     def updatePrisms(self):
+        '''
+        Updates the curently shown prism settings. 
+        '''
         self.controller.MeshObjList['vehicle'][self.obj.MSH_ID].Pism_Growth_Rate = float(self.GrowthBox.get('1.0', "end"))
         self.controller.MeshObjList['vehicle'][self.obj.MSH_ID].Boundary_Type = self.ScopeToOption.get()
         self.controller.MeshObjList['vehicle'][self.obj.MSH_ID].Number_Of_Layers = float(self.LayerNumBox.get('1.0', "end"))

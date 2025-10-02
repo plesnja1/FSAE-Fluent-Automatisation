@@ -51,6 +51,8 @@ to all its subassemblies (in this case **"sw", "rw", "fw"**) and their individua
 a *finer* sizing to a front wing endpalte part called **"endplate"**. This part also inherits the *medium* setting from the **"a"** assembly
 which is its parent, but since the smallest settings applies, fluent will ignore the *medium* setting. 
 
+Apart from scope sizing the concept of inheritance also applies to prism creation and created report definitions of lift and drag.
+
 It then makes sense to structure the CAD tree from the largest details to the finest.
 
 

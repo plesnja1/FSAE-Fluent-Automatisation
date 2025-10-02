@@ -6,9 +6,12 @@ from GUI_SubClasses.GUI_General import Setting
 
 class TunnelSett(Setting):
     '''
-    Class containing settings regarding size, cell size of tunnel and wrap settings
+    Class containing settings regarding size, cell size of tunnel and wrap settings.
     '''
     def __init__(self):
+        '''
+        Default tunnel data initialisation.
+        '''
         self.y_max = 5000   
         self.y_min = 0
         self.z_max = 5800
@@ -19,7 +22,13 @@ class TunnelSett(Setting):
         self.Wrap_ratio = 0.5
 
 class Tunnel(ctk.CTkFrame):
+    '''
+    ctk.CTkFrame class servicing the Tunnel settings menu.
+    '''
     def __init__(self, parent, controller):
+        '''
+        Frame initialisation and features placement.
+        '''
         ctk.CTkFrame.__init__(self, parent)
         
         self.X_MaxText = ctk.CTkLabel(self, text='Max X Coordinate [mm]')

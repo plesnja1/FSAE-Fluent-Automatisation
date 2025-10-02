@@ -4,7 +4,14 @@ from tkinter import ttk
 from GUI_SubClasses.GUI_General import Setting
 
 class SimulationSett(Setting):
+    '''
+    Class containing simulation settings of solver and models
+    (Turbulence, Solver methods, Temporal settings, etc.).
+    '''
     def __init__(self):
+        '''
+        Assigns default values.
+        '''
         self.Turbulence_model = 'k-omega'
         self.Wall_function = 'enhanced-wall-treatment'
         self.Coupling = 'Coupled'
@@ -17,7 +24,14 @@ class SimulationSett(Setting):
         
         
 class Simulation(ctk.CTkFrame):
+    '''
+    ctk.CTkFrame class servicing the Simulation settings menu.
+    '''
+    
     def __init__(self, parent, controller):
+        '''
+        Frame initialisation and features placement.
+        '''
         ctk.CTkFrame.__init__(self, parent)
         self.controller = controller
         
@@ -83,6 +97,9 @@ class Simulation(ctk.CTkFrame):
         self.Height_Entry.grid(row=7  , column=1, padx=10, pady=(10, 0), sticky="w") 
        
     def Turb_mod_change(self, select):
+        '''
+        Changes turbulence method.
+        '''
         if select == 'SST k-Omega':
             self.controller.SolverSett.Turbulence_model =  'k-omega'
             print('Turbulence Check State:\n')
@@ -97,6 +114,9 @@ class Simulation(ctk.CTkFrame):
             self.Wall_funct_combo.configure(fg_color = 'gray24')
             
     def Wall_funct_change(self, select):
+        '''
+        Changes wall function.
+        '''
         if select == 'Enhanced':
             self.controller.SolverSett.Wall_function =  'enhanced-wall-treatment'
             print('Wall Function Check State:\n')
@@ -113,6 +133,9 @@ class Simulation(ctk.CTkFrame):
             print(self.controller.SolverSett.Wall_function)
             
     def Coupling_change(self, select):
+        '''
+        Changes velocity-coupling method.
+        '''
         if select == 'Coupled':
             self.controller.SolverSett.Coupling = 'Coupled'
             print('Coupling Check State:\n')
@@ -124,6 +147,9 @@ class Simulation(ctk.CTkFrame):
             print(self.controller.SolverSett.Coupling)
             
     def Transient_change(self, select):
+        '''
+        Changes temporal setting.
+        '''
         if select == 'Steady':
             self.controller.SolverSett.Transient = 'steady'
             print('Transient Check State:\n')

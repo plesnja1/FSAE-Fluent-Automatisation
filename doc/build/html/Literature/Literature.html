@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:site_name" content="PyAnsys" />
+    <title>Literature &#8212; AutoFluent  documentation</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css?v=572af1d6" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles\ansys-sphinx-theme.css?v=ce7f2556" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+
+  <!-- Include desired assets -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+
+  
+    <link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../_static/documentation_options.js?v=8a448e45"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/toggleprompt.js?v=cec9bd37"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Literature/Literature';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="CFD guide" href="../CFD_guide/CFD_guide_contents.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">AutoFluent  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/getting_started.html">
+    Getting Started with AutoFluent
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide_contents.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../GUI_guide/GUI_guide.html">
+    Graphical User Interface Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../API_reference/API_contents.html">
+    API_reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CFD_guide/CFD_guide_contents.html">
+    CFD guide
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Literature
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/getting_started.html">
+    Getting Started with AutoFluent
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide_contents.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../GUI_guide/GUI_guide.html">
+    Graphical User Interface Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../API_reference/API_contents.html">
+    API_reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CFD_guide/CFD_guide_contents.html">
+    CFD guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Literature
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+     
+    <li class="breadcrumb-item breadcrumb-home">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Literature</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="toctree-wrapper compound" id="literature">
+</div>
+<section id="id1">
+<h1>Literature<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="fluid-dynamics">
+<h2>Fluid Dynamics<a class="headerlink" href="#fluid-dynamics" title="Link to this heading">#</a></h2>
+<p>An intimate knowledge of fluid dynamics is an essential tool in race car aerodynamicists toolkit. It allows us to predict the fluid flow behavior based on involved geometry
+and to correctly interpret the results provided by computational toold.</p>
+<section id="an-introduction-to-fluid-dynamics">
+<h3>An Introduction to Fluid Dynamics<a class="headerlink" href="#an-introduction-to-fluid-dynamics" title="Link to this heading">#</a></h3>
+<p>“An Introduction to Fluid Dynamics” by G. K. Batchelor remains a classic fluid mechanics book that addresses the theories of
+this field in an elegant manner. Though published in 1960’s, this timeless classic still holds a reader’s attention.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../_static/Literature/introduction-to-fluid-dynamics.pdf">An Introduction to Fluid Dynamics</a></p></li>
+</ul>
+</section>
+<section id="fluid-mechanics-an-intermediate-approach">
+<h3>Fluid Mechanics: An Intermediate Approach<a class="headerlink" href="#fluid-mechanics-an-intermediate-approach" title="Link to this heading">#</a></h3>
+<p>If you’re looking to delve deeper into more advanced material, “Fluid Mechanics: An Intermediate Approach” by Bijay K.
+Sultanian takes a practical rather than purely theoretical approach.
+A variety of illustrative examples provide context to the subject matter and help navigate the reader through a broad range of topics.</p>
+</section>
+</section>
+<section id="cfd-theory">
+<h2>CFD theory<a class="headerlink" href="#cfd-theory" title="Link to this heading">#</a></h2>
+<p>Literature for robust knowledge of theory behind CFD solvers. While not necesary for handling of commercial software, it provides useful knowledge of its limitations and
+posibilities. After sufitiently learning the texts bellow, you should be able to create zour own simple 2D CFD solver.</p>
+<section id="introduction-to-computational-fluid-dynamics">
+<h3>Introduction To Computational Fluid Dynamics<a class="headerlink" href="#introduction-to-computational-fluid-dynamics" title="Link to this heading">#</a></h3>
+<p>This book seeks to present all the fundamental material needed for good
+simulation of fluid flows by means of the finite volume method, and is split
+into three parts. The first part, consisting of Chapters 2 and 3, is concerned
+with the fundamentals of fluid flows in three dimensions and turbulence.
+Chapter 3 represents the development of the concepts of turbulence that are necessary for a full appreciation of the finer details of CFD in many engineering applications.
+The second part of the book is devoted to the numerical algorithms of
+the finite volume method and covers Chapters 4 to 9. Discretisation schemes
+and solution procedures for steady flows are discussed in Chapters 4 to 7.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../_static/Literature/IntroductionToComputationalFluidDynamics_Versteeg.pdf">Introduction To Computational Fluid Dynamics</a></p></li>
+</ul>
+</section>
+<section id="metoda-konecnych-objemu-i-ii-cz">
+<h3>Metoda Konečných Objemů I, II (CZ)<a class="headerlink" href="#metoda-konecnych-objemu-i-ii-cz" title="Link to this heading">#</a></h3>
+<p>Skripta pro předmět Metoda Konečných Objemů vyučovaný panem Profesorem Fürstem. První skripta pojednávají o odvození MKO, definici a odvození jednotlivých diskretizačních
+schémat a určení jejich přesnosti a stability. Ke konci této knihy by student měl být schopný vytvořit vlastní 1D až 2D EXPLICITNÍ CFD řešič a znát
+rozdíly, výhody a limitace jednotlivých schémat.</p>
+<p>Druhá skripta pojednávají o algoritmech pro tvorbu sítě, diskretizaci konvektivních, difusivních a diferenciálních operátorů v diferenciálních rovnicích a jejich
+maticové vyjídření. Ve výsledku by tyto skripta měla předat znalosti potřebné k tvorbě a pochopení IMPLICITNÍHO CFD řešiče.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../_static/Literature/skripta_mko1.pdf">Metoda Konečných Objemů I</a></p></li>
+<li><p><a class="reference external" href="../_static/Literature/skripta_mko2.pdf">Metoda Konečných Objemů II</a></p></li>
+</ul>
+</section>
+<section id="notes-on-computational-fluid-dynamics-general-principles">
+<h3>Notes on Computational Fluid Dynamics: General Principles<a class="headerlink" href="#notes-on-computational-fluid-dynamics-general-principles" title="Link to this heading">#</a></h3>
+<p>Notes on Computational Fluid Dynamics (CFD) was written for people who use CFD in their work, research or study,
+providing essential knowledge to perform CFD analysis with confidence. It offers a modern perspective on CFD with the finite volume method,
+as implemented in OpenFOAM and other popular general-purpose CFD software. Fluid dynamics, turbulence modelling and boundary conditions are presented
+alongside the numerical methods and algorithms in a series of short, digestible topics, or notes, that contain complete, concise and relevant information.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doc.cfd.direct/notes/cfd-general-principles/">Notes on Computational Fluid Dynamics</a></p></li>
+</ul>
+</section>
+</section>
+<section id="internal-flows">
+<h2>Internal Flows<a class="headerlink" href="#internal-flows" title="Link to this heading">#</a></h2>
+<p>Wether it is for cooling ducts and fans or inner structures of motor cooling, internal flows are quiet different from structures of external flow.
+Bellow is some literature that should aid in designing such features.</p>
+<section id="handbook-of-hydraulic-resistance">
+<h3>Handbook of Hydraulic Resistance<a class="headerlink" href="#handbook-of-hydraulic-resistance" title="Link to this heading">#</a></h3>
+<p>No matter how weird shape of your tubing, chances are that someone has already meassured its effect on your flow. In this case it was the russians during the cold war.
+Nevertheless this knowledge is still relevant for designing of inner flow structures and understanding how they affect the resistance of the flow.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../_static/Literature/HandbookOfHydraulicResistance.pdf">Handbook of Hydraulic Resistance</a></p></li>
+</ul>
+</section>
+<section id="vdi-heat-atlas">
+<h3>VDI Heat Atlas<a class="headerlink" href="#vdi-heat-atlas" title="Link to this heading">#</a></h3>
+<p>The VDI-Wa ¨rmeatlas or VDI Heat Atlas has a long-lasting history and it can be considered as a standard book for heat exchanger
+and process engineering equipment design. It is not conceived as a textbook presenting an overall view of the theoretical or
+experimental findings in heat transfer sciences. The aim was and is to present and explain the state of the art of engineering methods
+to solve industrially relevant heat transfer problems for apparatus design and process modeling.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../_static/Literature/livreHeatAtlas.pdf">VDI Heat Atlas</a></p></li>
+</ul>
+</section>
+<section id="fan-handbook">
+<h3>Fan Handbook<a class="headerlink" href="#fan-handbook" title="Link to this heading">#</a></h3>
+<p>A guide to various aspects of modern fan technology. It takes you through the design, selection, maintenance, and repair of fans used
+in a range of applications and industries, including airfoils; centrifugal fans; mixed-flow fans; roof ventilators; cross-flow blowers; regenerative blowers; and, more.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../_static/Literature/Bleier-FanHandbook.pdf">Fan Handbook</a></p></li>
+</ul>
+</section>
+</section>
+<section id="car-aerodynamics">
+<h2>Car Aerodynamics<a class="headerlink" href="#car-aerodynamics" title="Link to this heading">#</a></h2>
+<p>Car aerodynamics is in itself a large and still developing area. Hundreds of engineers before have already tried many concepts to reduce drag and increase downforce.
+Few of them took their years of practise and wrote them into some helpfull literature.</p>
+<section id="race-car-aerodynamics">
+<h3>Race Car Aerodynamics<a class="headerlink" href="#race-car-aerodynamics" title="Link to this heading">#</a></h3>
+<p>Race Car Aerodynamics is the first book to summarize the secrets of the rapidly developing field of high-speed vehicle design.
+Over the past 15 years, author Joseph Katz has been involved with aerodynamic development in the most competitive areas of motorsport today.
+From Formula One, to Indy Car, Drag and Sedan Racing, this book provides clear explanations for both engineers who want to improve their design skills,</p>
+<blockquote>
+<div><p>and enthusiasts who want to understand how their favorite cars go fast.</p>
+</div></blockquote>
+<p><a class="reference external" href="../_static/Literature/Race_Car_Aerodynamics.pdf">Race Car Aerodynamics</a></p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../CFD_guide/CFD_guide_contents.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CFD guide</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fluid-dynamics">Fluid Dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-fluid-dynamics">An Introduction to Fluid Dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fluid-mechanics-an-intermediate-approach">Fluid Mechanics: An Intermediate Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cfd-theory">CFD theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-computational-fluid-dynamics">Introduction To Computational Fluid Dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metoda-konecnych-objemu-i-ii-cz">Metoda Konečných Objemů I, II (CZ)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-computational-fluid-dynamics-general-principles">Notes on Computational Fluid Dynamics: General Principles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-flows">Internal Flows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handbook-of-hydraulic-resistance">Handbook of Hydraulic Resistance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vdi-heat-atlas">VDI Heat Atlas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fan-handbook">Fan Handbook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#car-aerodynamics">Car Aerodynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#race-car-aerodynamics">Race Car Aerodynamics</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Literature/Literature.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+  <!-- Include desired assets -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text", "objectID"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../_static/search.json";
+const ADVANCE_SEARCH_PATH = "../search.html";
+const EXTRA_SOURCES = JSON.parse('""');
+</script>
+
+
+<script src="../_static/js/search.js"></script>
+
+  
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, plesnja1.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.5.3. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = ast_lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

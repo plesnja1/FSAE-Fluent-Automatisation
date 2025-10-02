@@ -4,7 +4,14 @@ from tkinter import ttk
 from GUI_SubClasses.GUI_General import Setting
 
 class Boundary_conditions_sett(Setting):
+    '''
+    Class containing boundary conditions settings of surface and cell zones.
+    (velocity inlet, radiator porous media, 2D Fan setting, etc.).
+    '''
     def __init__(self, velocity = 0, WheelDiameter = 0, f_w_axis_x = 0, f_w_axis_y = 0,f_w_axis_z = 0,r_w_axis_x = 0,r_w_axis_y = 0,r_w_axis_z = 0,rad_check = True,  c_0 = 0, c_1 = 0, porosity = 0, Fan_2D_check = True):
+        '''
+        Assigns default values.
+        '''
         self.velocity = float(velocity) #inlet velocity
         self.WheelDiameter = float(WheelDiameter) #diameter of wheels
         self.f_w_axis_x = float(f_w_axis_x) #position of front axis
@@ -26,7 +33,13 @@ class Boundary_conditions_sett(Setting):
 
 
 class BoundaryConditions(ctk.CTkFrame):
+    '''
+    ctk.CTkFrame class servicing the Boundary Conditions settings menu.
+    '''
     def __init__(self, parent, controller):
+        '''
+        Frame initialisation and features placement.
+        '''
         ctk.CTkFrame.__init__(self, parent)
         self.controller = controller
         
@@ -154,6 +167,9 @@ class BoundaryConditions(ctk.CTkFrame):
         
         
     def Radiator_var_change(self):
+            '''
+            Enable or disable the radiator settings.
+            '''
             print('Radiator Check State:') 
             print(self.Radiator_Var_Check.get())
             if self.Radiator_Var_Check.get() == 1:
@@ -179,6 +195,9 @@ class BoundaryConditions(ctk.CTkFrame):
                 self.Porosity_Entry.configure(fg_color = 'grey')
 
     def Fan_2D_var_change(self):
+            '''
+            Enable or disable the fan settings.
+            '''
             print('Fan Check State:') 
             print(self.Fan_2D_Var_Check.get())
             if self.Fan_2D_Var_Check.get() == 1:
@@ -201,6 +220,9 @@ class BoundaryConditions(ctk.CTkFrame):
                 self.Fan_2DButt.configure(fg_color = 'PaleGreen4')
 
     def browseFilesData(self):
+        '''
+        Opens an explorer window and puts the path to a fan .txt data file to a BoundarySett.Fan_2D_curve_Path attribute.
+        '''
         
         self.Fan_2D_filename = filedialog.askopenfilename(initialdir = self.Fan_2D_FileText.get('1.0'),
                                           title = "Select a File",

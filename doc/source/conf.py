@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path('..', '..', 'GUI_SubClasses').resolve()))
+sys.path.insert(0, str(Path('..', '..', 'Support_scripts').resolve()))
+sys.path.insert(0, str(Path('..', '..', 'Fluent_scripts').resolve()))
 sys.path.insert(0, str(Path('..', '..').resolve()))
 
 

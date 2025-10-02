@@ -15,6 +15,7 @@ An API reference for classes and methods for individual options menus.
    GUI_Simulation_API
    GUI_BoundaryConditions_API
    GUI_Postprocessing_API
+   GUI_Parametrization_API
 
    
 

@@ -177,6 +177,30 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CFD_guide/CFD_guide_contents.html">
+    CFD guide
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../Literature/Literature.html">
+    CFD theory
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -257,6 +281,20 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../API_reference/API_contents.html">
     API_reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CFD_guide/CFD_guide_contents.html">
+    CFD guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../Literature/Literature.html">
+    CFD theory
   </a>
 </li>
 
@@ -395,6 +433,7 @@ resulting mesh sizing is then derived from the smallest mesh size setting applie
 to all its subassemblies (in this case <strong>“sw”, “rw”, “fw”</strong>) and their individual subassemblies and parts. I could then decide to apply
 a <em>finer</em> sizing to a front wing endpalte part called <strong>“endplate”</strong>. This part also inherits the <em>medium</em> setting from the <strong>“a”</strong> assembly
 which is its parent, but since the smallest settings applies, fluent will ignore the <em>medium</em> setting.</p>
+<p>Apart from scope sizing the concept of inheritance also applies to prism creation and created report definitions of lift and drag.</p>
 <p>It then makes sense to structure the CAD tree from the largest details to the finest.</p>
 </section>
 </section>

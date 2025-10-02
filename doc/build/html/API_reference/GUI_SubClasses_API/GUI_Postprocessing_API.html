@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
-    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css?v=572af1d6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles\ansys-sphinx-theme.css?v=ce7f2556" />
@@ -68,6 +68,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'API_reference/GUI_SubClasses_API/GUI_Postprocessing_API';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Parametrization" href="GUI_Parametrization_API.html" />
+    <link rel="prev" title="Boundary Conditions" href="GUI_BoundaryConditions_API.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -169,12 +171,36 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../API_contents.html">
     API_reference
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../CFD_guide/CFD_guide_contents.html">
+    CFD guide
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../Literature/Literature.html">
+    CFD theory
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -215,10 +241,8 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -254,9 +278,23 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../API_contents.html">
     API_reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../CFD_guide/CFD_guide_contents.html">
+    CFD guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Literature/Literature.html">
+    CFD theory
   </a>
 </li>
 
@@ -281,6 +319,31 @@
       </div>
     
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Main.html">Main</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="GUI_modules_API_content.html">GUI modules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="GUI_General_API.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI_ScopedSizing_API.html">Scoped Sizing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI_Tunnel_API.html">Tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI_Prisms_API.html">Prisms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI_Simulation_API.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI_BoundaryConditions_API.html">Boundary Conditions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Postprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI_Parametrization_API.html">Parametrization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Support_modules_API/Support_modules_API_content.html">Support modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PyFluent_scripts_API/PyFluent_scripts_API_contents.html">PyFluent Scripts</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -319,6 +382,14 @@
       >
         <i class="fa-solid fa-home"></i>
       </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../API_contents.html" class="nav-link">API_reference</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="GUI_modules_API_content.html" class="nav-link">GUI modules</a>
     </li>
       
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Postprocessing</span></li>
@@ -369,6 +440,7 @@
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">GUI_Postprocess.</span></span><span class="sig-name descname"><span class="pre">Postprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTkFrame</span></code></p>
+<p>ctk.CTkFrame class servicing the Postprocessing settings menu.</p>
 <p><strong>Methods:</strong></p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
@@ -376,28 +448,28 @@
 <td><p>Construct a frame widget with the parent MASTER.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#GUI_Postprocess.Postprocessing.Excell_var_change" title="GUI_Postprocess.Postprocessing.Excell_var_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Excell_var_change</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Enable or disable Excell data file generation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#GUI_Postprocess.Postprocessing.Report_var_change" title="GUI_Postprocess.Postprocessing.Report_var_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Report_var_change</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Enable or disable report file generation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#GUI_Postprocess.Postprocessing.AVZ_var_change" title="GUI_Postprocess.Postprocessing.AVZ_var_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AVZ_var_change</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Enable or disable .AVZ scene file generation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#GUI_Postprocess.Postprocessing.VelMag_var_change" title="GUI_Postprocess.Postprocessing.VelMag_var_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VelMag_var_change</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Enable or disable velocity magnitude contour cuts generation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#GUI_Postprocess.Postprocessing.VelLIC_var_change" title="GUI_Postprocess.Postprocessing.VelLIC_var_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VelLIC_var_change</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Enable or disable velocity Line Integral Convolution cuts generation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#GUI_Postprocess.Postprocessing.MeanPress_var_change" title="GUI_Postprocess.Postprocessing.MeanPress_var_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeanPress_var_change</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Enable or disable mean pressure contour cuts generation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#GUI_Postprocess.Postprocessing.TotPress_var_change" title="GUI_Postprocess.Postprocessing.TotPress_var_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TotPress_var_change</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Enable or disable total pressure contour cuts generation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#GUI_Postprocess.Postprocessing.Vorticity_var_change" title="GUI_Postprocess.Postprocessing.Vorticity_var_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vorticity_var_change</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Enable or disable vorticity contour cuts generation.</p></td>
 </tr>
 </tbody>
 </table>
@@ -414,42 +486,50 @@ highlightcolor, highlightthickness, relief, takefocus, visual, width.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing.Excell_var_change">
 <span class="sig-name descname"><span class="pre">Excell_var_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing.Excell_var_change" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Enable or disable Excell data file generation.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing.Report_var_change">
 <span class="sig-name descname"><span class="pre">Report_var_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing.Report_var_change" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Enable or disable report file generation.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing.AVZ_var_change">
 <span class="sig-name descname"><span class="pre">AVZ_var_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing.AVZ_var_change" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Enable or disable .AVZ scene file generation.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing.VelMag_var_change">
 <span class="sig-name descname"><span class="pre">VelMag_var_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing.VelMag_var_change" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Enable or disable velocity magnitude contour cuts generation.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing.VelLIC_var_change">
 <span class="sig-name descname"><span class="pre">VelLIC_var_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing.VelLIC_var_change" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Enable or disable velocity Line Integral Convolution cuts generation.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing.MeanPress_var_change">
 <span class="sig-name descname"><span class="pre">MeanPress_var_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing.MeanPress_var_change" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Enable or disable mean pressure contour cuts generation.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing.TotPress_var_change">
 <span class="sig-name descname"><span class="pre">TotPress_var_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing.TotPress_var_change" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Enable or disable total pressure contour cuts generation.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Postprocess.Postprocessing.Vorticity_var_change">
 <span class="sig-name descname"><span class="pre">Vorticity_var_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Postprocess.Postprocessing.Vorticity_var_change" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Enable or disable vorticity contour cuts generation.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -465,6 +545,24 @@ highlightcolor, highlightthickness, relief, takefocus, visual, width.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="GUI_BoundaryConditions_API.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Boundary Conditions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="GUI_Parametrization_API.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Parametrization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

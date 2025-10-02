@@ -32,6 +32,8 @@ class MSH_Object:
     def _findID(self):
         '''
         Function iterates through all active Meshing Objects and finds smallest avaiable ID
+        
+        :return: int
         '''
         curr_id = 0
         if self.SF_class == 'vehicle':
@@ -92,6 +94,8 @@ class MSH_Object:
         
         This function simply reads string af all object parents and creates
         a list of parents from that string.
+        
+        :returns: list[string]
         '''
         parent_list =[]
         start =0
@@ -108,6 +112,8 @@ class MSH_Object:
     def _findParts(self, Obj_list, Part_list):
         '''
         Method for finding all parts containing the name
+        
+        :return: list[MSH_Object]
         '''    #
         '''
         if Obj_list[0].SF_class == 'vehicle':   
@@ -144,6 +150,9 @@ class MSH_Object:
         return select_parts    
     
 class BOI(MSH_Object):
+    '''
+    Mesh object subclass describing Body Of Influence objects. This class contains information abou scoped sizing for BOIs 
+    '''
     _BOIregistry = []
     def __init__(self, name, SF_class):
         super().__init__(name, SF_class)
@@ -170,6 +179,9 @@ class BOI(MSH_Object):
         print(vars(self))
     
     def _ValueReadJson(self, Boi_dir):
+        '''
+        Reads values from a .json file
+        '''
         for var in vars(self).keys():
             if ((var != 'Name') and (var!= 'SF_class') and (var!= 'MSH_ID')):
                 vars(self)[var] = Boi_dir[var]
@@ -220,6 +232,9 @@ class Vehicle(MSH_Object):
         self.ParentList = self._findParentsNew()
     
     def _ValueReadJson(self, Vehicle_dir):
+        '''
+        Reads values from a .json file
+        '''
         for var in vars(self).keys():
             if ((var != 'Name') and (var!= 'SF_class') and (var!= 'MSH_ID')):
                 vars(self)[var] = Vehicle_dir[var]
@@ -252,6 +267,11 @@ def ReadObjectList(SF_File_Path):
     return MSH_Obj_List
 
 def ReadJsonObjList(SF_File_Path):
+    '''
+    Read data from .json list and initialise them as Mesh Objects
+    
+    :returns: dict[list[MSH_Objects]]
+    '''
     MSH_Obj_List = {'vehicle':[], 'BOI':[]} #list of all mesh objects
     with open(SF_File_Path, mode = 'r', encoding= 'utf-8') as read_file:
         scope_data = json.load(read_file)
@@ -265,6 +285,9 @@ def ReadJsonObjList(SF_File_Path):
     
 
 def MakeBoundaryLayerDict(Obj_list, Part_list, Zone_list):
+    '''
+    Obsolete
+    '''
     Bound_dict = {'rest':Part_list}
     
     for obj in Obj_list:
@@ -322,6 +345,11 @@ def MakeBoundaryLayerDict(Obj_list, Part_list, Zone_list):
     return Bound_dict
 
 def MakeBoundaryLayerDict2(Obj_list, Part_list, Zone_list):
+    '''
+    Assigns correct prism settings to individual parts so no prism settings share the same part (due to the mesh setting inheritance)
+    
+    :return: dict
+    '''
     Bound_dict = {'rest':Part_list}
     
     for MSH_obj in Obj_list:
@@ -403,6 +431,9 @@ def WriteObjToFile(Obj_list, FilePath):
             fw.write('\n')
             
 def WriteScopeToJson(Obj_list, file_path):
+    '''
+    Writes given mesh object settings list into a provided .json file
+    '''
     with open(file_path, mode = 'w', encoding= 'utf-8') as write_file:
         Obj_dict = {'vehicle':[], 'BOI':[]}
         for Obj in Obj_list['vehicle']:
