@@ -9,13 +9,16 @@
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path('..', '..', 'GUI_SubClasses').resolve()))
+sys.path.insert(0, str(Path('..', '..', 'Support_scripts').resolve()))
+sys.path.insert(0, str(Path('..', '..', 'Fluent_scripts').resolve()))
 sys.path.insert(0, str(Path('..', '..').resolve()))
 
 
-project = 'FSAE CFD Automatisation'
+project = 'AutoFluent'
 copyright = '2025, plesnja1'
 author = 'plesnja1'
-release = '0.241'
+
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -129,7 +132,7 @@ sphinx_gallery_conf = {
 html_theme = "ansys_sphinx_theme"
 
 html_theme_options = {
-    "logo": "ansys",
+    "logo": "no_logo",
 }
 
 autodoc_default_options = {

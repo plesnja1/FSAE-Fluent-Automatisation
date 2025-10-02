@@ -4,7 +4,14 @@ from tkinter import ttk
 from GUI_SubClasses.GUI_General import Setting
  
 class PostprocessSett(Setting):
+    '''
+    Class containing posprocessing settings of exported data ad pictures.
+    (Excell table, .AVZ scenes, contour cuts, etc.).
+    '''
     def __init__(self):
+        '''
+        Assigns default values.
+        '''
         self.Excell = True
         self.Excell_path = ''
         self.Iteration_averaging = 300
@@ -27,6 +34,9 @@ class PostprocessSett(Setting):
         
         
 class Postprocessing(ctk.CTkFrame):
+    '''
+    ctk.CTkFrame class servicing the Postprocessing settings menu.
+    '''
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         self.controller = controller
@@ -171,6 +181,9 @@ class Postprocessing(ctk.CTkFrame):
         self.Vorticity_Check_Box.grid(row=8  , column=1, padx=10, pady=(10, 10), sticky="")
         
     def Excell_var_change(self):
+            '''
+            Enable or disable Excell data file generation.
+            '''
             print('Excell Check State:') 
             print(self.Excell_Var_Check.get())
             if self.Excell_Var_Check.get() == 1:
@@ -189,6 +202,9 @@ class Postprocessing(ctk.CTkFrame):
                 self.Iteration_averaging_Entry.configure(fg_color = 'grey')
                 
     def Report_var_change(self):
+            '''
+            Enable or disable report file generation.
+            '''
             print('Report Check State:') 
             print(self.Report_Var_Check.get())
             if self.Report_Var_Check.get() == 1:
@@ -203,6 +219,9 @@ class Postprocessing(ctk.CTkFrame):
                 
                 
     def AVZ_var_change(self):
+            '''
+            Enable or disable .AVZ scene file generation.
+            '''
             print('AVZ Check State:') 
             print(self.AVZ_Var_Check.get())
             if self.AVZ_Var_Check.get() == 1:
@@ -216,6 +235,9 @@ class Postprocessing(ctk.CTkFrame):
                 print(self.controller.PostproSett.Save_AVZ)    
                 
     def VelMag_var_change(self):
+            '''
+            Enable or disable velocity magnitude contour cuts generation.
+            '''
             print('VelMag Check State:') 
             print(self.VelMag_Var_Check.get())
             if self.VelMag_Var_Check.get() == 1:
@@ -229,6 +251,9 @@ class Postprocessing(ctk.CTkFrame):
                 print(self.controller.PostproSett.Vel_Mag_cuts)    
                 
     def VelLIC_var_change(self):
+            '''
+            Enable or disable velocity Line Integral Convolution cuts generation.
+            '''
             print('VelLIC Check State:') 
             print(self.VelLIC_Var_Check.get())
             if self.VelLIC_Var_Check.get() == 1:
@@ -242,6 +267,9 @@ class Postprocessing(ctk.CTkFrame):
                 print(self.controller.PostproSett.Vel_LIC_cuts)    
                 
     def MeanPress_var_change(self):
+            '''
+            Enable or disable mean pressure contour cuts generation.
+            '''
             print('Mean Pressure Check State:') 
             print(self.MeanPress_Var_Check.get())
             if self.MeanPress_Var_Check.get() == 1:
@@ -256,6 +284,9 @@ class Postprocessing(ctk.CTkFrame):
                 
                 
     def TotPress_var_change(self):
+            '''
+            Enable or disable total pressure contour cuts generation.
+            '''
             print('Total Pressure Check State:') 
             print(self.TotPress_Var_Check.get())
             if self.TotPress_Var_Check.get() == 1:
@@ -269,6 +300,9 @@ class Postprocessing(ctk.CTkFrame):
                 print(self.controller.PostproSett.Total_Press_cuts)  
                 
     def Vorticity_var_change(self):
+            '''
+            Enable or disable vorticity contour cuts generation.
+            '''
             print('Vorticity Check State:') 
             print(self.Vorticity_Var_Check.get())
             if self.Vorticity_Var_Check.get() == 1:

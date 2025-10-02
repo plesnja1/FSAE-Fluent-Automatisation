@@ -23,7 +23,7 @@ As such, a rigorous :ref:`CAD naming conventions <geometry_naming>` during devel
 
 Mesh creation
 ^^^^^^^^^^^^^
-Even though AutoFluent atuomises entire Fluent Fault tolerant workflow, a propper mesh sizings needs to be defined. AutoFluent offers
+Even though AutoFluent automises entire Fluent Fault tolerant workflow, a propper mesh sizings needs to be defined. AutoFluent offers
 an intuitive GUI tool to create mesh sizing settings .json files that offers repeatibility in :ref:`creating quality volumetric meshes <mesh_settings>`.
 
 Solver setup

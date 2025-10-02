@@ -4,7 +4,16 @@ from tkinter import filedialog
 
 
 class Setting:
+    '''
+    A parent class for every settings object. Makes settings import and copy creations easier.
+    '''
+    
     def TransferFromTKinter(self):
+        '''
+        Creates a copy of the object.
+        
+        :returns: type(self)
+        '''
         CopyObject = type(self)()
         for key in vars(self).keys():
             if type(vars(self)[key]) ==  (tkinter.StringVar or tkinter.IntVar or tkinter.DoubleVar or tkinter.BooleanVar):
@@ -17,29 +26,26 @@ class Setting:
         return CopyObject
     
     def _ValueReadJson(self, Settings_dir):
+        '''
+        Reads a values from .json file.
+        
+        :meta public:
+        '''
         for var in vars(self).keys():
                 vars(self)[var] = Settings_dir[0][var]   
         print(type(self))
         print(vars(self))     
-        '''
-            if type(vars(self)[key]) ==  tkinter.StringVar:
-                if type(vars(OrigClass[key])) == str:    
-                    vars(self)[key] = str(vars(self)[key].get())
-                elif type(vars(OrigClass[key])) == int:    
-                    vars(self)[key] = int(vars(self)[key].get())
-                elif type(vars(OrigClass[key])) == float:    
-                    vars(self)[key] = float(vars(self)[key].get())
-            
-            elif type(vars(self)[key]) ==  tkinter.IntVar:
-                vars(self)[key] = int(vars(self)[key].get())
-        '''   
+ 
 
 class GeneralSett(Setting):
     '''
     Class containing general settings of meshing and simulation
-    (precision of solver, number of processes, GPU or CPU solver, etc.)
+    (precision of solver, number of processes, GPU or CPU solver, etc.).
     '''
     def __init__(self):
+        '''
+        Assigns default values.
+        '''
         self.DoublePrecision = 'single'
         self.CoreCount = '20'
         self.IntCoreCount = 20
@@ -57,7 +63,15 @@ class GeneralSett(Setting):
         self.WebServer = True
             
 class General(ctk.CTkFrame):
+    '''
+    ctk.CTkFrame class servicing the General settings menu.
+    '''
+    
+    
     def __init__(self, parent, controller):
+        '''
+        Frame initialisation and features placement.
+        '''
         ctk.CTkFrame.__init__(self, parent)
         self.controller = controller
         self.DoublePrecisionText = ctk.CTkTextbox(self, height= 20, width= 130)
@@ -162,7 +176,9 @@ class General(ctk.CTkFrame):
         
        
     def browseFiles(self):
-        
+        '''
+        Open an explorer window and put a selected path to a CAD file into a GeneralSett.CAD_Path attribute.
+        '''
         self.CADfilename = filedialog.askopenfilename(initialdir = self.CadFileText.get('1.0'),
                                           title = "Select a File",
                                           filetypes = (("Sumulation files",
@@ -182,7 +198,9 @@ class General(ctk.CTkFrame):
         print(self.controller.GeneralObject.CAD_Path)
         
     def browseFilesData(self):
-        
+        '''
+        Open an explorer window and put a selected path to a .DAT fluent data file into a GeneralSett.Data_Path attribute.
+        '''
         self.Datafilename = filedialog.askopenfilename(initialdir = self.DataFileText.get('1.0'),
                                           title = "Select a File",
                                           filetypes = (("Data files",
@@ -196,7 +214,9 @@ class General(ctk.CTkFrame):
         print(self.controller.GeneralObject.Data_Path)
          
     def browseFilesMesh(self):
-        
+        '''
+        Open an explorer window and put a selected path to a .msh fluent mesh file into a GeneralSett.DefaultMeshPath attribute.
+        '''
         self.DefaultMesh_filename = filedialog.askopenfilename(initialdir = self.MeshFileText.get('1.0'),
                                           title = "Select a File",
                                           filetypes = (("Text files",
@@ -210,6 +230,9 @@ class General(ctk.CTkFrame):
         print(self.controller.GeneralObject.DefaultMeshPath)
 
     def PyConsoleChange(self):
+        '''
+        Switches between Python and tui console in Fluent GUI.
+        '''
         if self.PyConsoleVarCheck.get():
 
             self.controller.GeneralObject.PyConsole = True 
@@ -221,6 +244,9 @@ class General(ctk.CTkFrame):
             print(self.controller.GeneralObject.PyConsole)    
 
     def WebServerChange(self):
+        '''
+        Start a remote web server.
+        '''
         if self.WebServerVarCheck.get():
 
             self.controller.GeneralObject.WebServer = True 
@@ -232,6 +258,9 @@ class General(ctk.CTkFrame):
             print(self.controller.GeneralObject.WebServer) 
             
     def GUIChange(self):
+        '''
+        Start with Fluent GUI.
+        '''
         print('GUI Check State:') 
         print(self.GUIVarCheck.get())
         if self.GUIVarCheck.get() == 1:
@@ -244,6 +273,9 @@ class General(ctk.CTkFrame):
             print(self.controller.GeneralObject.GUI)   
     
     def DoublePrecisionChange(self, select):
+        '''
+        Changes the preccision solver setting.
+        '''
         if select == 'Single Precision':
             self.controller.GeneralObject.DoublePrecision =  'single' #pyfluent.Precision.SINGLE
             print('Precision Check State:\n')
@@ -254,6 +286,9 @@ class General(ctk.CTkFrame):
             print(self.controller.GeneralObject.DoublePrecision)
 
     def VersionChange(self, select):
+        '''
+        Slection of Fluent version.
+        '''
         if select == '24.2':
             self.controller.GeneralObject.Version =  '24.2'
             print('Version Check State:\n')
@@ -270,6 +305,9 @@ class General(ctk.CTkFrame):
             print(self.controller.GeneralObject.Version)        
     
     def GPUChange(self, select):
+        '''
+        Select CPU or GPU solver.
+        '''
         if select == 'CPU':
             self.controller.GeneralObject.GPU = False
             print(self.controller.GeneralObject.GPU)
@@ -278,6 +316,9 @@ class General(ctk.CTkFrame):
             print(self.controller.GeneralObject.GPU)
         
     def activateDataInput(self):
+        '''
+        Sets the initial simulation stage based on Segment Button. Also alters button and text windows states based on selected stage.
+        '''
         if self.controller.segmentState == 'Postprocess':
             self.DataFileText.configure(state = 'normal')
             self.DataFileText.configure(fg_color = 'grey23')
@@ -318,6 +359,9 @@ class General(ctk.CTkFrame):
 
 
     def FullAssemblyChange(self):
+        '''
+        Wether only part of the assembly or whole assembly is loaded.
+        '''
         print('Full Assembly Check State:') 
         print(self.FullAssembly_Check.get())
 

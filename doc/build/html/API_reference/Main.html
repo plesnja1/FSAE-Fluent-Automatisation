@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <meta property="og:site_name" content="PyAnsys" />
-    <title>Main &#8212; FSAE CFD Automatisation 0.241 documentation</title>
+    <title>Main &#8212; AutoFluent  documentation</title>
   
   
   
@@ -55,7 +55,7 @@
   
     <link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
   
-    <script src="../_static/documentation_options.js?v=cb9332b0"></script>
+    <script src="../_static/documentation_options.js?v=8a448e45"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/thebelab-helper.js"></script>
@@ -68,6 +68,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'API_reference/Main';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GUI modules" href="GUI_SubClasses_API/GUI_modules_API_content.html" />
+    <link rel="prev" title="API_reference" href="API_contents.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -124,21 +126,17 @@
       <div class="navbar-item">
 
   
+    
+  
 
-<a class="navbar-brand logo" href="https://www.ansys.com/">
+<a class="navbar-brand logo" href="../index.html">
   
   
   
   
   
-    
-    
-      
-    
-    
-    <img src="../_static/ansys_logo_transparent_black.png" class="logo__image only-light" alt="FSAE CFD Automatisation 0.241 documentation - Home"/>
-    <img src="../_static/ansys_logo_transparent_white.png" class="logo__image only-dark pst-js-only" alt="FSAE CFD Automatisation 0.241 documentation - Home"/>
   
+    <p class="title logo__title">AutoFluent  documentation</p>
   
 </a></div>
     
@@ -173,12 +171,36 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="API_contents.html">
     API_reference
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CFD_guide/CFD_guide_contents.html">
+    CFD guide
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../Literature/Literature.html">
+    CFD theory
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -219,10 +241,8 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -258,9 +278,23 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="API_contents.html">
     API_reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CFD_guide/CFD_guide_contents.html">
+    CFD guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../Literature/Literature.html">
+    CFD theory
   </a>
 </li>
 
@@ -285,6 +319,21 @@
       </div>
     
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GUI_SubClasses_API/GUI_modules_API_content.html">GUI modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Support_modules_API/Support_modules_API_content.html">Support modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PyFluent_scripts_API/PyFluent_scripts_API_contents.html">PyFluent Scripts</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -324,6 +373,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
+     
+    <li class="breadcrumb-item">
+      <a href="API_contents.html" class="nav-link">API_reference</a>
+    </li>
       
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Main</span></li>
     
@@ -343,91 +396,402 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-Main">
-<span id="main"></span><span id="main-api"></span><h1>Main<a class="headerlink" href="#module-Main" title="Link to this heading">#</a></h1>
+  <section id="main">
+<span id="main-api"></span><h1>Main<a class="headerlink" href="#main" title="Link to this heading">#</a></h1>
 <p>Script responsible for turning on the app and containing classes responsible for running simulations, managing queue, and functional GUI.</p>
 <p>Main script can be found at the root folder of entire AutoFluent.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="Main.SimulationClass">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Main.</span></span><span class="sig-name descname"><span class="pre">SimulationClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simGeneralObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simMeshObjectList</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simTunnelObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simSolverSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simBoundarySett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simPostproSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simParametersSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simName</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass" title="Link to this definition">#</a></dt>
-<dd><p>Class responsible for running each stage of simulation.</p>
-<p>The initial parametres for this class are individual simulation settings from which the <strong>SimulationClass</strong>
-runs the individual simulation steps.</p>
-<p>Attributes:</p>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Main.</span></span><span class="sig-name descname"><span class="pre">SimulationClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simGeneralObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simMeshObjectList</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simTunnelObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simSolverSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simBoundarySett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simPostproSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simParametersSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simStat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'wait'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class containing all of simulation settings and responsible for starting individual simulation 
+steps as individual threads.</p>
+<p><strong>Attributes:</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.SimulationClass.states" title="Main.SimulationClass.states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">states</span></code></a></p></td>
+<td><p>Shotcuts fow various possible simulation states.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Methods:</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.SimulationClass.__init__" title="Main.SimulationClass.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(simGeneralObject, ...[, simStat])</p></td>
+<td><p>Constructs a simulation class with simulation settings as its atributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.SimulationClass.findSimID" title="Main.SimulationClass.findSimID"><code class="xref py py-obj docutils literal notranslate"><span class="pre">findSimID</span></code></a>()</p></td>
+<td><p>This function will automatically find a closest aviable ID number for simulation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.SimulationClass.startMeshing" title="Main.SimulationClass.startMeshing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">startMeshing</span></code></a>()</p></td>
+<td><p>Changes the simulation status to 'Meshing' and pushes the simulation settings to  Mesher.StartFluentMeshing function which takes care of entire meshing workflow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.SimulationClass.startMeshingThread" title="Main.SimulationClass.startMeshingThread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">startMeshingThread</span></code></a>()</p></td>
+<td><p>Starts SimulationClass.startMeshing() method in new thread.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.SimulationClass.startSolver" title="Main.SimulationClass.startSolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">startSolver</span></code></a>()</p></td>
+<td><p>Changes the simulation status to 'Solving' and pushes the simulation settings to  Solver.StartFluentSolver function which takes care of entire solver workflow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.SimulationClass.startSolverThread" title="Main.SimulationClass.startSolverThread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">startSolverThread</span></code></a>()</p></td>
+<td><p>Starts SimulationClass.startSolver() method in new thread.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.SimulationClass.startPostpro" title="Main.SimulationClass.startPostpro"><code class="xref py py-obj docutils literal notranslate"><span class="pre">startPostpro</span></code></a>()</p></td>
+<td><p>Changes the simulation status to 'Postprocessing' and pushes the simulation settings to  Postproces.StartPostprocessing() function which takes care of entire postprocessing workflow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.SimulationClass.startPostproThread" title="Main.SimulationClass.startPostproThread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">startPostproThread</span></code></a>()</p></td>
+<td><p>Starts SimulationClass.startPostpro() method in new thread.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.simGeneralObject">
-<span class="sig-name descname"><span class="pre">simGeneralObject</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">GeneralSett</span></em><a class="headerlink" href="#Main.SimulationClass.simGeneralObject" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="Main.SimulationClass.states">
+<span class="sig-name descname"><span class="pre">states</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'dn':</span> <span class="pre">'Done!',</span> <span class="pre">'err':</span> <span class="pre">'Error!!!',</span> <span class="pre">'msh':</span> <span class="pre">'Meshing',</span> <span class="pre">'msh_dn':</span> <span class="pre">'Meshing</span> <span class="pre">done!',</span> <span class="pre">'post':</span> <span class="pre">'Postprocessing',</span> <span class="pre">'slv':</span> <span class="pre">'Solving',</span> <span class="pre">'slv_dn':</span> <span class="pre">'Solved',</span> <span class="pre">'wait':</span> <span class="pre">'Waiting'}</span></em><a class="headerlink" href="#Main.SimulationClass.states" title="Link to this definition">#</a></dt>
+<dd><p>Shotcuts fow various possible simulation states.</p>
+</dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.simMeshObjectList">
-<span class="sig-name descname"><span class="pre">simMeshObjectList</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">(</span></span><span class="pre">List</span><span class="p"><span class="pre">(</span></span><span class="pre">MeshObjects.Vehicle</span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">)</span></span></em><a class="headerlink" href="#Main.SimulationClass.simMeshObjectList" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.simTunnelObject">
-<span class="sig-name descname"><span class="pre">simTunnelObject</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TunnelSett</span></em><a class="headerlink" href="#Main.SimulationClass.simTunnelObject" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.simSolverSett">
-<span class="sig-name descname"><span class="pre">simSolverSett</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SimulationSett</span></em><a class="headerlink" href="#Main.SimulationClass.simSolverSett" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.simBoundarySett">
-<span class="sig-name descname"><span class="pre">simBoundarySett</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Boundary_conditions_sett</span></em><a class="headerlink" href="#Main.SimulationClass.simBoundarySett" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.simPostproSett">
-<span class="sig-name descname"><span class="pre">simPostproSett</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PostprocessSett</span></em><a class="headerlink" href="#Main.SimulationClass.simPostproSett" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.simParametersSett">
-<span class="sig-name descname"><span class="pre">simParametersSett</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ParametrizationSett</span></em><a class="headerlink" href="#Main.SimulationClass.simParametersSett" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.simName">
-<span class="sig-name descname"><span class="pre">simName</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">String</span></em><a class="headerlink" href="#Main.SimulationClass.simName" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.SimID">
-<span class="sig-name descname"><span class="pre">SimID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Int</span></em><a class="headerlink" href="#Main.SimulationClass.SimID" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass._registry">
-<span class="sig-name descname"><span class="pre">_registry</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="Main2.html#Main.SimulationClass" title="Main.SimulationClass"><span class="pre">SimulationClass</span></a><span class="p"><span class="pre">)</span></span></em><a class="headerlink" href="#Main.SimulationClass._registry" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.SimStat">
-<span class="sig-name descname"><span class="pre">SimStat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">String</span></em><a class="headerlink" href="#Main.SimulationClass.SimStat" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.meshPath">
-<span class="sig-name descname"><span class="pre">meshPath</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">String</span></em><a class="headerlink" href="#Main.SimulationClass.meshPath" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.SimThread">
-<span class="sig-name descname"><span class="pre">SimThread</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">String</span></em><a class="headerlink" href="#Main.SimulationClass.SimThread" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="Main.SimulationClass.solverPath">
-<span class="sig-name descname"><span class="pre">solverPath</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">String</span></em><a class="headerlink" href="#Main.SimulationClass.solverPath" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.SimulationClass.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simGeneralObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simMeshObjectList</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simTunnelObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simSolverSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simBoundarySett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simPostproSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simParametersSett</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simStat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'wait'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructs a simulation class with simulation settings as its atributes.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="Main.SimulationClass.findSimID">
 <span class="sig-name descname"><span class="pre">findSimID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass.findSimID" title="Link to this definition">#</a></dt>
+<dd><p>This function will automatically find a closest aviable ID number for simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Int) ID number of simulation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.SimulationClass.startMeshing">
+<span class="sig-name descname"><span class="pre">startMeshing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass.startMeshing" title="Link to this definition">#</a></dt>
+<dd><p>Changes the simulation status to ‘Meshing’ and pushes the simulation settings to 
+Mesher.StartFluentMeshing function which takes care of entire meshing workflow.</p>
+<p>After meshing changes the simulation status to ‘Meshing Done’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(String) path to saved volumetric mesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.SimulationClass.startMeshingThread">
+<span class="sig-name descname"><span class="pre">startMeshingThread</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass.startMeshingThread" title="Link to this definition">#</a></dt>
+<dd><p>Starts SimulationClass.startMeshing() method in new thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Thread)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.SimulationClass.startSolver">
+<span class="sig-name descname"><span class="pre">startSolver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass.startSolver" title="Link to this definition">#</a></dt>
+<dd><p>Changes the simulation status to ‘Solving’ and pushes the simulation settings to 
+Solver.StartFluentSolver function which takes care of entire solver workflow.</p>
+<p>After solving changes the simulation status to ‘Solver Done’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(String) path to saved case file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.SimulationClass.startSolverThread">
+<span class="sig-name descname"><span class="pre">startSolverThread</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass.startSolverThread" title="Link to this definition">#</a></dt>
+<dd><p>Starts SimulationClass.startSolver() method in new thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Thread)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.SimulationClass.startPostpro">
+<span class="sig-name descname"><span class="pre">startPostpro</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass.startPostpro" title="Link to this definition">#</a></dt>
+<dd><p>Changes the simulation status to ‘Postprocessing’ and pushes the simulation settings to 
+Postproces.StartPostprocessing() function which takes care of entire postprocessing workflow.</p>
+<p>After postprocessing changes the simulation status to ‘Done’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.SimulationClass.startPostproThread">
+<span class="sig-name descname"><span class="pre">startPostproThread</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.SimulationClass.startPostproThread" title="Link to this definition">#</a></dt>
+<dd><p>Starts SimulationClass.startPostpro() method in new thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Thread)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Main.MainMenuButtons">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Main.</span></span><span class="sig-name descname"><span class="pre">MainMenuButtons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainMenuButtons" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTkScrollableFrame</span></code></p>
+<p>class that initialises the main menu buttons which redirect the user to given 
+subcategories.</p>
+<p><strong>Methods:</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainMenuButtons.__init__" title="Main.MainMenuButtons.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(master)</p></td>
+<td><p>Construct a frame widget with the parent MASTER.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainMenuButtons.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainMenuButtons.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Construct a frame widget with the parent MASTER.</p>
+<p>Valid resource names: background, bd, bg, borderwidth, class,
+colormap, container, cursor, height, highlightbackground,
+highlightcolor, highlightthickness, relief, takefocus, visual, width.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Main.Queue">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Main.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.Queue" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTkFrame</span></code></p>
+<p>Queue class manages the order of simulations in queue as well as a visualisation of queue in GUI.</p>
+<p><strong>Methods:</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.Queue.__init__" title="Main.Queue.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(master, **kwargs)</p></td>
+<td><p>Construct a frame widget with the parent MASTER.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.Queue.updateSims" title="Main.Queue.updateSims"><code class="xref py py-obj docutils literal notranslate"><span class="pre">updateSims</span></code></a>(simList)</p></td>
+<td><p>This method checks all simulations in queue and and assigns a propper status and colour based  on simulation status.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.Queue.insertSim" title="Main.Queue.insertSim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">insertSim</span></code></a>(sim)</p></td>
+<td><p>Inserts a new simulation (SimulationClass) to queue.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.Queue.updateColour" title="Main.Queue.updateColour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">updateColour</span></code></a>(simList)</p></td>
+<td><p>Assigns a proper colour in queue based on simulation status.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.Queue.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.Queue.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Construct a frame widget with the parent MASTER.</p>
+<p>Valid resource names: background, bd, bg, borderwidth, class,
+colormap, container, cursor, height, highlightbackground,
+highlightcolor, highlightthickness, relief, takefocus, visual, width.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.Queue.updateSims">
+<span class="sig-name descname"><span class="pre">updateSims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simList</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.Queue.updateSims" title="Link to this definition">#</a></dt>
+<dd><p>This method checks all simulations in queue and and assigns a propper status and colour based 
+on simulation status.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.Queue.insertSim">
+<span class="sig-name descname"><span class="pre">insertSim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.Queue.insertSim" title="Link to this definition">#</a></dt>
+<dd><p>Inserts a new simulation (SimulationClass) to queue.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.Queue.updateColour">
+<span class="sig-name descname"><span class="pre">updateColour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simList</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.Queue.updateColour" title="Link to this definition">#</a></dt>
+<dd><p>Assigns a proper colour in queue based on simulation status.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Main.PrintLogger">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Main.</span></span><span class="sig-name descname"><span class="pre">PrintLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">textbox</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.PrintLogger" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>File like objects for redirected terminal view.</p>
+<p><strong>Methods:</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.PrintLogger.__init__" title="Main.PrintLogger.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(textbox)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.PrintLogger.write" title="Main.PrintLogger.write"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code></a>(text)</p></td>
+<td><p>Writes into a Logger.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.PrintLogger.flush" title="Main.PrintLogger.flush"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flush</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.PrintLogger.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">textbox</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.PrintLogger.__init__" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.PrintLogger.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.PrintLogger.write" title="Link to this definition">#</a></dt>
+<dd><p>Writes into a Logger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.PrintLogger.flush">
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.PrintLogger.flush" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Main.MainApp">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Main.</span></span><span class="sig-name descname"><span class="pre">MainApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fg_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTk</span></code></p>
+<p>A main CTKinter class that services all other TKinter classes and pushes simulation settings into queue.</p>
+<p><strong>Methods:</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.__init__" title="Main.MainApp.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([fg_color])</p></td>
+<td><p>Return a new top level widget on screen SCREENNAME.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.windows_init" title="Main.MainApp.windows_init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">windows_init</span></code></a>()</p></td>
+<td><p>Initialises the Options Menus top scrolls buttons and inserts a ctk.CTkFrame class of options menu to each button.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.reset_logging" title="Main.MainApp.reset_logging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_logging</span></code></a>()</p></td>
+<td><p>Resets the terminal redirecting back to python terminal.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.redirect_logging" title="Main.MainApp.redirect_logging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">redirect_logging</span></code></a>()</p></td>
+<td><p>Redirects the python terminal into a GUI terminal (read only).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.browseFolders" title="Main.MainApp.browseFolders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">browseFolders</span></code></a>()</p></td>
+<td><p>Opens the explorer window and puts the selected folder into a GeneralObject.workingDirectory attribute.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.changeSegment" title="Main.MainApp.changeSegment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">changeSegment</span></code></a>(a)</p></td>
+<td><p>Changes the simulation starting point and activates the GUI_Subclasses/GUI_General.General.activateDataInput() method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.Start" title="Main.MainApp.Start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Start</span></code></a>()</p></td>
+<td><p>Creates the SimulationsClass from current settings and pushes the simulation into a simulation queue.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.QueueLoop" title="Main.MainApp.QueueLoop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QueueLoop</span></code></a>()</p></td>
+<td><p>Loop responsible for pushing simulations in the queue.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.show_frame" title="Main.MainApp.show_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_frame</span></code></a>(cont)</p></td>
+<td><p>Shows a frame of given ctk.CTkFrame class options menu.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.getJsonSavePath" title="Main.MainApp.getJsonSavePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getJsonSavePath</span></code></a>()</p></td>
+<td><p>Gets a .json file path from opened explorer window and writes current simulation settings  into newly created .json file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.WriteSettToJson" title="Main.MainApp.WriteSettToJson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteSettToJson</span></code></a>(Obj_list, file_path)</p></td>
+<td><p>Writes all the provided Settings objects into a provided .json file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.browseJsonFiles" title="Main.MainApp.browseJsonFiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">browseJsonFiles</span></code></a>()</p></td>
+<td><p>Opens the explorer window and reads the selected .json settings file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.ReadSettJson" title="Main.MainApp.ReadSettJson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReadSettJson</span></code></a>(File_path)</p></td>
+<td><p>Reads a provided .json file and loads the values into settings objects.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fg_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Return a new top level widget on screen SCREENNAME. A new Tcl interpreter will
+be created. BASENAME will be used for the identification of the profile file (see
+readprofile).
+It is constructed from sys.argv[0] without extensions if None is given. CLASSNAME
+is the name of the widget class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.windows_init">
+<span class="sig-name descname"><span class="pre">windows_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.windows_init" title="Link to this definition">#</a></dt>
+<dd><p>Initialises the Options Menus top scrolls buttons and inserts a ctk.CTkFrame class of options menu to each button.</p>
+<p>If new options menu is desired, its ctk.CTkFrame class needs to be inserted into container bellow.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.reset_logging">
+<span class="sig-name descname"><span class="pre">reset_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.reset_logging" title="Link to this definition">#</a></dt>
+<dd><p>Resets the terminal redirecting back to python terminal.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.redirect_logging">
+<span class="sig-name descname"><span class="pre">redirect_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.redirect_logging" title="Link to this definition">#</a></dt>
+<dd><p>Redirects the python terminal into a GUI terminal (read only).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.browseFolders">
+<span class="sig-name descname"><span class="pre">browseFolders</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.browseFolders" title="Link to this definition">#</a></dt>
+<dd><p>Opens the explorer window and puts the selected folder into a GeneralObject.workingDirectory attribute.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.changeSegment">
+<span class="sig-name descname"><span class="pre">changeSegment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.changeSegment" title="Link to this definition">#</a></dt>
+<dd><p>Changes the simulation starting point and activates the GUI_Subclasses/GUI_General.General.activateDataInput() method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.Start">
+<span class="sig-name descname"><span class="pre">Start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.Start" title="Link to this definition">#</a></dt>
+<dd><p>Creates the SimulationsClass from current settings and pushes the simulation into a simulation queue.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.QueueLoop">
+<span class="sig-name descname"><span class="pre">QueueLoop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.QueueLoop" title="Link to this definition">#</a></dt>
+<dd><p>Loop responsible for pushing simulations in the queue.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.show_frame">
+<span class="sig-name descname"><span class="pre">show_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cont</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.show_frame" title="Link to this definition">#</a></dt>
+<dd><p>Shows a frame of given ctk.CTkFrame class options menu.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.getJsonSavePath">
+<span class="sig-name descname"><span class="pre">getJsonSavePath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.getJsonSavePath" title="Link to this definition">#</a></dt>
+<dd><p>Gets a .json file path from opened explorer window and writes current simulation settings 
+into newly created .json file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.WriteSettToJson">
+<span class="sig-name descname"><span class="pre">WriteSettToJson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Obj_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.WriteSettToJson" title="Link to this definition">#</a></dt>
+<dd><p>Writes all the provided Settings objects into a provided .json file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.browseJsonFiles">
+<span class="sig-name descname"><span class="pre">browseJsonFiles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.browseJsonFiles" title="Link to this definition">#</a></dt>
+<dd><p>Opens the explorer window and reads the selected .json settings file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.ReadSettJson">
+<span class="sig-name descname"><span class="pre">ReadSettJson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">File_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.ReadSettJson" title="Link to this definition">#</a></dt>
+<dd><p>Reads a provided .json file and loads the values into settings objects.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -443,6 +807,24 @@ runs the individual simulation steps.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="API_contents.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">API_reference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="GUI_SubClasses_API/GUI_modules_API_content.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GUI modules</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -463,21 +845,48 @@ runs the individual simulation steps.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass"><code class="docutils literal notranslate"><span class="pre">SimulationClass</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.simGeneralObject"><code class="docutils literal notranslate"><span class="pre">SimulationClass.simGeneralObject</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.simMeshObjectList"><code class="docutils literal notranslate"><span class="pre">SimulationClass.simMeshObjectList</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.simTunnelObject"><code class="docutils literal notranslate"><span class="pre">SimulationClass.simTunnelObject</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.simSolverSett"><code class="docutils literal notranslate"><span class="pre">SimulationClass.simSolverSett</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.simBoundarySett"><code class="docutils literal notranslate"><span class="pre">SimulationClass.simBoundarySett</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.simPostproSett"><code class="docutils literal notranslate"><span class="pre">SimulationClass.simPostproSett</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.simParametersSett"><code class="docutils literal notranslate"><span class="pre">SimulationClass.simParametersSett</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.simName"><code class="docutils literal notranslate"><span class="pre">SimulationClass.simName</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.SimID"><code class="docutils literal notranslate"><span class="pre">SimulationClass.SimID</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass._registry"><code class="docutils literal notranslate"><span class="pre">SimulationClass._registry</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.SimStat"><code class="docutils literal notranslate"><span class="pre">SimulationClass.SimStat</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.meshPath"><code class="docutils literal notranslate"><span class="pre">SimulationClass.meshPath</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.SimThread"><code class="docutils literal notranslate"><span class="pre">SimulationClass.SimThread</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.solverPath"><code class="docutils literal notranslate"><span class="pre">SimulationClass.solverPath</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.states"><code class="docutils literal notranslate"><span class="pre">SimulationClass.states</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationClass.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.findSimID"><code class="docutils literal notranslate"><span class="pre">SimulationClass.findSimID()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.startMeshing"><code class="docutils literal notranslate"><span class="pre">SimulationClass.startMeshing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.startMeshingThread"><code class="docutils literal notranslate"><span class="pre">SimulationClass.startMeshingThread()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.startSolver"><code class="docutils literal notranslate"><span class="pre">SimulationClass.startSolver()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.startSolverThread"><code class="docutils literal notranslate"><span class="pre">SimulationClass.startSolverThread()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.startPostpro"><code class="docutils literal notranslate"><span class="pre">SimulationClass.startPostpro()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.SimulationClass.startPostproThread"><code class="docutils literal notranslate"><span class="pre">SimulationClass.startPostproThread()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainMenuButtons"><code class="docutils literal notranslate"><span class="pre">MainMenuButtons</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainMenuButtons.__init__"><code class="docutils literal notranslate"><span class="pre">MainMenuButtons.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.Queue"><code class="docutils literal notranslate"><span class="pre">Queue</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.Queue.__init__"><code class="docutils literal notranslate"><span class="pre">Queue.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.Queue.updateSims"><code class="docutils literal notranslate"><span class="pre">Queue.updateSims()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.Queue.insertSim"><code class="docutils literal notranslate"><span class="pre">Queue.insertSim()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.Queue.updateColour"><code class="docutils literal notranslate"><span class="pre">Queue.updateColour()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.PrintLogger"><code class="docutils literal notranslate"><span class="pre">PrintLogger</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.PrintLogger.__init__"><code class="docutils literal notranslate"><span class="pre">PrintLogger.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.PrintLogger.write"><code class="docutils literal notranslate"><span class="pre">PrintLogger.write()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.PrintLogger.flush"><code class="docutils literal notranslate"><span class="pre">PrintLogger.flush()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp"><code class="docutils literal notranslate"><span class="pre">MainApp</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.__init__"><code class="docutils literal notranslate"><span class="pre">MainApp.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.windows_init"><code class="docutils literal notranslate"><span class="pre">MainApp.windows_init()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.reset_logging"><code class="docutils literal notranslate"><span class="pre">MainApp.reset_logging()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.redirect_logging"><code class="docutils literal notranslate"><span class="pre">MainApp.redirect_logging()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.browseFolders"><code class="docutils literal notranslate"><span class="pre">MainApp.browseFolders()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.changeSegment"><code class="docutils literal notranslate"><span class="pre">MainApp.changeSegment()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.Start"><code class="docutils literal notranslate"><span class="pre">MainApp.Start()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.QueueLoop"><code class="docutils literal notranslate"><span class="pre">MainApp.QueueLoop()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.show_frame"><code class="docutils literal notranslate"><span class="pre">MainApp.show_frame()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.getJsonSavePath"><code class="docutils literal notranslate"><span class="pre">MainApp.getJsonSavePath()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.WriteSettToJson"><code class="docutils literal notranslate"><span class="pre">MainApp.WriteSettToJson()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.browseJsonFiles"><code class="docutils literal notranslate"><span class="pre">MainApp.browseJsonFiles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.ReadSettJson"><code class="docutils literal notranslate"><span class="pre">MainApp.ReadSettJson()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -4,8 +4,8 @@
    contain the root `toctree` directive.
 .. _index:
 
-FSAE CFD Automatisation documentation
-=====================================
+AutoFluent
+==========
 
 .. toctree::
    :hidden:
@@ -15,6 +15,8 @@ FSAE CFD Automatisation documentation
    user_guide/user_guide_contents
    GUI_guide/GUI_guide
    API_reference/API_contents
+   CFD_guide/CFD_guide_contents
+   Literature/Literature
    
 
 This project aims to incorporate pyFluent (a python Fluent wrapper) into a user friendly and easy to use graphical interface. 

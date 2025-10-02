@@ -1,0 +1,126 @@
+.. _Literature:
+
+.. toctree::
+   :maxdepth: 1
+
+   Main
+
+
+
+Literature
+==========
+
+Fluid Dynamics
+^^^^^^^^^^^^^^
+An intimate knowledge of fluid dynamics is an essential tool in race car aerodynamicists toolkit. It allows us to predict the fluid flow behavior based on involved geometry
+and to correctly interpret the results provided by computational toold.
+
+An Introduction to Fluid Dynamics
+"""""""""""""""""""""""""""""""""
+“An Introduction to Fluid Dynamics” by G. K. Batchelor remains a classic fluid mechanics book that addresses the theories of 
+this field in an elegant manner. Though published in 1960’s, this timeless classic still holds a reader’s attention.
+
+- `An Introduction to Fluid Dynamics <../_static/Literature/introduction-to-fluid-dynamics.pdf>`_
+
+Mechanika Tekutin (CZ)
+""""""""""""""""""""""
+Tato skripta jsou určena pro předmět „Mechanika tekutin“ přednášený v jednom 
+semestru základního studia v rozsahu tří hodin přednášek a dvou hodin cvičení týdně. Skripta 
+jsou úvodem do mechaniky tekutin a klademe si za cíl, aby student sám uměl správně 
+aplikovat základní fyzikální zákony, jako např. zákony zachování hmotnosti, hybnosti 
+a energie i na pohyb tekutin.
+
+- `Mechanika Tekutin <../_static/Literature/MechanikaTekutin.pdf>`_
+
+Fluid Mechanics: An Intermediate Approach
+"""""""""""""""""""""""""""""""""""""""""
+If you’re looking to delve deeper into more advanced material, “Fluid Mechanics: An Intermediate Approach” by Bijay K. 
+Sultanian takes a practical rather than purely theoretical approach. 
+A variety of illustrative examples provide context to the subject matter and help navigate the reader through a broad range of topics.
+
+
+
+CFD theory
+^^^^^^^^^^
+Literature for robust knowledge of theory behind CFD solvers. While not necesary for handling of commercial software, it provides useful knowledge of its limitations and 
+posibilities. After sufitiently learning the texts bellow, you should be able to create zour own simple 2D CFD solver. 
+
+Introduction To Computational Fluid Dynamics
+""""""""""""""""""""""""""""""""""""""""""""
+This book seeks to present all the fundamental material needed for good 
+simulation of fluid flows by means of the finite volume method, and is split
+into three parts. The first part, consisting of Chapters 2 and 3, is concerned
+with the fundamentals of fluid flows in three dimensions and turbulence.
+Chapter 3 represents the development of the concepts of turbulence that are necessary for a full appreciation of the finer details of CFD in many engineering applications.
+The second part of the book is devoted to the numerical algorithms of 
+the finite volume method and covers Chapters 4 to 9. Discretisation schemes
+and solution procedures for steady flows are discussed in Chapters 4 to 7.
+
+- `Introduction To Computational Fluid Dynamics <../_static/Literature/IntroductionToComputationalFluidDynamics_Versteeg.pdf>`_
+
+Metoda Konečných Objemů I, II (CZ)
+""""""""""""""""""""""""""""""""""
+Skripta pro předmět Metoda Konečných Objemů vyučovaný panem Profesorem Fürstem. První skripta pojednávají o odvození MKO, definici a odvození jednotlivých diskretizačních
+schémat a určení jejich přesnosti a stability. Ke konci této knihy by student měl být schopný vytvořit vlastní 1D až 2D EXPLICITNÍ CFD řešič a znát 
+rozdíly, výhody a limitace jednotlivých schémat.
+
+Druhá skripta pojednávají o algoritmech pro tvorbu sítě, diskretizaci konvektivních, difusivních a diferenciálních operátorů v diferenciálních rovnicích a jejich 
+maticové vyjídření. Ve výsledku by tyto skripta měla předat znalosti potřebné k tvorbě a pochopení IMPLICITNÍHO CFD řešiče.
+
+- `Metoda Konečných Objemů I <../_static/Literature/skripta_mko1.pdf>`_
+- `Metoda Konečných Objemů II <../_static/Literature/skripta_mko2.pdf>`_
+
+Notes on Computational Fluid Dynamics: General Principles
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Notes on Computational Fluid Dynamics (CFD) was written for people who use CFD in their work, research or study, 
+providing essential knowledge to perform CFD analysis with confidence. It offers a modern perspective on CFD with the finite volume method, 
+as implemented in OpenFOAM and other popular general-purpose CFD software. Fluid dynamics, turbulence modelling and boundary conditions are presented 
+alongside the numerical methods and algorithms in a series of short, digestible topics, or notes, that contain complete, concise and relevant information.
+
+- `Notes on Computational Fluid Dynamics <https://doc.cfd.direct/notes/cfd-general-principles/>`_
+
+Internal Flows
+^^^^^^^^^^^^^^
+Wether it is for cooling ducts and fans or inner structures of motor cooling, internal flows are quiet different from structures of external flow.
+Bellow is some literature that should aid in designing such features.
+
+Handbook of Hydraulic Resistance
+""""""""""""""""""""""""""""""""
+No matter how weird shape of your tubing, chances are that someone has already meassured its effect on your flow. In this case it was the russians during the cold war.
+Nevertheless this knowledge is still relevant for designing of inner flow structures and understanding how they affect the resistance of the flow.
+
+- `Handbook of Hydraulic Resistance <../_static/Literature/HandbookOfHydraulicResistance.pdf>`_
+
+VDI Heat Atlas
+""""""""""""""
+The VDI-Wa ¨rmeatlas or VDI Heat Atlas has a long-lasting history and it can be considered as a standard book for heat exchanger
+and process engineering equipment design. It is not conceived as a textbook presenting an overall view of the theoretical or
+experimental findings in heat transfer sciences. The aim was and is to present and explain the state of the art of engineering methods
+to solve industrially relevant heat transfer problems for apparatus design and process modeling. 
+
+- `VDI Heat Atlas <../_static/Literature/livreHeatAtlas.pdf>`_
+
+
+Fan Handbook
+""""""""""""
+A guide to various aspects of modern fan technology. It takes you through the design, selection, maintenance, and repair of fans used 
+in a range of applications and industries, including airfoils; centrifugal fans; mixed-flow fans; roof ventilators; cross-flow blowers; regenerative blowers; and, more.
+
+- `Fan Handbook <../_static/Literature/Bleier-FanHandbook.pdf>`_
+
+Car Aerodynamics
+^^^^^^^^^^^^^^^^^^^
+Car aerodynamics is in itself a large and still developing area. Hundreds of engineers before have already tried many concepts to reduce drag and increase downforce.
+Few of them took their years of practise and wrote them into some helpfull literature.
+
+Race Car Aerodynamics
+"""""""""""""""""""""
+Race Car Aerodynamics is the first book to summarize the secrets of the rapidly developing field of high-speed vehicle design. 
+Over the past 15 years, author Joseph Katz has been involved with aerodynamic development in the most competitive areas of motorsport today. 
+From Formula One, to Indy Car, Drag and Sedan Racing, this book provides clear explanations for both engineers who want to improve their design skills,
+and enthusiasts who want to understand how their favorite cars go fast.
+
+`Race Car Aerodynamics <../_static/Literature/Race_Car_Aerodynamics.pdf>`_
+
+
+
