@@ -21,7 +21,7 @@ class Prisms(ctk.CTkFrame):
         self.writeButt = ctk.CTkButton(self, height=30,width= 100, text= 'Write...', command=self.writeScopeSizeFile )
         self.writeButt.grid(row=8, column=1, padx=10, pady=(10, 10), sticky="nw")
     
-    '''
+    
     def LoadTree(self):
         self.treeview.delete(*self.treeview.get_children())
         for obj in self.controller.MeshObjList['vehicle']:
@@ -29,7 +29,7 @@ class Prisms(ctk.CTkFrame):
                 self.treeview.insert(parent=obj.Parent, index=obj.MSH_ID,iid=str(obj.Name) , text= obj.Name, values=[obj.MSH_ID])
             else:
                 self.treeview.insert(parent=obj.Parent, index=obj.MSH_ID,iid= (obj.Parent+ '-' + str(obj.Name)) , text= obj.Name, values=[obj.MSH_ID])
-    '''    
+       
         
     def OnClickTree(self, event):
         '''

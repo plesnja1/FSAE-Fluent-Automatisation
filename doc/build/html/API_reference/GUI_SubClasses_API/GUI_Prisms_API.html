@@ -194,7 +194,7 @@
                     
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -294,7 +294,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -424,13 +424,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#GUI_Prisms.Prisms.__init__" title="GUI_Prisms.Prisms.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent, controller)</p></td>
 <td><p>Construct a frame widget with the parent MASTER.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#GUI_Prisms.Prisms.OnClickTree" title="GUI_Prisms.Prisms.OnClickTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OnClickTree</span></code></a>(event)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#GUI_Prisms.Prisms.LoadTree" title="GUI_Prisms.Prisms.LoadTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoadTree</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#GUI_Prisms.Prisms.OnClickTree" title="GUI_Prisms.Prisms.OnClickTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OnClickTree</span></code></a>(event)</p></td>
 <td><p>Switches the prism sizing settings based on object that is clicked in the scoped sizing tree.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#GUI_Prisms.Prisms.writeScopeSizeFile" title="GUI_Prisms.Prisms.writeScopeSizeFile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeScopeSizeFile</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#GUI_Prisms.Prisms.writeScopeSizeFile" title="GUI_Prisms.Prisms.writeScopeSizeFile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeScopeSizeFile</span></code></a>()</p></td>
 <td><p>Opens an explorer window and creates a .JSON file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#GUI_Prisms.Prisms.updatePrisms" title="GUI_Prisms.Prisms.updatePrisms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">updatePrisms</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#GUI_Prisms.Prisms.updatePrisms" title="GUI_Prisms.Prisms.updatePrisms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">updatePrisms</span></code></a>()</p></td>
 <td><p>Updates the curently shown prism settings.</p></td>
 </tr>
 </tbody>
@@ -444,6 +447,11 @@
 colormap, container, cursor, height, highlightbackground,
 highlightcolor, highlightthickness, relief, takefocus, visual, width.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GUI_Prisms.Prisms.LoadTree">
+<span class="sig-name descname"><span class="pre">LoadTree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GUI_Prisms.Prisms.LoadTree" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="GUI_Prisms.Prisms.OnClickTree">
@@ -516,6 +524,7 @@ highlightcolor, highlightthickness, relief, takefocus, visual, width.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#GUI_Prisms.Prisms"><code class="docutils literal notranslate"><span class="pre">Prisms</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#GUI_Prisms.Prisms.__init__"><code class="docutils literal notranslate"><span class="pre">Prisms.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#GUI_Prisms.Prisms.LoadTree"><code class="docutils literal notranslate"><span class="pre">Prisms.LoadTree()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#GUI_Prisms.Prisms.OnClickTree"><code class="docutils literal notranslate"><span class="pre">Prisms.OnClickTree()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#GUI_Prisms.Prisms.writeScopeSizeFile"><code class="docutils literal notranslate"><span class="pre">Prisms.writeScopeSizeFile()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#GUI_Prisms.Prisms.updatePrisms"><code class="docutils literal notranslate"><span class="pre">Prisms.updatePrisms()</span></code></a></li>

@@ -5,6 +5,7 @@ from GUI_SubClasses.GUI_BoundaryConditions import Boundary_conditions_sett
 from GUI_SubClasses.GUI_Simulation import SimulationSett
 from GUI_SubClasses.GUI_General import GeneralSett
 from GUI_SubClasses.GUI_Postprocess import PostprocessSett
+from GUI_SubClasses.GUI_Tunnel import TunnelSett
 
 #density = 1.15
 
@@ -62,7 +63,8 @@ def CalculateViscosity(Temp):
     return Mi
 
 def StartFluentSolver(BoundarySett: Boundary_conditions_sett, 
-                      SolvSett:SimulationSett,                      
+                      SolvSett:SimulationSett,   
+                      TurnSett:TunnelSett,                   
                       MSH_Objects, 
                       SettGen:GeneralSett, 
                       PostproSett:PostprocessSett,
@@ -208,21 +210,50 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         #fan_1.fan_zone.axial_source_term = True
         #fan_1.fan_zone.fan_axial_source_method = 'fan curve'
 
-
-        
     '''
     BoundarySett a inlet BC
     '''
     inlet = solve.settings.setup.boundary_conditions.velocity_inlet['tunnel-xmin']
-    inlet.momentum.velocity = BoundarySett.velocity
     
-    '''
-    BoundarySett a road BC
-    '''
-    road = solve.settings.setup.boundary_conditions.wall['tunnel-zmin']
-    road.momentum.wall_motion = 'Moving Wall'
-    road.momentum.speed = BoundarySett.velocity
-    road.momentum.direction = [1,0,0]
+    
+   
+
+
+    if TurnSett.turn_check == 1:
+        inlet.momentum.velocity = 0
+        inlet.momentum.reference_frame = 'Relative to Adjacent Cell Zone'
+        
+        '''
+        BoundarySett a road BC
+        '''
+        road = solve.settings.setup.boundary_conditions.wall['tunnel-zmin']
+        road.momentum.wall_motion = 'Moving Wall'
+        road.momentum.rotating = True
+        road.momentum.rotation_speed =  BoundarySett.velocity/TurnSett.radius
+        road.momentum.rotation_axis_origin = [0,TurnSett.radius,0]
+        road.momentum.rotation_axis_direction = [0,0,1]
+        
+        '''
+        Cell zone movement
+        '''
+        
+        zone = solve.settings.setup.cell_zone_conditions['fluid-region-1']
+        zone.reference_frame.frame_motion = True
+        zone.reference_frame.mrf_omega = BoundarySett.velocity/TurnSett.radius
+        zone.reference_frame.reference_frame_axis_origin = [0,TurnSett.radius,0]
+        zone.reference_frame.reference_frame_axis_direction = [0,0,1]
+        
+    
+    else: 
+        inlet.momentum.velocity = BoundarySett.velocity
+        
+        '''
+        BoundarySett a road BC
+        '''
+        road = solve.settings.setup.boundary_conditions.wall['tunnel-zmin']
+        road.momentum.wall_motion = 'Moving Wall'
+        road.momentum.speed = BoundarySett.velocity
+        road.momentum.direction = [1,0,0]
     
     #list of all surfaces on a car
     wall_list = list(solve.settings.setup.boundary_conditions.wall.keys()) #list of all wall BC surfaces
@@ -234,7 +265,7 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
     Setting of a Wheel BC
     '''
     #front wheels
-    f_wheel_name = FindPart('wheel_front', list(solve.settings.setup.boundary_conditions.wall.keys())) #find name of front wheel part
+    f_wheel_name = FindPart('front_tyre', list(solve.settings.setup.boundary_conditions.wall.keys())) #find name of front wheel part
     f_wheel = solve.settings.setup.boundary_conditions.wall[str(f_wheel_name)] 
     f_wheel.momentum.wall_motion = 'Moving Wall'
     f_wheel.momentum.rotating = True #sett the wall motion as rotating
@@ -243,7 +274,7 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
     f_wheel.momentum.rotation_axis_direction = [0,1,0]
     
     #rear wheels
-    r_wheel_name = FindPart('wheel_rear', list(solve.settings.setup.boundary_conditions.wall.keys()))
+    r_wheel_name = FindPart('rear_tyre', list(solve.settings.setup.boundary_conditions.wall.keys()))
     print(r_wheel_name)
     r_wheel = solve.settings.setup.boundary_conditions.wall[str(r_wheel_name)]
     r_wheel.momentum.wall_motion = 'Moving Wall'

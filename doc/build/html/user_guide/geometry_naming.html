@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css?v=572af1d6" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles\ansys-sphinx-theme.css?v=ce7f2556" />
@@ -194,7 +194,7 @@
                     
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -294,7 +294,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -436,6 +436,42 @@ which is its parent, but since the smallest settings applies, fluent will ignore
 <p>Apart from scope sizing the concept of inheritance also applies to prism creation and created report definitions of lift and drag.</p>
 <p>It then makes sense to structure the CAD tree from the largest details to the finest.</p>
 </section>
+<section id="specific-part-names">
+<h2>Specific Part Names<a class="headerlink" href="#specific-part-names" title="Link to this heading">#</a></h2>
+<p>Some parts need to contain specific string in their name in order to be recognised by the script and to be assigned special boundary conditions or properties.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Part</p></th>
+<th class="head"><p>CAD part
+name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Front wheel</p></td>
+<td><p>wheel_front</p></td>
+<td><p>Aplies rotating moving wall condition</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rear wheel</p></td>
+<td><p>wheel_front</p></td>
+<td><p>Aplies rotating moving wall condition</p></td>
+</tr>
+<tr class="row-even"><td><p>Body Of Influence</p></td>
+<td><p>BOI</p></td>
+<td><p>Functions as body of influence scope sizing volume</p></td>
+</tr>
+<tr class="row-odd"><td><p>Radiator</p></td>
+<td><p>radiator</p></td>
+<td><p>Volume on which a porus zone is applied for fan and radiator simulation (optional)</p></td>
+</tr>
+<tr class="row-even"><td><p>Fan</p></td>
+<td><p>rotor</p></td>
+<td><p>Aplies 2D Fan condition to radiator interface (optional)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 
 
@@ -488,6 +524,7 @@ which is its parent, but since the smallest settings applies, fluent will ignore
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tree-structure">The tree structure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-naming">Part naming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">Inheritance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-part-names">Specific Part Names</a></li>
 </ul>
   </nav></div>
 

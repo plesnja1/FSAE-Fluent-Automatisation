@@ -51,66 +51,70 @@ def face_identifier(faces, axis):
             max_face = face
     return min_face, max_face
 
-plane_surface = []
-cylindrical_surface = []
+def make_tunnel(middle_radius, tunnel_width,   tunnel_height, tunnel_angle, min_z_cooridinate, work_dir):
 
-m = launch_modeler()
-print(m)
-design = m.create_design("Tunnel")
-middle_radius = 12
-tunnel_width = 10
-tunnel_height = 7
-tunnel_angle = 60
-min_z_cooridinate = -0.200
+    plane_surface = []
+    cylindrical_surface = []
 
-plane_profile = Plane(
-    origin=Point3D([0,0, tunnel_height/2+min_z_cooridinate]),
-    direction_x=UNITVECTOR3D_Y,
-    direction_y=UNITVECTOR3D_Z,
-)
-profile = Sketch(plane=plane_profile)
-'''
-(profile.segment(Point2D([-tunnel_width/2, min_z_cooridinate], unit=UNITS.mm), Point2D([tunnel_width/2, min_z_cooridinate], unit=UNITS.mm))
-    .segment_to_point(Point2D([tunnel_width/2, tunnel_height+min_z_cooridinate], unit=UNITS.mm))
-    .segment_to_point(Point2D([-tunnel_width/2, tunnel_height+min_z_cooridinate], unit=UNITS.mm))
-    .segment_to_point(Point2D([-tunnel_width/2, min_z_cooridinate], unit=UNITS.mm))
-)
-'''
-(profile.box(Point2D([0,0], unit=UNITS.m), Quantity(tunnel_width, UNITS.m), Quantity(tunnel_height, UNITS.m)))
+    m = launch_modeler()
+    print(m)
+    design = m.create_design("Tunnel")
+    middle_radius = 12
+    tunnel_width = 10
+    tunnel_height = 7
+    tunnel_angle = 60
+    min_z_cooridinate = -0.200
 
-
-component_1 = design.add_component("Component1")
-enclosure = component_1.revolve_sketch(
-    "tunnel",
-    sketch=profile,
-    axis=UNITVECTOR3D_Z,
-    angle=Angle(tunnel_angle, unit=UNITS.degrees),
-    rotation_origin=Point3D([0, middle_radius, 0]),
-)
-
-body = component_1.get_all_bodies()[0]
-body.rotate(axis_origin=Point3D([0, middle_radius, 0]), 
-            axis_direction=UNITVECTOR3D_Z, 
-            angle=Angle(-tunnel_angle/2, unit=UNITS.degrees))
-
-for face in enclosure.faces:
-    if face.surface_type.name == "SURFACETYPE_PLANE":
-        plane_surface.append(face)
-    elif face.surface_type.name == "SURFACETYPE_CYLINDER":
-        cylindrical_surface.append(face)
-        
-tunnel_inlet,  tunnel_outlet = face_identifier(faces=plane_surface, axis="x")
-tunnel_road , tunnel_top= face_identifier(faces=plane_surface, axis="z")
-tunnel_symm1 = cylindrical_surface[0]
-tunnel_symm2 = cylindrical_surface[1]
+    plane_profile = Plane(
+        origin=Point3D([0,0, tunnel_height/2+min_z_cooridinate]),
+        direction_x=UNITVECTOR3D_Y,
+        direction_y=UNITVECTOR3D_Z,
+    )
+    profile = Sketch(plane=plane_profile)
+    '''
+    (profile.segment(Point2D([-tunnel_width/2, min_z_cooridinate], unit=UNITS.mm), Point2D([tunnel_width/2, min_z_cooridinate], unit=UNITS.mm))
+        .segment_to_point(Point2D([tunnel_width/2, tunnel_height+min_z_cooridinate], unit=UNITS.mm))
+        .segment_to_point(Point2D([-tunnel_width/2, tunnel_height+min_z_cooridinate], unit=UNITS.mm))
+        .segment_to_point(Point2D([-tunnel_width/2, min_z_cooridinate], unit=UNITS.mm))
+    )
+    '''
+    (profile.box(Point2D([0,0], unit=UNITS.m), Quantity(tunnel_width, UNITS.m), Quantity(tunnel_height, UNITS.m)))
 
 
-design.create_named_selection("tunnel_xmin", faces=[tunnel_inlet])
-design.create_named_selection("tunnel_xmax", faces=[tunnel_outlet])
-design.create_named_selection("tunnel_zmax", faces=[tunnel_top])
-design.create_named_selection("tunnel_zmin", faces=[tunnel_road])
-design.create_named_selection("tunnel_ymin", faces=[tunnel_symm1])
-design.create_named_selection("tunnel_ymax", faces=[tunnel_symm2])
+    component_1 = design.add_component("Tunnel_geo")
+    enclosure = component_1.revolve_sketch(
+        "tunnel_geo",
+        sketch=profile,
+        axis=UNITVECTOR3D_Z,
+        angle=Angle(tunnel_angle, unit=UNITS.degrees),
+        rotation_origin=Point3D([0, middle_radius, 0]),
+    )
+
+    body = component_1.get_all_bodies()[0]
+    body.rotate(axis_origin=Point3D([0, middle_radius, 0]), 
+                axis_direction=UNITVECTOR3D_Z, 
+                angle=Angle(-tunnel_angle/2, unit=UNITS.degrees))
+
+    for face in enclosure.faces:
+        if face.surface_type.name == "SURFACETYPE_PLANE":
+            plane_surface.append(face)
+        elif face.surface_type.name == "SURFACETYPE_CYLINDER":
+            cylindrical_surface.append(face)
+            
+    tunnel_xmin,  tunnel_xmax = face_identifier(faces=plane_surface, axis="x")
+    tunnel_zmin , tunnel_zmax= face_identifier(faces=plane_surface, axis="z")
+    tunnel_ymin = cylindrical_surface[0]
+    tunnel_ymax = cylindrical_surface[1]
+
+    design.create_named_selection("tunnel_geo", faces=[tunnel_xmin, tunnel_xmax, tunnel_zmax, tunnel_zmin, tunnel_ymin, tunnel_ymax])
+    design.create_named_selection("tunnel_xmin", faces=[tunnel_xmin])
+    design.create_named_selection("tunnel_xmax", faces=[tunnel_xmax])
+    design.create_named_selection("tunnel_zmax", faces=[tunnel_zmax])
+    design.create_named_selection("tunnel_zmin", faces=[tunnel_zmin])
+    design.create_named_selection("tunnel_ymin", faces=[tunnel_ymin])
+    design.create_named_selection("tunnel_ymax", faces=[tunnel_ymax])
 
 
-file = design.export_to_pmdb()
+    file = design.export_to_pmdb(work_dir)#
+    
+    m.close()

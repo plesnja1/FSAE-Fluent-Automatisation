@@ -1,6 +1,8 @@
 import ansys.fluent.core as pyfluent
 import Support_scripts.MeshObjects as MeshObjects
+from Support_scripts.Geometry_skript_V1 import make_tunnel
 import os
+import math
 '''
 Fault tolerant meshing workflow for car external aero simulations
 This automatic workflow takes as inputs a objects of general settings, scope/prism settings, BOI settings 
@@ -14,6 +16,9 @@ contact: plesnik.honza@seznam.cz
 from GUI_SubClasses.GUI_BoundaryConditions import Boundary_conditions_sett
 from GUI_SubClasses.GUI_Tunnel import TunnelSett
 from GUI_SubClasses.GUI_General import GeneralSett
+from GUI_SubClasses.GUI_Parametrization import ParametrizationSett
+
+
 
 def get_selection_id(Self, Obj_list, meshing):
     if Self.Name == 'vehicle':
@@ -33,6 +38,8 @@ def get_selection_id(Self, Obj_list, meshing):
                             Sel_id.remove(curr_obj)
     print(Sel_id)
     return Sel_id
+
+
             
 '''
 Start of function containing whole mshing workflow
@@ -42,7 +49,10 @@ work_Directory: string path to a working directory
 General_Settings: an object containing info about general settings of fluent meshing and solver#
 Tunnel_Settings: an object containing info about external aero tunnel
 '''
-def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Settings:TunnelSett, Boundary_settings:Boundary_conditions_sett):
+
+
+
+def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Settings:TunnelSett, Boundary_settings:Boundary_conditions_sett, Parameters_settings:ParametrizationSett):
 
     def _taskObjectResultPrint(b : bool, taskObjectName : str) -> None:
         """Helper function for obtaining information about whether the given task was completed (prints INFO to console) or not (raises Error).
@@ -56,13 +66,21 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
             
             return False
 
-
-
+    
+    make_tunnel(middle_radius = Tunnel_Settings.radius,
+         tunnel_width = Tunnel_Settings.width/1000,
+         tunnel_height = Tunnel_Settings.z_max/1000,
+         tunnel_angle = Tunnel_Settings.angle,
+         min_z_cooridinate = Tunnel_Settings.z_min/1000,
+         work_dir= General_Settings.workingDirectory)
+    
+    
+    
     '''
     Fluent launcher that creates a fluent instance, here we set number of cores, precision, CPU or GPU and other startup settings
     '''
     meshing = pyfluent.launch_fluent(mode= pyfluent.FluentMode.MESHING,
-                                     product_version='25.1',
+                                     product_version= General_Settings.Version,
                                      precision = General_Settings.DoublePrecision,
                                      processor_count=int(General_Settings.IntCoreCount),
                                      ui_mode= General_Settings.GUI, 
@@ -84,32 +102,165 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
     tui = meshing.tui
     
     tui.beta_feature_access('yes', 'ok')
-    
-    #tui.file.read_case(work_Directory+'/Po_autonodemove.msh.h5')
 
+    '''
+    Read default mesh
+    '''
+    if General_Settings.FullAssembly == False:
+        print(f"[DEBUG] DefaultMeshPath: {General_Settings.DefaultMeshPath!r}")
+        tui.file.read_mesh(f'"{General_Settings.DefaultMeshPath}"')
+        '''
+        Remove selected parts
+        '''
+        part_to_remove = General_Settings.RemovePart.strip().lower()
+        if part_to_remove != "*none*":
+            print(f"Trying to delete parts: {General_Settings.RemovePart!r}")
+            meshing.tui.objects.delete(General_Settings.RemovePart)
+        else:
+            print("Skipping part deletion because '*none*' was entered.")
+      
+    
     #return meshing
 
     '''
     Import of cad file as CAD Assembly 
     '''
-    tui.file.import_.cad_options.one_object_per('body')
-    tui.file.import_.cad_options.create_cad_assemblies('yes')
-    print(General_Settings.CAD_Path)
-    #tui.file.import_.cad_options.tessellation('cad-faceting', 0.1, 10)
-    tui.file.import_.cad_options.tessellation('cfd-surface-mesh', 'no', 1, 30, 25, 'yes', 1, 'no')
-    tui.file.import_.cad('yes',General_Settings.CAD_Path , 'no', 'yes', 'mm', 'ok')
+    if General_Settings.FullAssembly == True:
+        tui.file.import_.cad_options.one_object_per('body')
+        tui.file.import_.cad_options.create_cad_assemblies('yes')
+        print(General_Settings.CAD_Path)
+        #tui.file.import_.cad_options.tessellation('cad-faceting', 0.1, 10)
+        tui.file.import_.cad_options.tessellation('cfd-surface-mesh', 'no', 1, 30, 25, 'yes', 1, 'no')
+        tui.file.import_.cad('yes',General_Settings.CAD_Path , 'no', 'yes', 'mm', 'ok')
+    elif part_to_remove != "*none*":
+        tui.file.import_.cad_options.one_object_per('body')
+        tui.file.import_.cad_options.create_cad_assemblies('yes')
+        print(General_Settings.CAD_Path)
+        #tui.file.import_.cad_options.tessellation('cad-faceting', 0.1, 10)
+        tui.file.import_.cad_options.tessellation('cfd-surface-mesh', 'no', 1, 30, 25, 'yes', 1, 'no')
+        #tui.file.import_.cad('yes',General_Settings.CAD_Path , 'yes', 'yes', 'mm', 'ok')
+        tui.file.import_.cad('yes',General_Settings.CAD_Path , 'yes', 'yes', 40 , 'no', 'mm')
+    
+
+    
+    
+
+    #meshing.tui.file.import_.cad('yes',r'D:\projects\CTU_Prague\Automatizace\sandbox\PartChange\vehicle-a-rw_Rw_09_F04_08_DRS2.stp', 'yes', 'yes', 40 , 'no', 'mm')
 
     '''
     GUI scheme commands to create mesh objects from cad assembly in order to have cad assembly tree path included in mesh objects names
     '''
-    meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Mesh Generation|Model|CAD Assemblies"))')
-    meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "MenuBar*TreeSubMenu*Selection Helper")')
-    meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-list-selections "Selection Helper*Frame1*DropDownList2(Filter)" \'( 1))')
-    meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "Selection Helper*PanelButtons*PushButton3(Select)")')
-    meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "MenuBar*ObjectSubMenu*Create")')
-    meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-toggle-button2 "Create Object*Frame1(Properties)*Table1*CheckButton4(One Object per CAD object selection)" #t)')
-    meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "Create Object*PanelButtons*PushButton3(Create)")')
-    
+    if General_Settings.FullAssembly == True:
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Mesh Generation|Model|CAD Assemblies"))')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "MenuBar*TreeSubMenu*Selection Helper")')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-list-selections "Selection Helper*Frame1*DropDownList2(Filter)" \'( 1))')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "Selection Helper*PanelButtons*PushButton3(Select)")')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "MenuBar*ObjectSubMenu*Create")')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-toggle-button2 "Create Object*Frame1(Properties)*Table1*CheckButton4(One Object per CAD object selection)" #t)')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "Create Object*PanelButtons*PushButton3(Create)")')
+
+    elif part_to_remove != "*none*":
+        
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Mesh Generation|Model|CAD Assemblies"))')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "MenuBar*TreeSubMenu*Selection Helper")')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-list-selections "Selection Helper*Frame1*DropDownList2(Filter)" \'( 2))')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "Selection Helper*PanelButtons*PushButton3(Select)")')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "MenuBar*ObjectSubMenu*Create")')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-set-toggle-button2 "Create Object*Frame1(Properties)*Table1*CheckButton4(One Object per CAD object selection)" #t)')
+        meshing.scheme_eval.scheme_eval('(cx-gui-do cx-activate-item "Create Object*PanelButtons*PushButton3(Create)")')
+        '''
+        Steps to find the imported part and rename it
+        '''
+        full_path = General_Settings.CAD_Path
+        filename_with_ext = os.path.basename(full_path)
+        filename_without_ext = os.path.splitext(filename_with_ext)[0]
+        old_name = filename_with_ext  # this becomes the object name in Fluent
+        new_name = f"prefix:{filename_without_ext}"  # or whatever logic you want
+        print(old_name)
+        print(new_name)
+        quer.rename_object(old_object_name=old_name, new_object_name=new_name)
+        meshing.tui.objects.rename_object_zones(new_name)
+        
+    '''
+    Vehicle parametrization
+    '''
+
+    '''
+    Front and rear ride height
+    '''
+    if Parameters_settings.Pitch_check == True:
+        angle_1 = math.degrees(math.atan((35 - Parameters_settings.RearRHCount) / (Boundary_settings.r_w_axis_x*1000)))
+        angle_2 = math.degrees(math.atan((35 - Parameters_settings.FrontRHCount) / (Boundary_settings.r_w_axis_x*1000)*-1))
+        print("Angle 1:",angle_1)
+        print("Angle 2:",angle_2)
+        print("Pivot point:",Boundary_settings.r_w_axis_x*1000)
+        meshing.tui.boundary.manage.rotate(
+        ["*vehicle-ch*"],
+        angle_1, # Pitch angle
+        0, 1, 0,  # Axis of rotation
+        [],
+        0, 0, 0, # Pivot point
+        []      
+        )
+        meshing.tui.boundary.manage.rotate(
+        ["*vehicle-a*"],
+        angle_1, # Pitch angle
+        0, 1, 0,  # Axis of rotation
+        [],
+        0, 0, 0,   # Pivot point
+        []
+        )
+        meshing.tui.boundary.manage.rotate(
+        ["*vehicle-ch*"],
+        angle_2, # Pitch angle
+        0, 1, 0,  # Axis of rotation
+        [],
+        Boundary_settings.r_w_axis_x*1000, 0, 0,   # Pivot point
+        []
+        )
+        meshing.tui.boundary.manage.rotate(
+        ["*vehicle-a*"],
+        angle_2, # Pitch angle
+        0, 1, 0,  # Axis of rotation
+        [],
+        Boundary_settings.r_w_axis_x*1000, 0, 0,   # Pivot point
+        []
+        )
+
+    '''
+    Body roll
+    '''
+
+    if Parameters_settings.Roll_check == True:
+        meshing.tui.boundary.manage.rotate(
+        ["*vehicle-ch*"],
+        Parameters_settings.RollAngleCount, # Roll angle
+        1, 0, 0,  # Axis of rotation
+        [],
+        0, 0, Parameters_settings.RollPivotCount,   # Pivot point
+        []
+        )
+        meshing.tui.boundary.manage.rotate(
+        ["*vehicle-a*"],
+        Parameters_settings.RollAngleCount, # Roll angle
+        1, 0, 0,  # Axis of rotation
+        [],
+        0, 0, Parameters_settings.RollPivotCount,   # Pivot point#
+        []
+        )
+
+    '''
+    Yaw
+    '''
+    if Parameters_settings.Yaw_check == True:
+        meshing.tui.boundary.manage.rotate(
+        ["*vehicle*"],
+        Parameters_settings.YawAngleCount, # Yaw angle
+        0, 0, 1,  # Axis of rotation
+        Parameters_settings.YawPivotCount, 0, 0   # Pivot point
+        )
+
+
     '''
     Writing mesh in order to be read into fault-tollerant workflow
     '''
@@ -132,9 +283,10 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
     Import of previously created mesh object into workflow
     '''
     importGeoAndPartManagementObj = workf.TaskObject["Import CAD and Part Management"]
+    
     importGeoAndPartManagementObj.Arguments = {
 
-        "FMDFileName" : General_Settings.workingDirectory + r'\AssemblyMesh.msh.gz',   #path to geometry (cad or mesh) file 
+        "FMDFileName" : General_Settings.workingDirectory + r'/AssemblyMesh.msh',   #path to geometry (cad or mesh) file 
         "LengthUnit" : "mm",    #length unit in which the geometry was created
         "CreateObjectPer" : "One per part",     # "One per part", "Custom"
         "Route" : 'MSH',    # "Native", "FM", "SCDM", "Workbench"
@@ -153,6 +305,9 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
 
     else:
         raise Exception("\nERROR, Import to Fault-tolerant meshing workflow FAILED!")
+
+    
+    tui.file.import_.cad('yes', General_Settings.workingDirectory + '/Tunnel.pmdb', 'yes', 'yes', 40, 'yes', 'mm')
 
     os.remove(General_Settings.workingDirectory+r'\AssemblyMesh.msh.gz')
     
@@ -193,6 +348,27 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
         }
     )
     describe_geom.UpdateChildTasks(SetupTypeChanged=False)
+
+    if Boundary_settings.Fan_2D_check:
+        for obj in MSH_Obj_List['vehicle']:
+            if obj.Name == 'rotor':
+                stator = obj
+        rotor_parts = stator._findParts(MSH_Obj_List['vehicle'] ,Obj_list)
+        print(rotor_parts)
+
+        meshing.workflow.TaskObject["Identify Construction Surfaces"].Arguments.set_state(
+            {
+                "IdentifyConstructionSurfaces": "Yes",
+                "CreationMethod": "Existing",
+                "SelectionType": "object",
+                "ObjectSelectionSingle": rotor_parts,
+                "MRFName": "construction-surface-1",
+            }
+        )
+        meshing.workflow.TaskObject["Identify Construction Surfaces"].AddChildAndUpdate(DeferUpdate=False)
+        meshing.workflow.TaskObject["Identify Construction Surfaces"].Execute()
+
+
     b=describe_geom.Execute()
     if b:
         print("\nINFO, Describe geometry was successful!")
@@ -200,29 +376,18 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
     else:
         raise Exception("\nERROR, Describe geometry FAILED!")
 
+
     '''
     Creation of tunnel
     '''
-
     create_tunnel = workf.TaskObject['Create External Flow Boundaries']
     create_tunnel.Arguments.set_state(
-        {
-            r'BoundingBoxObject': 
-            {
-                r'SizeRelativeLength': 
-                r'Directly specify coordinates',
-                    r'Xmax': Tunnel_Settings.x_max,
-                    r'Xmin': Tunnel_Settings.x_min,
-                    r'Ymax': Tunnel_Settings.y_max,
-                    r'Ymin': Tunnel_Settings.y_min,
-                    r'Zmax': Tunnel_Settings.z_max,
-                    r'Zmin': Tunnel_Settings.z_min,
-                    
-            },
-            r'CreationMethod': r'Create new boundary',
-            r'ExtractionMethod': r'wrap',   #method for geometry extraction (wrapping is reliable method)
-        }
-    )
+    {r'CreationMethod': r'Use existing boundary',
+     
+     r'LabelSelectionSingle': [r'tunnel_geo'],
+    
+     r'SelectionType': r'label',
+     })
 
     b = create_tunnel.Execute()
     if b:
@@ -230,6 +395,16 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
 
     else:
         raise Exception("\nERROR, Tunnel creation FAILED!")
+
+    
+    tui.boundary.manage.name('tunnel_geo:tunnel_zmax:tunnel_geo:tunnel_geo-tunnel_geo', 'tunnel-zmax')
+    tui.boundary.manage.name('tunnel_geo:tunnel_zmin:tunnel_geo:tunnel_geo-tunnel_geo', 'tunnel-zmin')
+    
+    tui.boundary.manage.name('tunnel_geo:tunnel_ymax:tunnel_geo:tunnel_geo-tunnel_geo', 'tunnel-ymax')
+    tui.boundary.manage.name('tunnel_geo:tunnel_ymin:tunnel_geo:tunnel_geo-tunnel_geo', 'tunnel-ymin')
+    
+    tui.boundary.manage.name('tunnel_geo:tunnel_xmax:tunnel_geo:tunnel_geo-tunnel_geo', 'tunnel-xmax')
+    tui.boundary.manage.name('tunnel_geo:tunnel_xmin:tunnel_geo:tunnel_geo-tunnel_geo', 'tunnel-xmin')
     
 
     for obj in MSH_Obj_List['BOI'][1::]:
@@ -335,12 +510,12 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
             r'OldRegionOversetComponenList': [r'no'],
             r'OldRegionTypeList': [r'fluid'],
             r'OldRegionVolumeFillList': [r'hexcore'],
-            r'RegionLeakageSizeList': [r''],    #no leakage defined
-            r'RegionMeshMethodList': [r'wrap'], #geometry extraction nmethod for region
-            r'RegionNameList': [r'fluid-region-1'],  #fluid region name again
-            r'RegionOversetComponenList': [r'no'],  #no overset mesh defined
-            r'RegionTypeList': [r'fluid'],  #region type ('fluid', 'solid, 'dead')
-            r'RegionVolumeFillList': [r'poly-hexcore'], #Type of cells in region ('poly', 'tet', 'hexcore', 'poly-hexcore')
+            r'AllRegionLeakageSizeList': [r''],    #no leakage defined
+            r'AllRegionMeshMethodList': [r'wrap'], #geometry extraction nmethod for region
+            r'AllRegionNameList': [r'fluid-region-1'],  #fluid region name again
+            r'AllRegionOversetComponenList': [r'no'],  #no overset mesh defined
+            r'AllRegionTypeList': [r'fluid'],  #region type ('fluid', 'solid, 'dead')
+            r'AllRegionVolumeFillList': [r'poly-hexcore'], #Type of cells in region ('poly', 'tet', 'hexcore', 'poly-hexcore')
         }
     )
     b = update_regions.Execute()
@@ -349,6 +524,10 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
 
     else:
         raise Exception("\nERROR, Region update FAILED!")
+
+
+    meshing.tui.file.write_mesh(General_Settings.workingDirectory+r'\Po_UpdateRegions.msh.h5') 
+
 
     '''
     Mesh controlls
@@ -626,18 +805,35 @@ def StartFluentMeshing(MSH_Obj_List,General_Settings:GeneralSett, Tunnel_Setting
     Changing of boundary types for tunnel face zones
     '''
     update_boundary = workf.TaskObject['Update Boundaries']
-    update_boundary.Arguments.set_state(
-        {r'BoundaryZoneList': [r'tunnel-ymin', r'tunnel-xmax', r'tunnel-ymax', r'tunnel-xmin', r'tunnel-zmax'],
-        r'BoundaryZoneTypeList': [r'symmetry', r'pressure-outlet', r'symmetry', r'velocity-inlet', r'symmetry'],
-        r'OldBoundaryZoneList': [r'tunnel-ymin', r'tunnel-xmax', r'tunnel-ymax', r'tunnel-xmin', r'tunnel-zmax'],
-        r'OldBoundaryZoneTypeList': [r'wall', r'wall', r'wall', r'wall', r'wall'],})
+    if Boundary_settings.Fan_2D_check:
+        update_boundary.Arguments.set_state(
+            {r'BoundaryZoneList': [r'tunnel-ymin', r'tunnel-xmax', r'tunnel-ymax', r'tunnel-xmin', r'tunnel-zmax', r'vehicle-a-fan-rotor-fan_rotor'],
+            r'BoundaryZoneTypeList': [r'symmetry', r'pressure-outlet', r'symmetry', r'velocity-inlet', r'symmetry', r'internal'],
+            r'OldBoundaryZoneList': [r'tunnel-ymin', r'tunnel-xmax', r'tunnel-ymax', r'tunnel-xmin', r'tunnel-zmax', r'vehicle-a-fan-rotor-fan_rotor'],
+            r'OldBoundaryZoneTypeList': [r'wall', r'wall', r'wall', r'wall', r'wall', r'wall']})
+
+    else:
+        update_boundary.Arguments.set_state(
+            {r'BoundaryZoneList': [r'tunnel-ymin', r'tunnel-xmax', r'tunnel-ymax', r'tunnel-xmin', r'tunnel-zmax'],
+            r'BoundaryZoneTypeList': [r'symmetry', r'pressure-outlet', r'symmetry', r'velocity-inlet', r'symmetry'],
+            r'OldBoundaryZoneList': [r'tunnel-ymin', r'tunnel-xmax', r'tunnel-ymax', r'tunnel-xmin', r'tunnel-zmax'],
+            r'OldBoundaryZoneTypeList': [r'wall', r'wall', r'wall', r'wall', r'wall']})
+    
     b=update_boundary.Execute()
+
+
     if b:
         print("\nINFO, Update Boundaries successful!")
 
     else:
         raise Exception("\nERROR, Update Boundaries FAILED!")
     
+
+    '''
+    Save mesh after surface mesh
+    '''
+    #meshing.tui.file.write_mesh(General_Settings.workingDirectory+r'\Po_surfacemesh.msh.h5') 
+
     '''
     Querry for getting a list of all face zone names
     '''
