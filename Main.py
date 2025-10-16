@@ -121,13 +121,20 @@ class SimulationClass:
         :returns: (String) path to saved volumetric mesh
         '''
         self.SimStat = 'msh'
-        MeshingPath = MesherTurn.StartFluentMeshing(self.simMeshObjectList,
+        if self.simTunnelObject.turn_check == True:
+            MeshingPath = MesherTurn.StartFluentMeshing(self.simMeshObjectList,
                                   General_Settings= self.simGeneralObject,
                                   Tunnel_Settings = self.simTunnelObject,
                                   Boundary_settings= self.simBoundarySett,
                                   Parameters_settings= self.simParametersSett                               
                                   )
-        
+        else:
+            MeshingPath = Mesher.StartFluentMeshing(self.simMeshObjectList,
+                                  General_Settings= self.simGeneralObject,
+                                  Tunnel_Settings = self.simTunnelObject,
+                                  Boundary_settings= self.simBoundarySett,
+                                  Parameters_settings= self.simParametersSett                               
+                                  )
         self.meshPath = MeshingPath
         self.SimStat = 'msh_dn'
         self.SimThread = None

@@ -132,11 +132,12 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
     '''
     Turbulence model 
     '''
-    solve.settings.setup.models.viscous.model = SolvSett.Turbulence_model
+    
     solve.settings.setup.models.viscous.options.curvature_correction = True
     solve.settings.setup.models.viscous.options.production_kato_launder_enabled = True
     
     if SolvSett.Turbulence_model == 'k-epsilon':
+        solve.settings.setup.models.viscous.model = SolvSett.Turbulence_model
         solve.settings.setup.models.viscous.k_epsilon_model = 'realizable'
         solve.settings.setup.models.viscous.near_wall_treatment.wall_treatment = SolvSett.Wall_function
     else:
@@ -187,7 +188,7 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         solve.settings.setup.mesh_interfaces.delete_interfaces_with_small_overlap(delete = True, overlapping_percentage_threshold = 10)
         radiator_1 = solve.settings.setup.cell_zone_conditions.fluid['radiator-1']
         radiator_1.porous_zone.porous = True
-        radiator_1.porous_zone.viscous_resistance = [0, 211100000, 211100000]
+        radiator_1.porous_zone.viscous_resistance = [0, 1, 1]
         radiator_1.porous_zone.power_law_c0 = BoundarySett.power_law_c_0
         radiator_1.porous_zone.power_law_c1 = BoundarySett.power_law_c_1
         radiator_1.porous_zone.porosity = BoundarySett.porosity
@@ -209,6 +210,14 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         #fan_1.fan_zone.fan_opert_angvel = 300
         #fan_1.fan_zone.axial_source_term = True
         #fan_1.fan_zone.fan_axial_source_method = 'fan curve'
+        
+        
+            
+    #list of all surfaces on a car
+    wall_list = list(solve.settings.setup.boundary_conditions.wall.keys()) #list of all wall BC surfaces
+    for wall in wall_list:
+        if wall.find(r'tunnel-zmin') != -1: #exclude road surface
+            wall_list.remove(wall)
 
     '''
     BoundarySett a inlet BC
@@ -229,7 +238,7 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         road = solve.settings.setup.boundary_conditions.wall['tunnel-zmin']
         road.momentum.wall_motion = 'Moving Wall'
         road.momentum.rotating = True
-        road.momentum.rotation_speed =  BoundarySett.velocity/TurnSett.radius
+        road.momentum.rotation_speed =  0
         road.momentum.rotation_axis_origin = [0,TurnSett.radius,0]
         road.momentum.rotation_axis_direction = [0,0,1]
         
@@ -243,6 +252,13 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         zone.reference_frame.reference_frame_axis_origin = [0,TurnSett.radius,0]
         zone.reference_frame.reference_frame_axis_direction = [0,0,1]
         
+        for wall in wall_list:
+            wall_bc = solve.settings.setup.boundary_conditions.wall[wall]
+            wall_bc.momentum.wall_motion = 'Moving Wall'
+            wall_bc.momentum.rotation_speed =  0
+            wall_bc.momentum.relative = False
+            
+        
     
     else: 
         inlet.momentum.velocity = BoundarySett.velocity
@@ -254,12 +270,8 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         road.momentum.wall_motion = 'Moving Wall'
         road.momentum.speed = BoundarySett.velocity
         road.momentum.direction = [1,0,0]
+        
     
-    #list of all surfaces on a car
-    wall_list = list(solve.settings.setup.boundary_conditions.wall.keys()) #list of all wall BC surfaces
-    for wall in wall_list:
-        if wall.find(r'tunnel-zmin') != -1: #exclude road surface
-            wall_list.remove(wall)
     
     '''
     Setting of a Wheel BC
@@ -431,6 +443,9 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
 
 
     solve.settings.setup.general.solver.time = SolvSett.Transient
+    
+    if SolvSett.Transient == 'unsteady-2nd-order' and  SolvSett.Turbulence_model == 'SBES':
+        solve.settings.setup.models.viscous.hybrid_rans_les = 'stress-blended-eddy-simulation'
     
     if SolvSett.Transient == 'steady': 
         if SolvSett.Coupling == 'Coupled':
