@@ -413,7 +413,7 @@ class MainApp(ctk.CTk):
         self.WorkDirBox.grid(row=5, column=0, padx=10, pady=(10, 10) ,sticky="we",columnspan = 4)
         self.WorkDirBox.insert("0.0", r'D:\work\directory')
         
-        self.WorkDirButt = ctk.CTkButton(self,height=30,width= 100, text= 'Open...', command=self.browseFolders)
+        self.WorkDirButt = ctk.CTkButton(self,height=30,width= 100, text= 'Open...',command=self.browseFolders )
         self.WorkDirButt.grid(row=4, column=1 , padx=10, pady=(10, 0), sticky="we", columnspan = 1)
         
         self.console_text = ctk.CTkTextbox(self, width=650, height=120)
@@ -421,6 +421,10 @@ class MainApp(ctk.CTk):
         self.console_text.configure(scrollbar_button_color="", scrollbar_button_hover_color="") #Make scroll-bar invisible
         if not Debug_Console:
             self.redirect_logging()
+        
+        self.HelpButt = ctk.CTkButton(self,height=30,width= 150, text= 'Help', command=self.openHelp )
+        self.HelpButt.grid(row=3, column=5, padx=10, pady=(10, 0), sticky="we", columnspan = 1)
+        
         
     def windows_init(self):
         '''
@@ -481,6 +485,13 @@ class MainApp(ctk.CTk):
                                             )  
         self.WorkDirBox.delete('0.0', 'end')
         self.WorkDirBox.insert("0.0", self.GeneralObject.workingDirectory)   
+        
+    def openHelp(self):
+        
+        file_path = os.path.dirname(__file__)+r'\doc\build\html\index.html'
+        print(file_path)
+        os.system('start '+file_path)
+      
         
     def changeSegment(self, a):
         '''
