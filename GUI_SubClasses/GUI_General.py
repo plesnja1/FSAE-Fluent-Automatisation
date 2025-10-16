@@ -220,7 +220,7 @@ class General(ctk.CTkFrame):
         self.DefaultMesh_filename = filedialog.askopenfilename(initialdir = self.MeshFileText.get('1.0'),
                                           title = "Select a File",
                                           filetypes = (("Text files",
-                                                        "*.msh.h5*"),
+                                                        ["*.msh.h5*", "*.msh*"]),
                                                        ("all files",
                                                         "*.*")))
              

@@ -55,6 +55,21 @@ Apart from scope sizing the concept of inheritance also applies to prism creatio
 
 It then makes sense to structure the CAD tree from the largest details to the finest.
 
+Specific Part Names
+^^^^^^^^^^^^^^^^^^^
+Some parts need to contain specific string in their name in order to be recognised by the script and to be assigned special boundary conditions or properties.
 
-
-
++------------------------+--------------+-----------------------------------------------------------------------------------+
+|   Part                 |CAD part      |Description                                                                        |
+|                        |name          |                                                                                   |
++========================+==============+===================================================================================+
+| Front wheel            | wheel_front  | Aplies rotating moving wall condition                                             |
++------------------------+--------------+-----------------------------------------------------------------------------------+
+| Rear wheel             | wheel_front  | Aplies rotating moving wall condition                                             |
++------------------------+--------------+-----------------------------------------------------------------------------------+
+| Body Of Influence      | BOI          | Functions as body of influence scope sizing volume                                |
++------------------------+--------------+-----------------------------------------------------------------------------------+
+| Radiator               | radiator     | Volume on which a porus zone is applied for fan and radiator simulation (optional)|
++------------------------+--------------+-----------------------------------------------------------------------------------+
+| Fan                    | rotor        | Aplies 2D Fan condition to radiator interface (optional)                          |
++------------------------+--------------+-----------------------------------------------------------------------------------+

@@ -5,6 +5,7 @@ from GUI_SubClasses.GUI_BoundaryConditions import Boundary_conditions_sett
 from GUI_SubClasses.GUI_Simulation import SimulationSett
 from GUI_SubClasses.GUI_General import GeneralSett
 from GUI_SubClasses.GUI_Postprocess import PostprocessSett
+from GUI_SubClasses.GUI_Tunnel import TunnelSett
 
 #density = 1.15
 
@@ -62,7 +63,8 @@ def CalculateViscosity(Temp):
     return Mi
 
 def StartFluentSolver(BoundarySett: Boundary_conditions_sett, 
-                      SolvSett:SimulationSett,                      
+                      SolvSett:SimulationSett,   
+                      TurnSett:TunnelSett,                   
                       MSH_Objects, 
                       SettGen:GeneralSett, 
                       PostproSett:PostprocessSett,
@@ -130,11 +132,12 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
     '''
     Turbulence model 
     '''
-    solve.settings.setup.models.viscous.model = SolvSett.Turbulence_model
+    
     solve.settings.setup.models.viscous.options.curvature_correction = True
     solve.settings.setup.models.viscous.options.production_kato_launder_enabled = True
     
     if SolvSett.Turbulence_model == 'k-epsilon':
+        solve.settings.setup.models.viscous.model = SolvSett.Turbulence_model
         solve.settings.setup.models.viscous.k_epsilon_model = 'realizable'
         solve.settings.setup.models.viscous.near_wall_treatment.wall_treatment = SolvSett.Wall_function
     else:
@@ -185,7 +188,7 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         solve.settings.setup.mesh_interfaces.delete_interfaces_with_small_overlap(delete = True, overlapping_percentage_threshold = 10)
         radiator_1 = solve.settings.setup.cell_zone_conditions.fluid['radiator-1']
         radiator_1.porous_zone.porous = True
-        radiator_1.porous_zone.viscous_resistance = [0, 211100000, 211100000]
+        radiator_1.porous_zone.viscous_resistance = [0, 1, 1]
         radiator_1.porous_zone.power_law_c0 = BoundarySett.power_law_c_0
         radiator_1.porous_zone.power_law_c1 = BoundarySett.power_law_c_1
         radiator_1.porous_zone.porosity = BoundarySett.porosity
@@ -207,34 +210,74 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
         #fan_1.fan_zone.fan_opert_angvel = 300
         #fan_1.fan_zone.axial_source_term = True
         #fan_1.fan_zone.fan_axial_source_method = 'fan curve'
-
-
         
-    '''
-    BoundarySett a inlet BC
-    '''
-    inlet = solve.settings.setup.boundary_conditions.velocity_inlet['tunnel-xmin']
-    inlet.momentum.velocity = BoundarySett.velocity
-    
-    '''
-    BoundarySett a road BC
-    '''
-    road = solve.settings.setup.boundary_conditions.wall['tunnel-zmin']
-    road.momentum.wall_motion = 'Moving Wall'
-    road.momentum.speed = BoundarySett.velocity
-    road.momentum.direction = [1,0,0]
-    
+        
+            
     #list of all surfaces on a car
     wall_list = list(solve.settings.setup.boundary_conditions.wall.keys()) #list of all wall BC surfaces
     for wall in wall_list:
         if wall.find(r'tunnel-zmin') != -1: #exclude road surface
             wall_list.remove(wall)
+
+    '''
+    BoundarySett a inlet BC
+    '''
+    inlet = solve.settings.setup.boundary_conditions.velocity_inlet['tunnel-xmin']
+    
+    
+   
+
+
+    if TurnSett.turn_check == 1:
+        inlet.momentum.velocity = 0
+        inlet.momentum.reference_frame = 'Relative to Adjacent Cell Zone'
+        
+        '''
+        BoundarySett a road BC
+        '''
+        road = solve.settings.setup.boundary_conditions.wall['tunnel-zmin']
+        road.momentum.wall_motion = 'Moving Wall'
+        road.momentum.rotating = True
+        road.momentum.rotation_speed =  0
+        road.momentum.rotation_axis_origin = [0,TurnSett.radius,0]
+        road.momentum.rotation_axis_direction = [0,0,1]
+        
+        '''
+        Cell zone movement
+        '''
+        
+        zone = solve.settings.setup.cell_zone_conditions['fluid-region-1']
+        zone.reference_frame.frame_motion = True
+        zone.reference_frame.mrf_omega = BoundarySett.velocity/TurnSett.radius
+        zone.reference_frame.reference_frame_axis_origin = [0,TurnSett.radius,0]
+        zone.reference_frame.reference_frame_axis_direction = [0,0,1]
+        
+        for wall in wall_list:
+            wall_bc = solve.settings.setup.boundary_conditions.wall[wall]
+            wall_bc.momentum.wall_motion = 'Moving Wall'
+            wall_bc.momentum.rotation_speed =  0
+            wall_bc.momentum.relative = False
+            
+        
+    
+    else: 
+        inlet.momentum.velocity = BoundarySett.velocity
+        
+        '''
+        BoundarySett a road BC
+        '''
+        road = solve.settings.setup.boundary_conditions.wall['tunnel-zmin']
+        road.momentum.wall_motion = 'Moving Wall'
+        road.momentum.speed = BoundarySett.velocity
+        road.momentum.direction = [1,0,0]
+        
+    
     
     '''
     Setting of a Wheel BC
     '''
     #front wheels
-    f_wheel_name = FindPart('wheel_front', list(solve.settings.setup.boundary_conditions.wall.keys())) #find name of front wheel part
+    f_wheel_name = FindPart('front_tyre', list(solve.settings.setup.boundary_conditions.wall.keys())) #find name of front wheel part
     f_wheel = solve.settings.setup.boundary_conditions.wall[str(f_wheel_name)] 
     f_wheel.momentum.wall_motion = 'Moving Wall'
     f_wheel.momentum.rotating = True #sett the wall motion as rotating
@@ -243,7 +286,7 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
     f_wheel.momentum.rotation_axis_direction = [0,1,0]
     
     #rear wheels
-    r_wheel_name = FindPart('wheel_rear', list(solve.settings.setup.boundary_conditions.wall.keys()))
+    r_wheel_name = FindPart('rear_tyre', list(solve.settings.setup.boundary_conditions.wall.keys()))
     print(r_wheel_name)
     r_wheel = solve.settings.setup.boundary_conditions.wall[str(r_wheel_name)]
     r_wheel.momentum.wall_motion = 'Moving Wall'
@@ -400,6 +443,9 @@ def StartFluentSolver(BoundarySett: Boundary_conditions_sett,
 
 
     solve.settings.setup.general.solver.time = SolvSett.Transient
+    
+    if SolvSett.Transient == 'unsteady-2nd-order' and  SolvSett.Turbulence_model == 'SBES':
+        solve.settings.setup.models.viscous.hybrid_rans_les = 'stress-blended-eddy-simulation'
     
     if SolvSett.Transient == 'steady': 
         if SolvSett.Coupling == 'Coupled':

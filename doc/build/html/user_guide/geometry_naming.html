@@ -68,7 +68,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/geometry_naming';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Creatings mesh" href="mesh_settings.html" />
+    <link rel="next" title="Creating mesh" href="mesh_settings.html" />
     <link rel="prev" title="User Guide" href="user_guide_contents.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -194,7 +194,7 @@
                     
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -294,7 +294,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -327,7 +327,7 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">CAD model preparation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mesh_settings.html">Creatings mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh_settings.html">Creating mesh</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solver_setup.html">Setting up solver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="boundary_conditions.html">Boundary Conditions Options Menu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postprocessing_guide.html">Posprocessing</a></li>
@@ -436,6 +436,42 @@ which is its parent, but since the smallest settings applies, fluent will ignore
 <p>Apart from scope sizing the concept of inheritance also applies to prism creation and created report definitions of lift and drag.</p>
 <p>It then makes sense to structure the CAD tree from the largest details to the finest.</p>
 </section>
+<section id="specific-part-names">
+<h2>Specific Part Names<a class="headerlink" href="#specific-part-names" title="Link to this heading">#</a></h2>
+<p>Some parts need to contain specific string in their name in order to be recognised by the script and to be assigned special boundary conditions or properties.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Part</p></th>
+<th class="head"><p>CAD part
+name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Front wheel</p></td>
+<td><p>wheel_front</p></td>
+<td><p>Aplies rotating moving wall condition</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rear wheel</p></td>
+<td><p>wheel_front</p></td>
+<td><p>Aplies rotating moving wall condition</p></td>
+</tr>
+<tr class="row-even"><td><p>Body Of Influence</p></td>
+<td><p>BOI</p></td>
+<td><p>Functions as body of influence scope sizing volume</p></td>
+</tr>
+<tr class="row-odd"><td><p>Radiator</p></td>
+<td><p>radiator</p></td>
+<td><p>Volume on which a porus zone is applied for fan and radiator simulation (optional)</p></td>
+</tr>
+<tr class="row-even"><td><p>Fan</p></td>
+<td><p>rotor</p></td>
+<td><p>Aplies 2D Fan condition to radiator interface (optional)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 
 
@@ -462,7 +498,7 @@ which is its parent, but since the smallest settings applies, fluent will ignore
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Creatings mesh</p>
+        <p class="prev-next-title">Creating mesh</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -488,6 +524,7 @@ which is its parent, but since the smallest settings applies, fluent will ignore
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tree-structure">The tree structure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-naming">Part naming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">Inheritance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-part-names">Specific Part Names</a></li>
 </ul>
   </nav></div>
 

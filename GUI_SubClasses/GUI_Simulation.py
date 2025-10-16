@@ -38,7 +38,7 @@ class Simulation(ctk.CTkFrame):
         self.Turb_mod_text = ctk.CTkLabel(self, text='Turbulence model')
         self.Turb_mod_text.grid(row=0, column=0, padx=10, pady=(10, 10), sticky="w")
         
-        self.Turb_mod_combo = ctk.CTkComboBox(self, values=['SST k-Omega', 'k-Epsilon'], command= self.Turb_mod_change )
+        self.Turb_mod_combo = ctk.CTkComboBox(self, values=['SST k-Omega', 'k-Epsilon', 'SBES'], command= self.Turb_mod_change )
         self.Turb_mod_combo.grid(row=0, column=1, padx=10, pady=(10, 0), sticky="w")
         
         self.Wall_funct_text = ctk.CTkLabel(self, text='Wall function')
@@ -106,12 +106,21 @@ class Simulation(ctk.CTkFrame):
             print(self.controller.SolverSett.Turbulence_model)
             self.Wall_funct_combo.configure(state = 'disabled')
             self.Wall_funct_combo.configure(fg_color = 'gray')
-        else:
+        elif select == 'k-Epsilon':
             self.controller.SolverSett.Turbulence_model =  'k-epsilon'
             print('Turbulence Check State:\n')
             print(self.controller.SolverSett.Turbulence_model)
             self.Wall_funct_combo.configure(state = 'normal')
             self.Wall_funct_combo.configure(fg_color = 'gray24')
+            
+        elif select == 'SBES':
+            self.controller.SolverSett.Turbulence_model =  'SBES'
+            print('Turbulence Check State:\n')
+            print(self.controller.SolverSett.Turbulence_model)
+            self.Wall_funct_combo.configure(state = 'disabled')
+            self.Wall_funct_combo.configure(fg_color = 'gray')
+            self.Transient_combo.set('Transient')
+            self.Transient_change('Transient')
             
     def Wall_funct_change(self, select):
         '''

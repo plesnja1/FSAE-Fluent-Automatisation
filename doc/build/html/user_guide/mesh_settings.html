@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <meta property="og:site_name" content="PyAnsys" />
-    <title>Creatings mesh &#8212; AutoFluent  documentation</title>
+    <title>Creating mesh &#8212; AutoFluent  documentation</title>
   
   
   
@@ -194,7 +194,7 @@
                     
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -294,7 +294,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -327,7 +327,7 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="geometry_naming.html">CAD model preparation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Creatings mesh</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Creating mesh</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solver_setup.html">Setting up solver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="boundary_conditions.html">Boundary Conditions Options Menu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postprocessing_guide.html">Posprocessing</a></li>
@@ -379,7 +379,7 @@
       <a href="user_guide_contents.html" class="nav-link">User Guide</a>
     </li>
       
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Creatings mesh</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Creating mesh</span></li>
     
   </ul>
 </nav>
@@ -397,16 +397,84 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="creatings-mesh">
-<span id="mesh-settings"></span><h1>Creatings mesh<a class="headerlink" href="#creatings-mesh" title="Link to this heading">#</a></h1>
-<p>Posprocessing options menu gives users options to choose which and how detailed postprocessing features they want to perform for their simulation.</p>
-<a class="reference internal image-reference" href="../_images/general.png"><img alt="../_images/general.png" src="../_images/general.png" style="width: 650px;" /></a>
-<section id="export-forces-to-excell-file">
-<h2>Export forces to excell file?<a class="headerlink" href="#export-forces-to-excell-file" title="Link to this heading">#</a></h2>
+  <style> .red {color:#e3182d; font-weight:bold; font-size:16px} </style><style> .blue {color:#0078d7; font-weight:bold; font-size:16px} </style><style> .yellow {color:#fbae17; font-weight:bold; font-size:16px} </style><style> .green {color:#00b44b; font-weight:bold; font-size:16px} </style><section id="creating-mesh">
+<span id="mesh-settings"></span><h1>Creating mesh<a class="headerlink" href="#creating-mesh" title="Link to this heading">#</a></h1>
+<p>In Fluent creating a mesh consists of manz subtasks ranging from part import management, tunnel creation, edge extractions, surface mesh settings, volume mesh settings,
+mesh improvements, volume definisions, boundary definitions, scope sizings and prism sizings. Thankfully we need to concern ourselves only with the latter two, as most of the
+other tasks are managed by the script.</p>
+<section id="scoped-sizing">
+<h2>Scoped Sizing<a class="headerlink" href="#scoped-sizing" title="Link to this heading">#</a></h2>
+<p>Size Functions and Scoped Sizing provide control over how the mesh size is distributed on a surface or within the volume.
+They provide accurate sizing information for the mesh distribution and precise refinement control.</p>
+<p>Scoped sizing differs from size functions in how the sizing can be associated with objects or zones, respectively.
+Scoped sizing may be applied to model features such as faces, edges, face zone labels or unreferenced face or edge zones</p>
+<section id="assigning-scoped-sizing">
+<h3>Assigning Scoped Sizing<a class="headerlink" href="#assigning-scoped-sizing" title="Link to this heading">#</a></h3>
+<p>For specifying mesh size the <strong>Scoped Sizing</strong> menu is aviable. This menu consists of the <span class="yellow">tree window</span> on the left side, scoped sizing <span class="green">file loading</span> on top of the menu,
+<span class="blue">individual sizings</span> individual sizings controlls in the middle and <span class="red">tree manipulation</span> buttons on the bottom.</p>
+<a class="reference internal image-reference" href="../_images/ScopedMenu.png"><img alt="../_images/ScopedMenu.png" src="../_images/ScopedMenu.png" style="width: 500px;" /></a>
+<p>By default there are only two entities in your scoped sizing tree - <strong>vehicle</strong> and <strong>BOIs</strong>. Under the vehicle entry all your physical formula assemblies and parts
+should be added. All your bodies of influence should be specified under the BOIs entry. New entry to the tree is made by clicking on already existing entry, changing the name
+to the name of new part and then clicking on <strong>Add Child</strong> button. This will create a new entry under the previously clicked one, which becomes the new entries <strong>parent</strong>.</p>
+</section>
+<section id="tree-structure">
+<h3>Tree structure<a class="headerlink" href="#tree-structure" title="Link to this heading">#</a></h3>
+<p>Tree structure should directly copy the CAD geometry tree from top level. This means that all the assemblies and part to which we need to specify a scoped sizin should be
+in the same position in Scoped sizing tree as in CAD tree.</p>
+<a class="reference internal image-reference" href="../_images/CAD_tree_2.png"><img alt="../_images/CAD_tree_2.png" src="../_images/CAD_tree_2.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../_images/Scope_tree.png"><img alt="../_images/Scope_tree.png" src="../_images/Scope_tree.png" style="width: 173px;" /></a>
+</section>
+</section>
+<section id="types-of-sizing-controls">
+<h2>Types of sizing controls<a class="headerlink" href="#types-of-sizing-controls" title="Link to this heading">#</a></h2>
+<p>When the size functions or scoped sizing is used, the mesh distribution is influenced by:</p>
 <ul class="simple">
-<li><p><strong>type</strong>: check - bool</p></li>
+<li><p>The minimum and maximum size values</p></li>
+<li><p>The growth rate</p></li>
+<li><p>The size source which can be any one of the following:</p>
+<ul>
+<li><p>Edge and face curvature, based on the normal angle variation between adjacent edges or faces.</p></li>
+<li><p>Edge and face proximity, based on the number of element layers created in a gap between edges or faces.</p></li>
 </ul>
-<p>Option to export drag, lift, and pressure distribution of all subassemblies into a .CSV file.</p>
+</li>
+</ul>
+<section id="growth-rate">
+<h3>Growth rate<a class="headerlink" href="#growth-rate" title="Link to this heading">#</a></h3>
+<p>Is defined as a rate of allowed increase of adjecent cell size. As example if growth rate of 1.4 is selected on zone where minimum of 10mm cell is located, the neighboring
+cells can maximally be 14mm large (10mm x 1.4) if other scoped sizing rules allow for that. Gmaller growth rate results in more gentle increase in cell size while larger growth
+rate results in smaller mesh.</p>
+<a class="reference internal image-reference" href="../_images/Growth_rate.png"><img alt="../_images/Growth_rate.png" src="../_images/Growth_rate.png" style="width: 500px;" /></a>
+</section>
+<section id="curvature">
+<h3>Curvature<a class="headerlink" href="#curvature" title="Link to this heading">#</a></h3>
+<p>Normal Angle – If the angle between two neighboring face normals is larger than the “Normal Angle”, refinement will happen.
+Smaller “Normal Angle” means better feature capturing.</p>
+<ul class="simple">
+<li><p>E.g. 18° will give 20 faces around the circumference of a cylinder assuming minimum size isn’t limiting</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Curvature.png"><img alt="../_images/Curvature.png" src="../_images/Curvature.png" style="width: 500px;" /></a>
+</section>
+<section id="proximity">
+<h3>Proximity<a class="headerlink" href="#proximity" title="Link to this heading">#</a></h3>
+<p>The proximity size function/scoped control computes edge and face sizes in ‘gaps’ using the specified minimum number of element layers. For the purposes of specifying proximity sizing, a ‘gap’ is defined in one of two ways:</p>
+<ul class="simple">
+<li><p>The area between two opposing boundary edges of a face</p></li>
+<li><p>The internal volumetric region between two faces</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Proximity.png"><img alt="../_images/Proximity.png" src="../_images/Proximity.png" style="width: 500px;" /></a>
+</section>
+<section id="body-of-influence-boi">
+<h3>Body Of Influence - BOI<a class="headerlink" href="#body-of-influence-boi" title="Link to this heading">#</a></h3>
+<p>BOI is used to limit the mesh size within a volumetric region where it sets maximum size.
+* E.g. wake refinement behind a car</p>
+<p>BOI is applied to face zones forming a watertight volume.</p>
+<a class="reference internal image-reference" href="../_images/BOI.png"><img alt="../_images/BOI.png" src="../_images/BOI.png" style="width: 700px;" /></a>
+<p>For more detailed info on mesh sizings see:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v251/en/flu_ug/tgd_user_size_functions.html">Fluent user guide -  Size Functions and Scoped Sizing</a></p></li>
+<li><p><a class="reference external" href="https://learninghub.ansys.com/learn/courses/1666/getting-started-with-fault-tolerant-meshing-workflow-in-ansys-fluent-software/lessons/16661:1204/mesh-control-options-and-local-sizing">Ansys Learning Hub -  Getting Started with Fault-Tolerant Meshing</a></p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -457,7 +525,18 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-forces-to-excell-file">Export forces to excell file?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scoped-sizing">Scoped Sizing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-scoped-sizing">Assigning Scoped Sizing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-structure">Tree structure</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-sizing-controls">Types of sizing controls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#growth-rate">Growth rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curvature">Curvature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proximity">Proximity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#body-of-influence-boi">Body Of Influence - BOI</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

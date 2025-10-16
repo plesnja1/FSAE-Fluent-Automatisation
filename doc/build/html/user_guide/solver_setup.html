@@ -69,7 +69,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Boundary Conditions Options Menu" href="boundary_conditions.html" />
-    <link rel="prev" title="Creatings mesh" href="mesh_settings.html" />
+    <link rel="prev" title="Creating mesh" href="mesh_settings.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -194,7 +194,7 @@
                     
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -294,7 +294,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../Literature/Literature.html">
-    CFD theory
+    Literature
   </a>
 </li>
 
@@ -327,7 +327,7 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="geometry_naming.html">CAD model preparation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mesh_settings.html">Creatings mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh_settings.html">Creating mesh</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting up solver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="boundary_conditions.html">Boundary Conditions Options Menu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postprocessing_guide.html">Posprocessing</a></li>
@@ -399,14 +399,99 @@
                   
   <section id="setting-up-solver">
 <span id="solver-setup"></span><h1>Setting up solver<a class="headerlink" href="#setting-up-solver" title="Link to this heading">#</a></h1>
-<p>Posprocessing options menu gives users options to choose which and how detailed postprocessing features they want to perform for their simulation.</p>
-<a class="reference internal image-reference" href="../_images/general.png"><img alt="../_images/general.png" src="../_images/general.png" style="width: 650px;" /></a>
-<section id="export-forces-to-excell-file">
-<h2>Export forces to excell file?<a class="headerlink" href="#export-forces-to-excell-file" title="Link to this heading">#</a></h2>
+<p>AutoFluent offers some solver settings choices mainly concerned with Turbulence settings, Pressure-Velocity coupling and Transient or Steady state settings.</p>
+<section id="turbulence">
+<h2>Turbulence<a class="headerlink" href="#turbulence" title="Link to this heading">#</a></h2>
+<p>Turbulence is usualy characterised as chaotic behavior of fluid motion. This chaotic behavior is present across all length scales of fluid motion, ranging from unpredictibility
+of atmospheric motions all the way down up to mollecular motion. Thanksfully not all scales are of the same interest and smaller scales, which would otherwise be
+incredibly expensive to compute directly, can be summarized as a propperty of fluid. This is what turbulence models do, they ‘model’ the smaller scales of turbulence, instead
+of computing them directly and in doing so allowing us reduce the ammount of computational cells to simulate only the relevant flow scales.</p>
+<a class="reference internal image-reference" href="../_images/Turbulence.jpg"><img alt="../_images/Turbulence.jpg" src="../_images/Turbulence.jpg" style="width: 500px;" /></a>
+<p>There are two general trubulence modeling aproaches. Reynolds Averaged Navier Stokes (RANS) and  Scale-Resolving Simulations (SRS).The RANS models are an industry standard
+for large and complex models, as they are the crudest simplification of turbulence. RANS models tread velocity fluctuations as single time averaged value that affects the fluid
+flow in simmilar way as mollecular viscosity and is then treated the same way. The SRS models directly simulate larger eddies and smaller scales are modelled. This provides much
+better description of overall flow but mesh resolution requirements are way much larger.</p>
+<a class="reference internal image-reference" href="../_images/RANSvsSRS.png"><img alt="../_images/RANSvsSRS.png" src="../_images/RANSvsSRS.png" style="width: 500px;" /></a>
+<p>Curently there are 3 turbulence models aviable in AutoFluent, k-Epsilon (RANS), SST k-Omega (RANS) and k-Omega SBES (Hybrid).</p>
+<a class="reference internal image-reference" href="../_images/TurbulenceModels.png"><img alt="../_images/TurbulenceModels.png" src="../_images/TurbulenceModels.png" style="width: 500px;" /></a>
+<section id="k-epsilon">
+<h3>k-Epsilon<a class="headerlink" href="#k-epsilon" title="Link to this heading">#</a></h3>
+<p>k-Epsilon is a widely used two-equation RANS model. Curently, at least for external aerodynamics, its use is rather a matter of model comparison or very coarse meshes.
+This model depends on so called wall functions to properly model boundary layers. This means that not so many cells are needed to model the boundary layer, but this
+model also notoroiusly underpredicts boundary layer separation. Its use is then recommended only if computational power needed to fully resolve the boundary layer is
+not aviable.</p>
+<p>The reccomended y+ value for this model is 30 &lt; y+ &lt; 150.</p>
+<p>Curently there are aviable these wall functions:</p>
 <ul class="simple">
-<li><p><strong>type</strong>: check - bool</p></li>
+<li><p>Enhanced</p></li>
+<li><p>Standard</p></li>
+<li><p>Non-equilibrium</p></li>
 </ul>
-<p>Option to export drag, lift, and pressure distribution of all subassemblies into a .CSV file.</p>
+<a class="reference internal image-reference" href="../_images/K-Epsilon.png"><img alt="../_images/K-Epsilon.png" src="../_images/K-Epsilon.png" style="width: 500px;" /></a>
+</section>
+<section id="sst-k-omega">
+<h3>SST k-Omega<a class="headerlink" href="#sst-k-omega" title="Link to this heading">#</a></h3>
+<p>SST k-Omega is a extremely popular model which coombines strength of k-Epsilon in free sheer flows and good predictions of k-Omega in boundary flows. This model is
+able to reasonably well predict flow separation, which is especially important when simulating wing profiles and their angle of attack.
+It is reccomended to use this model, as it is in theory able to simulate boundary layer well regardless of prism layer height.</p>
+<p>Nevertheless some rules should be adhered to:</p>
+<ul class="simple">
+<li><p>Parts of aerodynamic interest should be meshed with values of y+ &lt; 5</p></li>
+<li><p>No parts should be in range 5 &lt; y+ &lt; 30.</p></li>
+<li><p>Not so important parts should be meshed with values 30 &lt; y+ &lt; 150</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/VelocityProfile.png"><img alt="../_images/VelocityProfile.png" src="../_images/VelocityProfile.png" style="width: 500px;" /></a>
+</section>
+<section id="sbes">
+<h3>SBES<a class="headerlink" href="#sbes" title="Link to this heading">#</a></h3>
+<p>Stress-Blended Eddy Simulation (SBES) is a hybrid RANS-LES turbulence model that adds the ability to switch (blend) from the underlying RANS model directly
+to any existing algebraic LES model. In places where flow requires it and mesh size allows it this model cumputes as scale resolving LES model and in places with coarser
+mesh it switches into k-Omega model. This allows us to detailly study specific parts by refining mesh in their surroundings while keeping the rest of the model managable.</p>
+<p>This model is aviable only with transient simulation setting. It is then reccomended only when very powerfull cumpute servers or rather even GPUs are aviable.</p>
+<a class="reference internal image-reference" href="../_images/SBES.png"><img alt="../_images/SBES.png" src="../_images/SBES.png" style="width: 500px;" /></a>
+</section>
+</section>
+<section id="pressure-velocity-coupling">
+<h2>Pressure-Velocity Coupling<a class="headerlink" href="#pressure-velocity-coupling" title="Link to this heading">#</a></h2>
+<p>The pressure-velocity coupling scheme controls the manner in which pressure and velocity are updated when the pressure-based solver is used. The scheme can be either segregated
+(pressure and velocity are updated sequentially) or coupled (pressure and velocity are updated simultaneously).In general, segregated methods are faster per iteration,
+while the coupled algorithm usually requires fewer iterations to converge. For this reason, the coupled solver is usually recommended for steady-state simulations.
+For transient simulations, the coupled solver has the best robustness properties, especially for large time step sizes, but SIMPLE may give faster overall solution times
+for small time step sizes.</p>
+<p>Coupled solver is also almost twice as RAM memory consuming as SIMPLE solver, which can be used when not enough RAM memory is aviable.</p>
+</section>
+<section id="temporal-settings">
+<h2>Temporal settings<a class="headerlink" href="#temporal-settings" title="Link to this heading">#</a></h2>
+<p>The decision between steady state solver and transient solver is a question of necessity. There are some phenomena that are not possible to simulate in steady-state solver
+since these phenomena are transient in their nature. Solving full transient simulation for entire car is very computationaly expensive. The user then have to answer wheter
+it is necessary to simulate these phenomena or if time averaged values (which might not be correct) are enough for determining the general design direction.</p>
+<section id="steady-state-solver">
+<h3>Steady-state solver<a class="headerlink" href="#steady-state-solver" title="Link to this heading">#</a></h3>
+<p>Steady state solver is a default tmporal settings. Fluent uses a pseudo-transient formulation which solves the case transiently increasing the time step according to the
+flow field behavior. User can scale this time step increase with <strong>Pseudo-time step</strong> option which in some cases can speed up convergence. Other aviable option is
+<strong>Number of iterations</strong> which should be set up so there is enough iterations for tha case to converge plus additional iterations so for iteration sampling of results.
+This number will vary based on mesh size, mesh quality, and used settings.</p>
+</section>
+<section id="transient-solver">
+<h3>Transient solver<a class="headerlink" href="#transient-solver" title="Link to this heading">#</a></h3>
+<p>There are many transient phenomena that might interest an aerodynamic engineer, some of which are:</p>
+<ul class="simple">
+<li><p>vortex shedding</p></li>
+<li><p>vortex travel</p></li>
+<li><p>time variable separation</p></li>
+<li><p>flutter</p></li>
+</ul>
+<p>If some of theese are of interest or if we are trying to understand periodic behaviors in our steady-state simulations. Transient solvers should be used.
+<strong>Time step size</strong> should be determined such that the simulation is numericaly stable (Courant number) and that the periodic phenomena are proper resolved (Strouhal number).
+In addition to time step size user have to also select <strong>Iterations per time step</strong>, which should be enough so the residuals at least resemble starting to converge, and
+<strong>End time of simulation</strong>, which should be long enough so that averaged values seems to be unchanging.</p>
+</section>
+</section>
+<section id="temperature-and-altitude">
+<h2>Temperature and Altitude<a class="headerlink" href="#temperature-and-altitude" title="Link to this heading">#</a></h2>
+<p>There si also options to set temperature and altitude of surroundings. These values are used for calculations of density and viscosity of air.
+The International Standard Atmosphere (ISA) model is used for these caculations.
+These variables migh be usefull to compare tracks at differente climates and altitudes or to set these values to be the same as during real life measurement.</p>
 </section>
 </section>
 
@@ -426,7 +511,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Creatings mesh</p>
+        <p class="prev-next-title">Creating mesh</p>
       </div>
     </a>
     <a class="right-next"
@@ -457,7 +542,19 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-forces-to-excell-file">Export forces to excell file?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turbulence">Turbulence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-epsilon">k-Epsilon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sst-k-omega">SST k-Omega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sbes">SBES</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-velocity-coupling">Pressure-Velocity Coupling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-settings">Temporal settings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-solver">Steady-state solver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transient-solver">Transient solver</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-altitude">Temperature and Altitude</a></li>
 </ul>
   </nav></div>
 

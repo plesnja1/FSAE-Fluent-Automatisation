@@ -15,6 +15,7 @@ import Support_scripts.MeshObjects as MeshObjects
 import Fluent_scripts.Solver as Solver
 import Fluent_scripts.Postproces as Postproces
 import Fluent_scripts.Mesher as Mesher
+import Fluent_scripts.MesherTurn as MesherTurn
 
 
 '''
@@ -120,13 +121,20 @@ class SimulationClass:
         :returns: (String) path to saved volumetric mesh
         '''
         self.SimStat = 'msh'
-        MeshingPath = Mesher.StartFluentMeshing(self.simMeshObjectList,
+        if self.simTunnelObject.turn_check == True:
+            MeshingPath = MesherTurn.StartFluentMeshing(self.simMeshObjectList,
                                   General_Settings= self.simGeneralObject,
                                   Tunnel_Settings = self.simTunnelObject,
                                   Boundary_settings= self.simBoundarySett,
                                   Parameters_settings= self.simParametersSett                               
                                   )
-        
+        else:
+            MeshingPath = Mesher.StartFluentMeshing(self.simMeshObjectList,
+                                  General_Settings= self.simGeneralObject,
+                                  Tunnel_Settings = self.simTunnelObject,
+                                  Boundary_settings= self.simBoundarySett,
+                                  Parameters_settings= self.simParametersSett                               
+                                  )
         self.meshPath = MeshingPath
         self.SimStat = 'msh_dn'
         self.SimThread = None
@@ -154,6 +162,7 @@ class SimulationClass:
         self.SimStat = 'slv'
         SolverPath = Solver.StartFluentSolver(self.simBoundarySett, 
                                                self.simSolverSett, 
+                                               self.simTunnelObject,
                                                self.simMeshObjectList, 
                                                self.simGeneralObject,
                                                self.simPostproSett,
@@ -560,7 +569,10 @@ class MainApp(ctk.CTk):
         
         self.GeneralObject.workingDirectory = self.WorkDirBox.get('0.0', 'end')
         self.GeneralObject.workingDirectory = self.GeneralObject.workingDirectory.replace('\n', '')
-        self.GeneralObject.IntCoreCount = int(self.GeneralObject.CoreCount.get())
+        try:
+            self.GeneralObject.IntCoreCount = int(self.GeneralObject.CoreCount.get())
+        except:
+            self.GeneralObject.IntCoreCount = int(self.GeneralObject.CoreCount)
         #self.TransformTunnelToFloat()
         #self.TransformSolverSettToFloat()
         print(self.GeneralObject.CAD_Path)
