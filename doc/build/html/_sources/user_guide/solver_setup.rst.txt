@@ -55,7 +55,7 @@ It is reccomended to use this model, as it is in theory able to simulate boundar
 
 Nevertheless some rules should be adhered to:
 
-* Parts of aerodynamic interest should be meshed with values of y+ \ <\  5
+* Parts of aerodynamic interest should be meshed with values of y+  \ <\  5
 * No parts should be in range 5 \ <\  y+ \ <\  30.
 * Not so important parts should be meshed with values 30 \ <\  y+ \ <\  150
 
@@ -107,7 +107,7 @@ There are many transient phenomena that might interest an aerodynamic engineer, 
 * flutter
 
 If some of theese are of interest or if we are trying to understand periodic behaviors in our steady-state simulations. Transient solvers should be used.
-**Time step size** should be determined such that the simulation is numericaly stable (Courant number) and that the periodic phenomena are proper resolved (Strouhal number).
+**Time step size** should be determined such that the simulation is numericaly stable (Courant number) and that the periodic phenomena are properly resolved (Strouhal number).
 In addition to time step size user have to also select **Iterations per time step**, which should be enough so the residuals at least resemble starting to converge, and 
 **End time of simulation**, which should be long enough so that averaged values seems to be unchanging. 
 
