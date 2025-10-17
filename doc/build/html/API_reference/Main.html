@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css?v=572af1d6" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles\ansys-sphinx-theme.css?v=ce7f2556" />
@@ -682,28 +682,31 @@ on simulation status.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.browseFolders" title="Main.MainApp.browseFolders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">browseFolders</span></code></a>()</p></td>
 <td><p>Opens the explorer window and puts the selected folder into a GeneralObject.workingDirectory attribute.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.changeSegment" title="Main.MainApp.changeSegment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">changeSegment</span></code></a>(a)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.openHelp" title="Main.MainApp.openHelp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">openHelp</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.changeSegment" title="Main.MainApp.changeSegment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">changeSegment</span></code></a>(a)</p></td>
 <td><p>Changes the simulation starting point and activates the GUI_Subclasses/GUI_General.General.activateDataInput() method.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.Start" title="Main.MainApp.Start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Start</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.Start" title="Main.MainApp.Start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Start</span></code></a>()</p></td>
 <td><p>Creates the SimulationsClass from current settings and pushes the simulation into a simulation queue.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.QueueLoop" title="Main.MainApp.QueueLoop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QueueLoop</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.QueueLoop" title="Main.MainApp.QueueLoop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QueueLoop</span></code></a>()</p></td>
 <td><p>Loop responsible for pushing simulations in the queue.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.show_frame" title="Main.MainApp.show_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_frame</span></code></a>(cont)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.show_frame" title="Main.MainApp.show_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_frame</span></code></a>(cont)</p></td>
 <td><p>Shows a frame of given ctk.CTkFrame class options menu.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.getJsonSavePath" title="Main.MainApp.getJsonSavePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getJsonSavePath</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.getJsonSavePath" title="Main.MainApp.getJsonSavePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getJsonSavePath</span></code></a>()</p></td>
 <td><p>Gets a .json file path from opened explorer window and writes current simulation settings  into newly created .json file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.WriteSettToJson" title="Main.MainApp.WriteSettToJson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteSettToJson</span></code></a>(Obj_list, file_path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.WriteSettToJson" title="Main.MainApp.WriteSettToJson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteSettToJson</span></code></a>(Obj_list, file_path)</p></td>
 <td><p>Writes all the provided Settings objects into a provided .json file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.browseJsonFiles" title="Main.MainApp.browseJsonFiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">browseJsonFiles</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.browseJsonFiles" title="Main.MainApp.browseJsonFiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">browseJsonFiles</span></code></a>()</p></td>
 <td><p>Opens the explorer window and reads the selected .json settings file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#Main.MainApp.ReadSettJson" title="Main.MainApp.ReadSettJson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReadSettJson</span></code></a>(File_path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#Main.MainApp.ReadSettJson" title="Main.MainApp.ReadSettJson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReadSettJson</span></code></a>(File_path)</p></td>
 <td><p>Reads a provided .json file and loads the values into settings objects.</p></td>
 </tr>
 </tbody>
@@ -743,6 +746,11 @@ is the name of the widget class.</p>
 <span class="sig-name descname"><span class="pre">browseFolders</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.browseFolders" title="Link to this definition">#</a></dt>
 <dd><p>Opens the explorer window and puts the selected folder into a GeneralObject.workingDirectory attribute.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Main.MainApp.openHelp">
+<span class="sig-name descname"><span class="pre">openHelp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main.MainApp.openHelp" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="Main.MainApp.changeSegment">
@@ -879,6 +887,7 @@ into newly created .json file.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.reset_logging"><code class="docutils literal notranslate"><span class="pre">MainApp.reset_logging()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.redirect_logging"><code class="docutils literal notranslate"><span class="pre">MainApp.redirect_logging()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.browseFolders"><code class="docutils literal notranslate"><span class="pre">MainApp.browseFolders()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.openHelp"><code class="docutils literal notranslate"><span class="pre">MainApp.openHelp()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.changeSegment"><code class="docutils literal notranslate"><span class="pre">MainApp.changeSegment()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.Start"><code class="docutils literal notranslate"><span class="pre">MainApp.Start()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Main.MainApp.QueueLoop"><code class="docutils literal notranslate"><span class="pre">MainApp.QueueLoop()</span></code></a></li>

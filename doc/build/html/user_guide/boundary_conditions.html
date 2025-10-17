@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <meta property="og:site_name" content="PyAnsys" />
-    <title>Boundary Conditions Options Menu &#8212; AutoFluent  documentation</title>
+    <title>Boundary Conditions &#8212; AutoFluent  documentation</title>
   
   
   
@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css?v=572af1d6" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles\ansys-sphinx-theme.css?v=ce7f2556" />
@@ -329,7 +329,7 @@
 <li class="toctree-l1"><a class="reference internal" href="geometry_naming.html">CAD model preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mesh_settings.html">Creating mesh</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solver_setup.html">Setting up solver</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Boundary Conditions Options Menu</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Boundary Conditions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postprocessing_guide.html">Posprocessing</a></li>
 </ul>
 </div>
@@ -379,7 +379,7 @@
       <a href="user_guide_contents.html" class="nav-link">User Guide</a>
     </li>
       
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Boundary Conditions Options Menu</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Boundary Conditions</span></li>
     
   </ul>
 </nav>
@@ -397,19 +397,32 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="boundary-conditions-options-menu">
-<span id="boundary-conditions-guide"></span><h1>Boundary Conditions Options Menu<a class="headerlink" href="#boundary-conditions-options-menu" title="Link to this heading">#</a></h1>
-<p>Boundary conditions options menu specifies inlet velocity, wheel diameter and wheel base, radiators and fan settings.</p>
+  <section id="boundary-conditions">
+<span id="boundary-conditions-guide"></span><h1>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading">#</a></h1>
+<p>There are several boundarz conditions in every case. Some of them are predefined, like pressure outlet or symmetry on all sides except for road, but many can be
+defined by user.</p>
 <a class="reference internal image-reference" href="../_images/boundary_conditions.png"><img alt="../_images/boundary_conditions.png" src="../_images/boundary_conditions.png" style="width: 650px;" /></a>
-<section id="inlet-velocity-m-s">
-<h2>Inlet velocity [m/s]<a class="headerlink" href="#inlet-velocity-m-s" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>type</strong>: text win. - float</p></li>
-</ul>
-<p>Inlet air velocity. Same as car speed.</p>
+<section id="inlet">
+<h2>Inlet<a class="headerlink" href="#inlet" title="Link to this heading">#</a></h2>
+<p>Inlet is here defined as a velocity inlet. For straight cases the inlet velocity is set directly at boundary and is the same value as defined in GUI. In case of turn case the
+velocity is set as zero relative to neighboring cells and the velocity is instead defined by moving reference frame of the fluid cell zone. The MRF movement (rad/s) is calculated
+from specified inlet velocity and turn radius.</p>
 </section>
-<section id="wheel-diameter-m">
-<h2>Wheel diameter [m]<a class="headerlink" href="#wheel-diameter-m" title="Link to this heading">#</a></h2>
+<section id="road">
+<h2>Road<a class="headerlink" href="#road" title="Link to this heading">#</a></h2>
+<p>Road is defined as moving wall which moves at the same speed as inlet velocity. In case of turn simulation, the road has a rotational movement same as MRF.</p>
+</section>
+<section id="wheels">
+<h2>Wheels<a class="headerlink" href="#wheels" title="Link to this heading">#</a></h2>
+<p>Wheels are defined as walls with a rotational movement. Their angular speed is calculated from inlet velocity value and specified wheel radius. User also needs to specify
+the origin of wheel axis in XYZ coordinates.</p>
+</section>
+<section id="radiators">
+<h2>Radiators<a class="headerlink" href="#radiators" title="Link to this heading">#</a></h2>
+<p>User can choose to simulate radiators on their car. The radiators need to be modelled as separate properkly named CAD body and is represented as porous medium.
+The pressure loss characteristic of porous medium is defined through power law model, which characterises the specific pressure loss (presure loss through 1m of material)
+by linear constant (c0) and exponent constant (c1).</p>
+<a class="reference internal image-reference" href="../_images/Power_law.png"><img alt="../_images/Power_law.png" src="../_images/Power_law.png" style="width: 500px;" /></a>
 </section>
 </section>
 
@@ -460,8 +473,10 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inlet-velocity-m-s">Inlet velocity [m/s]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wheel-diameter-m">Wheel diameter [m]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inlet">Inlet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#road">Road</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wheels">Wheels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiators">Radiators</a></li>
 </ul>
   </nav></div>
 

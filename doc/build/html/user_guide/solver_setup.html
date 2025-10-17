@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css?v=572af1d6" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles\ansys-sphinx-theme.css?v=ce7f2556" />
@@ -68,7 +68,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/solver_setup';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Boundary Conditions Options Menu" href="boundary_conditions.html" />
+    <link rel="next" title="Boundary Conditions" href="boundary_conditions.html" />
     <link rel="prev" title="Creating mesh" href="mesh_settings.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -329,7 +329,7 @@
 <li class="toctree-l1"><a class="reference internal" href="geometry_naming.html">CAD model preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mesh_settings.html">Creating mesh</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting up solver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="boundary_conditions.html">Boundary Conditions Options Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boundary_conditions.html">Boundary Conditions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postprocessing_guide.html">Posprocessing</a></li>
 </ul>
 </div>
@@ -436,7 +436,7 @@ able to reasonably well predict flow separation, which is especially important w
 It is reccomended to use this model, as it is in theory able to simulate boundary layer well regardless of prism layer height.</p>
 <p>Nevertheless some rules should be adhered to:</p>
 <ul class="simple">
-<li><p>Parts of aerodynamic interest should be meshed with values of y+ &lt; 5</p></li>
+<li><p>Parts of aerodynamic interest should be meshed with values of y+  &lt; 5</p></li>
 <li><p>No parts should be in range 5 &lt; y+ &lt; 30.</p></li>
 <li><p>Not so important parts should be meshed with values 30 &lt; y+ &lt; 150</p></li>
 </ul>
@@ -482,7 +482,7 @@ This number will vary based on mesh size, mesh quality, and used settings.</p>
 <li><p>flutter</p></li>
 </ul>
 <p>If some of theese are of interest or if we are trying to understand periodic behaviors in our steady-state simulations. Transient solvers should be used.
-<strong>Time step size</strong> should be determined such that the simulation is numericaly stable (Courant number) and that the periodic phenomena are proper resolved (Strouhal number).
+<strong>Time step size</strong> should be determined such that the simulation is numericaly stable (Courant number) and that the periodic phenomena are properly resolved (Strouhal number).
 In addition to time step size user have to also select <strong>Iterations per time step</strong>, which should be enough so the residuals at least resemble starting to converge, and
 <strong>End time of simulation</strong>, which should be long enough so that averaged values seems to be unchanging.</p>
 </section>
@@ -519,7 +519,7 @@ These variables migh be usefull to compare tracks at differente climates and alt
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Boundary Conditions Options Menu</p>
+        <p class="prev-next-title">Boundary Conditions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

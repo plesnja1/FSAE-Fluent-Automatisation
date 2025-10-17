@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css?v=572af1d6" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles\ansys-sphinx-theme.css?v=ce7f2556" />
@@ -69,7 +69,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Graphical User Interface Guide" href="../GUI_guide/GUI_guide.html" />
-    <link rel="prev" title="Boundary Conditions Options Menu" href="boundary_conditions.html" />
+    <link rel="prev" title="Boundary Conditions" href="boundary_conditions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -329,7 +329,7 @@
 <li class="toctree-l1"><a class="reference internal" href="geometry_naming.html">CAD model preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mesh_settings.html">Creating mesh</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solver_setup.html">Setting up solver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="boundary_conditions.html">Boundary Conditions Options Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boundary_conditions.html">Boundary Conditions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Posprocessing</a></li>
 </ul>
 </div>
@@ -401,12 +401,48 @@
 <span id="postprocessing-guide"></span><h1>Posprocessing<a class="headerlink" href="#posprocessing" title="Link to this heading">#</a></h1>
 <p>Posprocessing options menu gives users options to choose which and how detailed postprocessing features they want to perform for their simulation.</p>
 <a class="reference internal image-reference" href="../_images/postprocessing.png"><img alt="../_images/postprocessing.png" src="../_images/postprocessing.png" style="width: 650px;" /></a>
-<section id="export-forces-to-excell-file">
-<h2>Export forces to excell file?<a class="headerlink" href="#export-forces-to-excell-file" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>type</strong>: check - bool</p></li>
-</ul>
-<p>Option to export drag, lift, and pressure distribution of all subassemblies into a .CSV file.</p>
+<section id="excell-file">
+<h2>Excell file<a class="headerlink" href="#excell-file" title="Link to this heading">#</a></h2>
+<p>For every part and subassembly defined in scoped sizing tree the script creates a lift and drag report deffinition, These created monitors can be writtten into a excell table
+together with radiator mass flow and aerodynamic balance. User can also tweak a <strong>Iteration averaging</strong> value which averages all numerical results over specified ammount of
+iterations to mitigate influece of cyclic behaviors.</p>
+<a class="reference internal image-reference" href="../_images/Excell.png"><img alt="../_images/Excell.png" src="../_images/Excell.png" style="width: 170px;" /></a>
+</section>
+<section id="avz-files">
+<h2>AVZ files<a class="headerlink" href="#avz-files" title="Link to this heading">#</a></h2>
+<p>AutoFluent can generate several .AVZ files which can be opened in Ansys Viewer. These files contain 3D data of saved scene, which means user can look at the wall conntours or
+created isosurfaces from all angles. Currently the script generates .AVZ files of: isosurfaces of total pressure zero, isosurface of Q-criterion, wall contour of pressure
+coefficient, wall shear stress in x direction and wall y+.</p>
+<a class="reference internal image-reference" href="../_images/AVZ.png"><img alt="../_images/AVZ.png" src="../_images/AVZ.png" style="width: 650px;" /></a>
+</section>
+<section id="cut-planes">
+<h2>Cut planes<a class="headerlink" href="#cut-planes" title="Link to this heading">#</a></h2>
+<p>AutoFluent can generate several types fo cut planes. A number of cut planes and rangin in which the cut planes are generated need to be defined for each XYZ direction.
+On created cut planes several contours can be generated. These include:</p>
+<figure class="align-left" id="id1" style="width: 410px">
+<a class="reference internal image-reference" href="../_images/LIC.png"><img alt="Line Integral Convolution of velocity" src="../_images/LIC.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">Line Integral Convolution of velocity</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="id2" style="width: 410px">
+<a class="reference internal image-reference" href="../_images/TotP.png"><img alt="Contours of total pressure" src="../_images/TotP.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">Contours of total pressure</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-left" id="id3" style="width: 410px">
+<a class="reference internal image-reference" href="../_images/Vel.png"><img alt="Contours of velocity magnitude" src="../_images/Vel.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">Contours of velocity magnitude</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="id4" style="width: 410px">
+<a class="reference internal image-reference" href="../_images/Vort.png"><img alt="Contours of vorticity" src="../_images/Vort.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">Contours of vorticity</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
@@ -426,7 +462,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Boundary Conditions Options Menu</p>
+        <p class="prev-next-title">Boundary Conditions</p>
       </div>
     </a>
     <a class="right-next"
@@ -457,7 +493,9 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-forces-to-excell-file">Export forces to excell file?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excell-file">Excell file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avz-files">AVZ files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cut-planes">Cut planes</a></li>
 </ul>
   </nav></div>
 

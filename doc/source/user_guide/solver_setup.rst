@@ -107,7 +107,7 @@ There are many transient phenomena that might interest an aerodynamic engineer, 
 * flutter
 
 If some of theese are of interest or if we are trying to understand periodic behaviors in our steady-state simulations. Transient solvers should be used.
-**Time step size** should be determined such that the simulation is numericaly stable (Courant number) and that the periodic phenomena are proper resolved (Strouhal number).
+**Time step size** should be determined such that the simulation is numericaly stable (Courant number) and that the periodic phenomena are properly resolved (Strouhal number).
 In addition to time step size user have to also select **Iterations per time step**, which should be enough so the residuals at least resemble starting to converge, and 
 **End time of simulation**, which should be long enough so that averaged values seems to be unchanging. 
 
